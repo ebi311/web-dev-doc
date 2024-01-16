@@ -1,0 +1,4875 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../14-improving-accessibility/">
+      
+      
+        <link rel="next" href="../16-adding-metadata/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>15認証機能の追加 - Webアプリ開発統合学習</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BIZ+UDPGothic:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"BIZ UDPGothic";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/styles/github.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#15" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="Webアプリ開発統合学習" class="md-header__button md-logo" aria-label="Webアプリ開発統合学習" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Webアプリ開発統合学習
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              <span class="chapter"><span class="chapter-number">15</span></span>認証機能の追加
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Webアプリ開発統合学習" class="md-nav__button md-logo" aria-label="Webアプリ開発統合学習" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Webアプリ開発統合学習
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリ開発統合学習
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    A.設計編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            A.設計編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    0 保守しやすい設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            0 保守しやすい設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    保守しやすい設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/00.%E8%A8%AD%E8%A8%88%E3%81%AE%E5%88%9D%E6%AD%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設計の初歩
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/01.%E3%82%AF%E3%83%A9%E3%82%B9%E8%A8%AD%E8%A8%88%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クラス設計の基本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/02.%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%90%E3%81%A8%E9%85%8D%E5%88%97%E5%87%A6%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    条件分岐と配列処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/03.%E5%AF%86%E7%B5%90%E5%90%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密結合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/04.%E5%90%8D%E5%89%8D%E8%A8%AD%E8%A8%88%E3%83%BB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    名前設計・コメント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/05.%E9%96%A2%E6%95%B0%E3%83%BB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    関数・メソッド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/06.%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モデリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/07.%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TDDとリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 ドメイン駆動設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            1 ドメイン駆動設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/1%20%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88/1-domain-driven-design-strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドメイン駆動設計（戦略的設計）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/1%20%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88/2-domain-driven-design-tactics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドメイン駆動設計（戦術的設計）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 UI UX
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            2 UI UX
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/2%20UI-UX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UI/UX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 SOAとREST API設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            3 SOAとREST API設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/3%20SOA%E3%81%A8REST%20API%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SOAとREST API設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Webアプリケーションのアーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            4 Webアプリケーションのアーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/4%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリケーションのアーキテクチャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/4%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/%E3%83%95%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF%E3%81%AA%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フルスタックな論理・物理アーキテクチャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Webアプリケーションのセキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            5 Webアプリケーションのセキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/5%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリケーションのセキュリティ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 設計・実装レビューの観点
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            6 設計・実装レビューの観点
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/6%20%E8%A8%AD%E8%A8%88%E3%83%BB%E5%AE%9F%E8%A3%85%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E8%A6%B3%E7%82%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設計・実装レビューの観点
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 テスト設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            7 テスト設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../a.%E8%A8%AD%E8%A8%88%E7%B7%A8/7%20%E3%83%86%E3%82%B9%E3%83%88%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    B.実装編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            B.実装編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 開発環境
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            01 開発環境
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    開発環境の構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/1.VisualStudioCode%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visual Studio Code の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/2.WSL%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WSL 環境の構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/3.Node.js%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node.js の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/4.Git%E3%81%AE%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git の環境構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/5.docker%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/6.%E3%81%9D%E3%81%AE%E4%BB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    その他
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02 git基礎
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            02 git基礎
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02%20git%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git基礎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 Linuxコマンド基礎
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            03 Linuxコマンド基礎
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux コマンド基礎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 パッケージマネージャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            03 パッケージマネージャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ・マネージャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3/major-libs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JavaScript でよく使用されるライブラリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 プログラム言語
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 プログラム言語
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プログラム言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/1-html-ls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML Living Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/2-css-sass/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS / Sass
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/3-ES6-puls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6+(JavaScript)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/4-typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/6-anti-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アンチパターン
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    04 モジュールバンドラ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 モジュールバンドラ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04%20%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%83%90%E3%83%B3%E3%83%89%E3%83%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モジュールバンドラ: Webpack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    05 React
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05%20React/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reactとは
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05%20React/1%20tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React の演習
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05%20React/2%20object-identity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    関数やオブジェクトの同一性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    06 Next.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 Next.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Next.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>1</span></span> はじめましょう
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-css-styling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>2</span></span>CSS スタイリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-optimizing-font-and-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>3</span></span>フォントと画像の最適化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-creating-layouts-and-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>4</span></span>レイアウトとページの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-navigating-between-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">5</span></span>ページ間のナビゲーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-setting-up-your-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">6</span></span> データベースのセットアップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-feching-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">7</span></span>データのフェッチ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-static-and-dynamic-rendering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">8</span></span>静的レンダリングと動的レンダリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-streaming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">9</span></span>ストリーミング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-partial-pre-rendering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">10</span></span>部分プレレンダリング(オプショナル)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-adding-search-and-pagination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">11</span></span>検索とページネーションの追加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-mutating-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">12</span></span>データのミューテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-handling-errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">13</span></span>エラーハンドリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-improving-accessibility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">14</span></span>アクセシビリティの向上
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">15</span></span>認証機能の追加
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">15</span></span>認証機能の追加
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      この章では...
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証とは？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証とは？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証と認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログインルートの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextauthjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextAuth.js
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextauthjs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextAuth.jsのセットアップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NextAuth.jsのセットアップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ページ・オプションの追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next.jsミドルウェアでルートを保護する
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next.jsミドルウェアでルートを保護する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードのハッシュ化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証情報プロバイダーの追加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      サインイン機能の追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログインフォームの更新
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログアウト機能の追加
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      試してましょう
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-adding-metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">16</span></span>メタデータの追加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-next-step/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">17</span></span>次のステップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    07 CSSフレームワーク
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 CSSフレームワーク
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07%20CSS%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンポーネントと CSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    08 Linterとフォーマッター
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Linterとフォーマッター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08%20Linter%E3%81%A8%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%82%BF%E3%83%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linter と Formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    09 テスト駆動開発
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 テスト駆動開発
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト駆動開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/1%20jest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テストフレームワーク (Jest)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/2%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%E3%81%AE%E5%AE%9F%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト駆動開発の実践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/3%20React%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reactコンポーネントのテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    10 Svelte SvelteKit
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Svelte SvelteKit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10%20Svelte-SvelteKit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Svelte / Svelte Kit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C.実践編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            C.実践編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    0.業務要件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            0.業務要件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/0.%E6%A5%AD%E5%8B%99%E8%A6%81%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    業務要件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/0.%E6%A5%AD%E5%8B%99%E8%A6%81%E4%BB%B6/1.%E7%94%BB%E9%9D%A2%E4%BB%95%E6%A7%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画面仕様
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1.プロジェクトの作成
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            1.プロジェクトの作成
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロジェクトの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/1.Next.js%E3%81%AE%E5%88%9D%E6%9C%9F%E5%87%A6%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Next.JS の初期処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/2.ESLint%E3%81%A8Prettier%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linter と コード整形ツール の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/3.Jest%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テストフレームワークの導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/4.Storybook%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storybook の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/5.DaisyUI%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI の導入と Tailwind CSSの使い方
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/6.%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構成の定義
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2.コンテキスト境界とエンティティの設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            2.コンテキスト境界とエンティティの設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/2.%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E5%A2%83%E7%95%8C%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト境界とエンティティの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3.介護フタッフ機能の実装
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            3.介護フタッフ機能の実装
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    介護フタッフ用の機能の実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/1.%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. レイアウトの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/2.%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. コンポーネントのためのコードジェネレーターを導入する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/3.%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. トップページを作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_5" id="__nav_4_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4.報告書一覧画面を作る
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            4.報告書一覧画面を作る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書一覧画面を作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/01.%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書一覧のデータ型の実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/02.%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページのコンポーネントの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/03.%E4%BB%8B%E8%AD%B7%E3%82%BF%E3%82%A4%E3%83%97%E3%83%90%E3%83%83%E3%82%B8%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    介護タイプを表すバッジコンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/04.%E4%BD%9C%E6%A5%AD%E6%97%A5%E6%99%82%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業日時のコンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/05.%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E7%8A%B6%E6%85%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レビュー状態アイコンの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/06.%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E8%A1%8C%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    行コンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/07.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一覧コンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/08.%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_6" id="__nav_4_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5.報告書詳細画面を作る
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            5.報告書詳細画面を作る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書詳細画面を作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/01.%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書のデータスキーマを定義する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/02.%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページのコンポーネントの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/03.%E5%88%A9%E7%94%A8%E8%80%85%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用者コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/04.%E4%BD%9C%E6%A5%AD%E5%86%85%E5%AE%B9%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業内容コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/05.%E7%A7%BB%E5%8B%95%E8%B7%9D%E9%9B%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    移動距離コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/06.%E6%99%82%E5%88%BB%E5%85%A5%E5%8A%9B%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    時刻入力コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/07.%E4%BD%9C%E6%A5%AD%E6%99%82%E9%96%93%E5%85%A5%E5%8A%9B%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業時間入力コントロール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/08.%E5%88%A9%E7%94%A8%E8%80%85%E9%81%B8%E6%8A%9E%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用者選択ダイアログを実装する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/09.%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フォームの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/10.ReactHookForm%E3%81%AE%E5%88%A9%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReactHookForm の利用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      この章では...
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証とは？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証とは？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証と認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログインルートの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextauthjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextAuth.js
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextauthjs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextAuth.jsのセットアップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NextAuth.jsのセットアップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ページ・オプションの追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next.jsミドルウェアでルートを保護する
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next.jsミドルウェアでルートを保護する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードのハッシュ化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証情報プロバイダーの追加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      サインイン機能の追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログインフォームの更新
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログアウト機能の追加
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      試してましょう
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="15"><span class="chapter"><span class="chapter-number">15</span></span>認証機能の追加</h1>
+<p>前の章では、フォームのバリデーションを追加し、アクセシビリティを改善することで請求書ルートの構築を終えました。この章では、ダッシュボードに認証を追加します。</p>
+<h2 id="_1">この章では...</h2>
+<p>この章で取り上げるトピックは以下の通りです。</p>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8-1.41-1.42Z"/></svg></span> 認証とは何か。</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"/></svg></span> NextAuth.jsを使ってアプリに認証を追加する方法。</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23 12-4-4v3h-3.14c-.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H5L2 8v8l3-3h3.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H19v3l4-4m-11 2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z"/></svg></span> ミドルウェアを使ってユーザーをリダイレクトし、経路を保護する方法。</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M418.2 177.2c-5.4-1.8-10.8-3.5-16.2-5.1.9-3.7 1.7-7.4 2.5-11.1 12.3-59.6 4.2-107.5-23.1-123.3-26.3-15.1-69.2.6-112.6 38.4-4.3 3.7-8.5 7.6-12.5 11.5-2.7-2.6-5.5-5.2-8.3-7.7-45.5-40.4-91.1-57.4-118.4-41.5-26.2 15.2-34 60.3-23 116.7 1.1 5.6 2.3 11.1 3.7 16.7-6.4 1.8-12.7 3.8-18.6 5.9C38.3 196.2 0 225.4 0 255.6c0 31.2 40.8 62.5 96.3 81.5 4.5 1.5 9 3 13.6 4.3-1.5 6-2.8 11.9-4 18-10.5 55.5-2.3 99.5 23.9 114.6 27 15.6 72.4-.4 116.6-39.1 3.5-3.1 7-6.3 10.5-9.7 4.4 4.3 9 8.4 13.6 12.4 42.8 36.8 85.1 51.7 111.2 36.6 27-15.6 35.8-62.9 24.4-120.5-.9-4.4-1.9-8.9-3-13.5 3.2-.9 6.3-1.9 9.4-2.9 57.7-19.1 99.5-50 99.5-81.7 0-30.3-39.4-59.7-93.8-78.4zM282.9 92.3c37.2-32.4 71.9-45.1 87.7-36 16.9 9.7 23.4 48.9 12.8 100.4-.7 3.4-1.4 6.7-2.3 10-22.2-5-44.7-8.6-67.3-10.6-13-18.6-27.2-36.4-42.6-53.1 3.9-3.7 7.7-7.2 11.7-10.7zM167.2 307.5c5.1 8.7 10.3 17.4 15.8 25.9-15.6-1.7-31.1-4.2-46.4-7.5 4.4-14.4 9.9-29.3 16.3-44.5 4.6 8.8 9.3 17.5 14.3 26.1zm-30.3-120.3c14.4-3.2 29.7-5.8 45.6-7.8-5.3 8.3-10.5 16.8-15.4 25.4-4.9 8.5-9.7 17.2-14.2 26-6.3-14.9-11.6-29.5-16-43.6zm27.4 68.9c6.6-13.8 13.8-27.3 21.4-40.6s15.8-26.2 24.4-38.9c15-1.1 30.3-1.7 45.9-1.7s31 .6 45.9 1.7c8.5 12.6 16.6 25.5 24.3 38.7s14.9 26.7 21.7 40.4c-6.7 13.8-13.9 27.4-21.6 40.8-7.6 13.3-15.7 26.2-24.2 39-14.9 1.1-30.4 1.6-46.1 1.6s-30.9-.5-45.6-1.4c-8.7-12.7-16.9-25.7-24.6-39s-14.8-26.8-21.5-40.6zm180.6 51.2c5.1-8.8 9.9-17.7 14.6-26.7 6.4 14.5 12 29.2 16.9 44.3-15.5 3.5-31.2 6.2-47 8 5.4-8.4 10.5-17 15.5-25.6zm14.4-76.5c-4.7-8.8-9.5-17.6-14.5-26.2-4.9-8.5-10-16.9-15.3-25.2 16.1 2 31.5 4.7 45.9 8-4.6 14.8-10 29.2-16.1 43.4zM256.2 118.3c10.5 11.4 20.4 23.4 29.6 35.8-19.8-.9-39.7-.9-59.5 0 9.8-12.9 19.9-24.9 29.9-35.8zM140.2 57c16.8-9.8 54.1 4.2 93.4 39 2.5 2.2 5 4.6 7.6 7-15.5 16.7-29.8 34.5-42.9 53.1-22.6 2-45 5.5-67.2 10.4-1.3-5.1-2.4-10.3-3.5-15.5-9.4-48.4-3.2-84.9 12.6-94zm-24.5 263.6c-4.2-1.2-8.3-2.5-12.4-3.9-21.3-6.7-45.5-17.3-63-31.2-10.1-7-16.9-17.8-18.8-29.9 0-18.3 31.6-41.7 77.2-57.6 5.7-2 11.5-3.8 17.3-5.5 6.8 21.7 15 43 24.5 63.6-9.6 20.9-17.9 42.5-24.8 64.5zm116.6 98c-16.5 15.1-35.6 27.1-56.4 35.3-11.1 5.3-23.9 5.8-35.3 1.3-15.9-9.2-22.5-44.5-13.5-92 1.1-5.6 2.3-11.2 3.7-16.7 22.4 4.8 45 8.1 67.9 9.8 13.2 18.7 27.7 36.6 43.2 53.4-3.2 3.1-6.4 6.1-9.6 8.9zm24.5-24.3c-10.2-11-20.4-23.2-30.3-36.3 9.6.4 19.5.6 29.5.6 10.3 0 20.4-.2 30.4-.7-9.2 12.7-19.1 24.8-29.6 36.4zm130.7 30c-.9 12.2-6.9 23.6-16.5 31.3-15.9 9.2-49.8-2.8-86.4-34.2-4.2-3.6-8.4-7.5-12.7-11.5 15.3-16.9 29.4-34.8 42.2-53.6 22.9-1.9 45.7-5.4 68.2-10.5 1 4.1 1.9 8.2 2.7 12.2 4.9 21.6 5.7 44.1 2.5 66.3zm18.2-107.5c-2.8.9-5.6 1.8-8.5 2.6-7-21.8-15.6-43.1-25.5-63.8 9.6-20.4 17.7-41.4 24.5-62.9 5.2 1.5 10.2 3.1 15 4.7 46.6 16 79.3 39.8 79.3 58 0 19.6-34.9 44.9-84.8 61.4zm-149.7-15c25.3 0 45.8-20.5 45.8-45.8s-20.5-45.8-45.8-45.8c-25.3 0-45.8 20.5-45.8 45.8s20.5 45.8 45.8 45.8z"/></svg></span> ReactのuseFormStatusとuseFormStateを使用して、保留状態とフォームエラーを処理する方法。</li>
+</ul>
+<h2 id="_2">認証とは？</h2>
+<p>認証は今日、多くのウェブ・アプリケーションで重要な役割を担っています。システムがユーザーをチェックする方法です。</p>
+<p>安全なウェブサイトでは、ユーザーの身元を確認するために複数の方法を使用することがよくあります。例えば、ユーザー名とパスワードを入力した後、サイトがユーザーのデバイスに認証コードを送信したり、Google Authenticatorのような外部アプリを使用したりします。この多要素要素認証（MFA）は、セキュリティの向上に役立ちます。パスワードが知られても、トークンがなければアカウントにアクセスできません。</p>
+<h3 id="_3">認証と認可</h3>
+<p>ウェブ開発において、認証と認可は異なる役割を果たします：</p>
+<ul>
+<li><strong>認証</strong>とは、ユーザが本人であることを確認することです。ユーザー名とパスワードのようなもので、本人であることを証明するのです。</li>
+<li><strong>認可</strong>は次のステップです。ユーザーの身元が確認されると、認可はアプリケーションのどの部分の使用を許可するかを決定する。</li>
+</ul>
+<p>つまり、認証はあなたが誰であるかをチェックし、認可はあなたがアプリケーションで何ができるか、何にアクセスできるかを決定します。</p>
+<div class="admonition question">
+<p class="admonition-title">ここでクイズです</p>
+<p>認証と認可の違いについて、最も適切なものはどれですか？</p>
+<ol>
+<li>認証は、あなたがアクセスできるものを決定します。認証はあなたの身元を確認します。</li>
+<li>認証と認可はどちらも、ユーザーがアプリケーションのどの部分にアクセスできるかを決定します。</li>
+<li>認証はあなたの身元を確認します。認可は、ユーザが何にアクセスできるかを決定します。</li>
+<li>どちらも同じ意味です。</li>
+</ol>
+</div>
+<details>
+<summary>答え</summary>
+<p>"3. 認証はあなたの身元を確認します。認可は、ユーザが何にアクセスできるかを決定します。"</p>
+<p>その通りです！似ているように聞こえますが、認証はあなたの身元を確認し、認可はあなたがアクセスできるものを決定する。</p>
+</details>
+<h2 id="_4">ログインルートの作成</h2>
+<p>まず、アプリケーションに<code>/login</code>という新しいルートを作成し、次のコードを貼り付けます：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app/login/page.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>import AcmeLogo from &quot;@/app/ui/acme-logo&quot;;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>import LoginForm from &quot;@/app/ui/login-form&quot;;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>export default function LoginPage() {
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    return (
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>        &lt;main className=&quot;flex items-center justify-center md:h-screen&quot;&gt;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>            &lt;div className=&quot;relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32&quot;&gt;
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>                &lt;div className=&quot;flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-36&quot;&gt;
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>                    &lt;div className=&quot;w-32 text-white md:w-36&quot;&gt;
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>                        &lt;AcmeLogo /&gt;
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>                    &lt;/div&gt;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>                &lt;/div&gt;
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>                &lt;LoginForm /&gt;
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>            &lt;/div&gt;
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>        &lt;/main&gt;
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>    );
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>}
+</span></code></pre></div></td></tr></table></div>
+<p>ページが<code>&lt;LoginForm /&gt;</code>をインポートしていることに気づくでしょう。</p>
+<h2 id="nextauthjs">NextAuth.js</h2>
+<p>アプリケーションに認証を追加するために、<a href="https://nextjs.authjs.dev/" target="_blank">NextAuth.js</a>を使います。NextAuth.jsは、セッション管理、サインイン、サインアウトなど、認証に関わる複雑な作業の多くを抽象化してくれます。これらの機能を手動で実装することもできますが、そのプロセスには時間がかかり、エラーも発生しがちです。NextAuth.jsはこのプロセスを単純化し、Next.jsアプリケーションにおける認証のための統一されたソリューションを提供します。</p>
+<h2 id="nextauthjs_1">NextAuth.jsのセットアップ</h2>
+<p>ターミナルで次のコマンドを実行して、NextAuth.jsをインストールしてください：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>npm install next-auth@beta
+</span></code></pre></div></td></tr></table></div>
+<p>ここでは、Next.js 14と互換性のあるNextAuth.jsのベータ版をインストールします。(2023年12月現在 NextAuth v5 で対応予定と思われます)</p>
+<p>次に、アプリケーションの秘密鍵を生成します。このキーはCookieを暗号化し、ユーザーセッションのセキュリティを確保するために使用されます。ターミナルで次のコマンドを実行してください：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>openssl rand -base64 32
+</span></code></pre></div></td></tr></table></div>
+<p>次に、<code>.env</code>ファイルで、生成した鍵を<code>AUTH_SECRET</code>変数に追加します：</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">AUTH_SECRET=your-secret-key</span>
+</span></code></pre></div></td></tr></table></div>
+<p>authを本番で動作させるには、Vercelプロジェクトの環境変数も更新する必要があります。Vercelで環境変数を追加する方法については、こちらの<a href="https://vercel.com/docs/projects/environment-variables" target="_blank">ガイド</a>をご覧ください。</p>
+<h3 id="_5">ページ・オプションの追加</h3>
+<p>プロジェクトのルートに<code>auth.config.ts</code>ファイルを作成し、<code>authConfig</code>オブジェクトをエクスポートします。このオブジェクトにはNextAuth.jsの設定オプションが含まれます。今のところ、<code>pages</code>オプションだけが含まれています：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.config.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NextAuthConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="nx">pages</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">        </span><span class="nx">signIn</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/login&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<p>pages オプションを使って、カスタムサインイン、サインアウト、エラーページのルートを指定できます。これは必須ではありませんが、pages オプションに<code>signIn: '/login'</code>を追加することで、ユーザーは NextAuth.js のデフォルトページではなく、カスタムログインページにリダイレクトされます。</p>
+<h2 id="nextjs">Next.jsミドルウェアでルートを保護する</h2>
+<p>次に、ルートを保護するロジックを追加します。ログインしていないユーザーがダッシュボードのページにアクセスできないようにします。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.config.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NextAuthConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nx">pages</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">        </span><span class="nx">signIn</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/login&quot;</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll"><span class="w">    </span><span class="nx">callbacks</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="hll"><span class="w">        </span><span class="nx">authorized</span><span class="p">({</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nextUrl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="hll"><span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">isLoggedIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="nx">auth</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+</span></span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="hll"><span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">isOnDashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nextUrl</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;/dashboard&quot;</span><span class="p">);</span>
+</span></span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="hll"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isOnDashboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="hll"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span></span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="hll"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// Redirect unauthenticated users to login page</span>
+</span></span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="hll"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="hll"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">Response</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">&quot;/dashboard&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">nextUrl</span><span class="p">));</span>
+</span></span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="hll"><span class="w">            </span><span class="p">}</span>
+</span></span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="hll"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span></span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="hll"><span class="w">        </span><span class="p">},</span>
+</span></span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="hll"><span class="w">    </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="c1">// Add providers with an empty array for now</span>
+</span></span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="hll"><span class="p">}</span><span class="w"> </span><span class="nx">satisfies</span><span class="w"> </span><span class="nx">NextAuthConfig</span><span class="p">;</span>
+</span></span></code></pre></div></td></tr></table></div>
+<p><code>authorized</code>コールバックは、リクエストが<a href="https://nextjs.org/docs/app/building-your-application/routing/middleware" target="_blank">Next.jsミドルウェア</a>経由でページにアクセスすることを許可されているかどうかを確認するために使用します。リクエストが完了する前に呼び出され、<code>auth</code>プロパティと<code>request</code>プロパティを持つオブジェクトを受け取ります。<code>auth</code>プロパティにはユーザーのセッションが含まれ、<code>request</code>プロパティには受信したリクエストが含まれます。</p>
+<p>プロバイダオプションは配列で、さまざまなログインオプションを列挙します。今のところ、NextAuthの設定を満たすための空の配列です。詳しくは<a href="https://nextjs.org/learn/dashboard-app/adding-authentication#adding-the-credentials-provider" target="_blank">資格情報プロバイダの追加</a>で説明します。</p>
+<p>次に、<code>authConfig</code>オブジェクトをミドルウェアファイルにインポートします。プロジェクトのルートに<code>middleware.ts</code>というファイルを作成し、以下のコードを貼り付けます：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">middleware.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">(</span><span class="nx">authConfig</span><span class="p">).</span><span class="nx">auth</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="c1">// https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="nx">matcher</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/((?!api|_next/static|_next/image|.*\\.png$).*)&quot;</span><span class="p">],</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<p>ここでは、NextAuth.jsを<code>authConfig</code>オブジェクトで初期化し、<code>auth</code>プロパティをエクスポートしています。また、ミドルウェアの<code>matcher</code>オプションを使って、特定のパスで実行するように指定しています。</p>
+<p>このタスクに ミドルウェアを使用する利点は、ミドルウェアが認証を確認するまで保護されたルートのレンダリングが開始されないため、アプリケーションのセキュリティとパフォーマンスの両方が向上することです。</p>
+<h3 id="_6">パスワードのハッシュ化</h3>
+<p>パスワードをデータベースに保存する前にハッシュ化するのは良い習慣です。ハッシュ化はパスワードを固定長の文字列に変換し、ランダムに見えるようにする。</p>
+<p><code>seed.js</code>ファイルでは、<code>bcrypt</code>というパッケージを使って、ユーザーのパスワードをデータベースに保存する前にハッシュ化しています。この章の後半で、ユーザーが入力したパスワードがデータベースのパスワードと一致するかどうかを比較するために、再びこのパッケージを使用します。ただし、<code>bcrypt</code>パッケージ用に別のファイルを作成する必要があります。これは、<code>bcrypt</code>がNext.jsミドルウェアでは利用できないNode.js APIに依存しているためです。</p>
+<p><code>auth.ts</code>という新しいファイルを作成し、<code>authConfig</code>オブジェクトを展開します：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">signIn</span><span class="p">,</span><span class="w"> </span><span class="nx">signOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">({</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="p">...</span><span class="nx">authConfig</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">});</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="_7">認証情報プロバイダーの追加</h3>
+<p>次に、NextAuth.jsのプロバイダオプションを追加します。プロバイダとは、GoogleやGitHubなど、さまざまなログインオプションを列挙する配列です。このコースでは、<a href="https://authjs.dev/getting-started/providers/credentials-tutorial" target="_blank">Credentials プロバイダー</a>だけを使うことにします。</p>
+<p>Credentials プロバイダを使うと、ユーザ名とパスワードでログインできるようになります。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="nx">Credentials</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth/providers/credentials&quot;</span><span class="p">;</span>
+</span></span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">signIn</span><span class="p">,</span><span class="w"> </span><span class="nx">signOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">({</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="p">...</span><span class="nx">authConfig</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="w">    </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">Credentials</span><span class="p">({})],</span>
+</span></span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="p">});</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Tips</p>
+<p>ここではCredentialsプロバイダを使用していますが、一般的には<a href="https://authjs.dev/getting-started/providers/oauth-tutorial" target="_blank">OAuth</a>や<a href="https://authjs.dev/getting-started/providers/email-tutorial" target="_blank">メールプロバイダ</a>などの代替プロバイダを使用することを推奨します。オプションの一覧は、<a href="https://authjs.dev/getting-started/providers" target="_blank">NextAuth.jsのドキュメント</a>をご覧ください。</p>
+</div>
+<h3 id="_8">サインイン機能の追加</h3>
+<p>認証ロジックを処理するために<code>authorize</code>関数を使用することができます。Server Actionsと同様に、Zodを使用して、ユーザがデータベースに存在するかどうかをチェックする前に、電子メールとパスワードを検証することができます：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">import</span><span class="w"> </span><span class="nx">Credentials</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth/providers/credentials&quot;</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zod&quot;</span><span class="p">;</span>
+</span></span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">signIn</span><span class="p">,</span><span class="w"> </span><span class="nx">signOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">({</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="p">...</span><span class="nx">authConfig</span><span class="p">,</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="hll"><span class="w">        </span><span class="nx">Credentials</span><span class="p">({</span>
+</span></span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="hll"><span class="w">            </span><span class="k">async</span><span class="w"> </span><span class="nx">authorize</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="hll"><span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">parsedCredentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">z</span>
+</span></span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="hll"><span class="w">                    </span><span class="p">.</span><span class="nx">object</span><span class="p">({</span>
+</span></span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="hll"><span class="w">                        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">email</span><span class="p">(),</span>
+</span></span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="hll"><span class="w">                        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">min</span><span class="p">(</span><span class="mf">6</span><span class="p">),</span>
+</span></span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="hll"><span class="w">                    </span><span class="p">})</span>
+</span></span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="hll"><span class="w">                    </span><span class="p">.</span><span class="nx">safeParse</span><span class="p">(</span><span class="nx">credentials</span><span class="p">);</span>
+</span></span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="hll"><span class="w">            </span><span class="p">},</span>
+</span></span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="hll"><span class="w">        </span><span class="p">}),</span>
+</span></span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="p">});</span>
+</span></code></pre></div></td></tr></table></div>
+<p>認証情報を検証した後、データベースからユーザーを問い合わせる新しい<code>getUser</code>関数を作成します。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span>
+<span class="normal"><a href="#__codelineno-10-29">29</a></span>
+<span class="normal"><a href="#__codelineno-10-30">30</a></span>
+<span class="normal"><a href="#__codelineno-10-31">31</a></span>
+<span class="normal"><a href="#__codelineno-10-32">32</a></span>
+<span class="normal"><a href="#__codelineno-10-33">33</a></span>
+<span class="normal"><a href="#__codelineno-10-34">34</a></span>
+<span class="normal"><a href="#__codelineno-10-35">35</a></span>
+<span class="normal"><a href="#__codelineno-10-36">36</a></span>
+<span class="normal"><a href="#__codelineno-10-37">37</a></span>
+<span class="normal"><a href="#__codelineno-10-38">38</a></span>
+<span class="normal"><a href="#__codelineno-10-39">39</a></span>
+<span class="normal"><a href="#__codelineno-10-40">40</a></span>
+<span class="normal"><a href="#__codelineno-10-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">Credentials</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth/providers/credentials&quot;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zod&quot;</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sql</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@vercel/postgres&quot;</span><span class="p">;</span>
+</span></span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/app/lib/definitions&quot;</span><span class="p">;</span>
+</span></span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="nx">bcrypt</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;bcrypt&quot;</span><span class="p">;</span>
+</span></span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="hll"><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getUser</span><span class="p">(</span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">User</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="hll"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="hll"><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">sql</span><span class="o">&lt;</span><span class="nx">User</span><span class="o">&gt;</span><span class="sb">`SELECT * FROM users WHERE email=</span><span class="si">${</span><span class="nx">email</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+</span></span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="hll"><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Failed to fetch user:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+</span></span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="hll"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Failed to fetch user.&quot;</span><span class="p">);</span>
+</span></span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span></span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="hll"><span class="p">}</span>
+</span></span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18"></a>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">signIn</span><span class="p">,</span><span class="w"> </span><span class="nx">signOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">({</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="w">    </span><span class="p">...</span><span class="nx">authConfig</span><span class="p">,</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">    </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="w">        </span><span class="nx">Credentials</span><span class="p">({</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="w">            </span><span class="k">async</span><span class="w"> </span><span class="nx">authorize</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">parsedCredentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">z</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">                    </span><span class="p">.</span><span class="nx">object</span><span class="p">({</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">                        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">email</span><span class="p">(),</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="w">                        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">min</span><span class="p">(</span><span class="mf">6</span><span class="p">),</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="w">                    </span><span class="p">})</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">                    </span><span class="p">.</span><span class="nx">safeParse</span><span class="p">(</span><span class="nx">credentials</span><span class="p">);</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30"></a>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="hll"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">parsedCredentials</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="hll"><span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parsedCredentials</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+</span></span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33"></a><span class="hll"><span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getUser</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+</span></span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="hll"><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span></span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="hll"><span class="w">                </span><span class="p">}</span>
+</span></span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36"></a>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38"></a><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="w">        </span><span class="p">}),</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="p">});</span>
+</span></code></pre></div></td></tr></table></div>
+<p>次に、<code>bcrypt.compare</code>を呼び出して、パスワードが一致するかどうかをチェックする：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">auth.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span>
+<span class="normal"><a href="#__codelineno-11-25">25</a></span>
+<span class="normal"><a href="#__codelineno-11-26">26</a></span>
+<span class="normal"><a href="#__codelineno-11-27">27</a></span>
+<span class="normal"><a href="#__codelineno-11-28">28</a></span>
+<span class="normal"><a href="#__codelineno-11-29">29</a></span>
+<span class="normal"><a href="#__codelineno-11-30">30</a></span>
+<span class="normal"><a href="#__codelineno-11-31">31</a></span>
+<span class="normal"><a href="#__codelineno-11-32">32</a></span>
+<span class="normal"><a href="#__codelineno-11-33">33</a></span>
+<span class="normal"><a href="#__codelineno-11-34">34</a></span>
+<span class="normal"><a href="#__codelineno-11-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">NextAuth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">Credentials</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth/providers/credentials&quot;</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./auth.config&quot;</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sql</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@vercel/postgres&quot;</span><span class="p">;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zod&quot;</span><span class="p">;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/app/lib/definitions&quot;</span><span class="p">;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="nx">bcrypt</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;bcrypt&quot;</span><span class="p">;</span>
+</span></span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="c1">// ...</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">auth</span><span class="p">,</span><span class="w"> </span><span class="nx">signIn</span><span class="p">,</span><span class="w"> </span><span class="nx">signOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">NextAuth</span><span class="p">({</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">    </span><span class="p">...</span><span class="nx">authConfig</span><span class="p">,</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">    </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">        </span><span class="nx">Credentials</span><span class="p">({</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">            </span><span class="k">async</span><span class="w"> </span><span class="nx">authorize</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="w">                </span><span class="c1">// ...</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">parsedCredentials</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parsedCredentials</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getUser</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22"></a><span class="hll"><span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">passwordsMatch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">bcrypt</span><span class="p">.</span><span class="nx">compare</span><span class="p">(</span>
+</span></span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="hll"><span class="w">                        </span><span class="nx">password</span><span class="p">,</span>
+</span></span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="hll"><span class="w">                        </span><span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+</span></span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25"></a><span class="hll"><span class="w">                    </span><span class="p">);</span>
+</span></span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26"></a>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27"></a><span class="hll"><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">passwordsMatch</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">user</span><span class="p">;</span>
+</span></span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29"></a>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30"></a><span class="hll"><span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Invalid credentials&quot;</span><span class="p">);</span>
+</span></span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31"></a><span class="hll"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span></span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32"></a><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33"></a><span class="w">        </span><span class="p">}),</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35"></a><span class="p">});</span>
+</span></code></pre></div></td></tr></table></div>
+<p>最後に、パスワードが一致すればユーザーを返し、そうでなければ<code>null</code>を返してユーザーがログインできないようにします。</p>
+<h2 id="_9">ログインフォームの更新</h2>
+<p>次に、認証ロジックをログインフォームに接続する必要があります。<code>actions.ts</code>ファイルに、<code>authenticate</code>という新しいアクションを作成します。このアクションは、<code>auth.ts</code>から<code>signIn</code>関数をインポートする必要があります：</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app/lib/actions.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">signIn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/auth&quot;</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AuthError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;next-auth&quot;</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1">// ...</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="k">export</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">authenticate</span><span class="p">(</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">    </span><span class="nx">prevState</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">    </span><span class="nx">formData</span><span class="o">:</span><span class="w"> </span><span class="kt">FormData</span><span class="p">,</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">signIn</span><span class="p">(</span><span class="s2">&quot;credentials&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">formData</span><span class="p">);</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">AuthError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="kr">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;CredentialsSignin&quot;</span><span class="o">:</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;Invalid credentials.&quot;</span><span class="p">;</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="w">                </span><span class="nx">default</span><span class="o">:</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="w">                    </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Something went wrong.&quot;</span><span class="p">;</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p><code>CredentialsSignin</code>エラーが発生した場合、適切なエラーメッセージを表示したい。NextAuth.jsのエラーについてはドキュメントを参照してください。</p>
+<p>最後に、<code>login-form.tsx</code>コンポーネントで、Reactの<code>useFormState</code>を使ってサーバーアクションを呼び出し、フォームエラーを処理し、<code>useFormStatus</code>を使ってフォームの保留状態を処理します：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app/ui/login-form.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span>
+<span class="normal"><a href="#__codelineno-13-22">22</a></span>
+<span class="normal"><a href="#__codelineno-13-23">23</a></span>
+<span class="normal"><a href="#__codelineno-13-24">24</a></span>
+<span class="normal"><a href="#__codelineno-13-25">25</a></span>
+<span class="normal"><a href="#__codelineno-13-26">26</a></span>
+<span class="normal"><a href="#__codelineno-13-27">27</a></span>
+<span class="normal"><a href="#__codelineno-13-28">28</a></span>
+<span class="normal"><a href="#__codelineno-13-29">29</a></span>
+<span class="normal"><a href="#__codelineno-13-30">30</a></span>
+<span class="normal"><a href="#__codelineno-13-31">31</a></span>
+<span class="normal"><a href="#__codelineno-13-32">32</a></span>
+<span class="normal"><a href="#__codelineno-13-33">33</a></span>
+<span class="normal"><a href="#__codelineno-13-34">34</a></span>
+<span class="normal"><a href="#__codelineno-13-35">35</a></span>
+<span class="normal"><a href="#__codelineno-13-36">36</a></span>
+<span class="normal"><a href="#__codelineno-13-37">37</a></span>
+<span class="normal"><a href="#__codelineno-13-38">38</a></span>
+<span class="normal"><a href="#__codelineno-13-39">39</a></span>
+<span class="normal"><a href="#__codelineno-13-40">40</a></span>
+<span class="normal"><a href="#__codelineno-13-41">41</a></span>
+<span class="normal"><a href="#__codelineno-13-42">42</a></span>
+<span class="normal"><a href="#__codelineno-13-43">43</a></span>
+<span class="normal"><a href="#__codelineno-13-44">44</a></span>
+<span class="normal"><a href="#__codelineno-13-45">45</a></span>
+<span class="normal"><a href="#__codelineno-13-46">46</a></span>
+<span class="normal"><a href="#__codelineno-13-47">47</a></span>
+<span class="normal"><a href="#__codelineno-13-48">48</a></span>
+<span class="normal"><a href="#__codelineno-13-49">49</a></span>
+<span class="normal"><a href="#__codelineno-13-50">50</a></span>
+<span class="normal"><a href="#__codelineno-13-51">51</a></span>
+<span class="normal"><a href="#__codelineno-13-52">52</a></span>
+<span class="normal"><a href="#__codelineno-13-53">53</a></span>
+<span class="normal"><a href="#__codelineno-13-54">54</a></span>
+<span class="normal"><a href="#__codelineno-13-55">55</a></span>
+<span class="normal"><a href="#__codelineno-13-56">56</a></span>
+<span class="normal"><a href="#__codelineno-13-57">57</a></span>
+<span class="normal"><a href="#__codelineno-13-58">58</a></span>
+<span class="normal"><a href="#__codelineno-13-59">59</a></span>
+<span class="normal"><a href="#__codelineno-13-60">60</a></span>
+<span class="normal"><a href="#__codelineno-13-61">61</a></span>
+<span class="normal"><a href="#__codelineno-13-62">62</a></span>
+<span class="normal"><a href="#__codelineno-13-63">63</a></span>
+<span class="normal"><a href="#__codelineno-13-64">64</a></span>
+<span class="normal"><a href="#__codelineno-13-65">65</a></span>
+<span class="normal"><a href="#__codelineno-13-66">66</a></span>
+<span class="normal"><a href="#__codelineno-13-67">67</a></span>
+<span class="normal"><a href="#__codelineno-13-68">68</a></span>
+<span class="normal"><a href="#__codelineno-13-69">69</a></span>
+<span class="normal"><a href="#__codelineno-13-70">70</a></span>
+<span class="normal"><a href="#__codelineno-13-71">71</a></span>
+<span class="normal"><a href="#__codelineno-13-72">72</a></span>
+<span class="normal"><a href="#__codelineno-13-73">73</a></span>
+<span class="normal"><a href="#__codelineno-13-74">74</a></span>
+<span class="normal"><a href="#__codelineno-13-75">75</a></span>
+<span class="normal"><a href="#__codelineno-13-76">76</a></span>
+<span class="normal"><a href="#__codelineno-13-77">77</a></span>
+<span class="normal"><a href="#__codelineno-13-78">78</a></span>
+<span class="normal"><a href="#__codelineno-13-79">79</a></span>
+<span class="normal"><a href="#__codelineno-13-80">80</a></span>
+<span class="normal"><a href="#__codelineno-13-81">81</a></span>
+<span class="normal"><a href="#__codelineno-13-82">82</a></span>
+<span class="normal"><a href="#__codelineno-13-83">83</a></span>
+<span class="normal"><a href="#__codelineno-13-84">84</a></span>
+<span class="normal"><a href="#__codelineno-13-85">85</a></span>
+<span class="normal"><a href="#__codelineno-13-86">86</a></span>
+<span class="normal"><a href="#__codelineno-13-87">87</a></span>
+<span class="normal"><a href="#__codelineno-13-88">88</a></span>
+<span class="normal"><a href="#__codelineno-13-89">89</a></span>
+<span class="normal"><a href="#__codelineno-13-90">90</a></span>
+<span class="normal"><a href="#__codelineno-13-91">91</a></span>
+<span class="normal"><a href="#__codelineno-13-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="hll">&quot;use client&quot;;
+</span></span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>import { lusitana } from &quot;@/app/ui/fonts&quot;;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>import {
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>    AtSymbolIcon,
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>    KeyIcon,
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>    ExclamationCircleIcon,
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a>} from &quot;@heroicons/react/24/outline&quot;;
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a>import { ArrowRightIcon } from &quot;@heroicons/react/20/solid&quot;;
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a>import { Button } from &quot;@/app/ui/button&quot;;
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="hll">import { useFormState, useFormStatus } from &quot;react-dom&quot;;
+</span></span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="hll">import { authenticate } from &quot;@/app/lib/actions&quot;;
+</span></span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a>export default function LoginForm() {
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="hll">    const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+</span></span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17"></a>    return (
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="hll">        &lt;form action={dispatch} className=&quot;space-y-3&quot;&gt;
+</span></span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19"></a>            &lt;div className=&quot;flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8&quot;&gt;
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20"></a>                &lt;h1 className={`${lusitana.className} mb-3 text-2xl`}&gt;
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21"></a>                    Please log in to continue.
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22"></a>                &lt;/h1&gt;
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23"></a>                &lt;div className=&quot;w-full&quot;&gt;
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24"></a>                    &lt;div&gt;
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25"></a>                        &lt;label
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26"></a>                            className=&quot;mb-3 mt-5 block text-xs font-medium text-gray-900&quot;
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27"></a>                            htmlFor=&quot;email&quot;
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28"></a>                        &gt;
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29"></a>                            Email
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30"></a>                        &lt;/label&gt;
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31"></a>                        &lt;div className=&quot;relative&quot;&gt;
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32"></a>                            &lt;input
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33"></a>                                className=&quot;peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500&quot;
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34"></a>                                id=&quot;email&quot;
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35"></a>                                type=&quot;email&quot;
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36"></a>                                name=&quot;email&quot;
+</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37"></a>                                placeholder=&quot;Enter your email address&quot;
+</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38"></a>                                required
+</span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39"></a>                            /&gt;
+</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40"></a>                            &lt;AtSymbolIcon className=&quot;pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900&quot; /&gt;
+</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41"></a>                        &lt;/div&gt;
+</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42"></a>                    &lt;/div&gt;
+</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43"></a>                    &lt;div className=&quot;mt-4&quot;&gt;
+</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44"></a>                        &lt;label
+</span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45"></a>                            className=&quot;mb-3 mt-5 block text-xs font-medium text-gray-900&quot;
+</span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46"></a>                            htmlFor=&quot;password&quot;
+</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47"></a>                        &gt;
+</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48"></a>                            Password
+</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49"></a>                        &lt;/label&gt;
+</span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50"></a>                        &lt;div className=&quot;relative&quot;&gt;
+</span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51"></a>                            &lt;input
+</span><span id="__span-13-52"><a id="__codelineno-13-52" name="__codelineno-13-52"></a>                                className=&quot;peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500&quot;
+</span><span id="__span-13-53"><a id="__codelineno-13-53" name="__codelineno-13-53"></a>                                id=&quot;password&quot;
+</span><span id="__span-13-54"><a id="__codelineno-13-54" name="__codelineno-13-54"></a>                                type=&quot;password&quot;
+</span><span id="__span-13-55"><a id="__codelineno-13-55" name="__codelineno-13-55"></a>                                name=&quot;password&quot;
+</span><span id="__span-13-56"><a id="__codelineno-13-56" name="__codelineno-13-56"></a>                                placeholder=&quot;Enter password&quot;
+</span><span id="__span-13-57"><a id="__codelineno-13-57" name="__codelineno-13-57"></a>                                required
+</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58"></a>                                minLength={6}
+</span><span id="__span-13-59"><a id="__codelineno-13-59" name="__codelineno-13-59"></a>                            /&gt;
+</span><span id="__span-13-60"><a id="__codelineno-13-60" name="__codelineno-13-60"></a>                            &lt;KeyIcon className=&quot;pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900&quot; /&gt;
+</span><span id="__span-13-61"><a id="__codelineno-13-61" name="__codelineno-13-61"></a>                        &lt;/div&gt;
+</span><span id="__span-13-62"><a id="__codelineno-13-62" name="__codelineno-13-62"></a>                    &lt;/div&gt;
+</span><span id="__span-13-63"><a id="__codelineno-13-63" name="__codelineno-13-63"></a>                &lt;/div&gt;
+</span><span id="__span-13-64"><a id="__codelineno-13-64" name="__codelineno-13-64"></a>                &lt;LoginButton /&gt;
+</span><span id="__span-13-65"><a id="__codelineno-13-65" name="__codelineno-13-65"></a><span class="hll">                &lt;div
+</span></span><span id="__span-13-66"><a id="__codelineno-13-66" name="__codelineno-13-66"></a><span class="hll">                    className=&quot;flex h-8 items-end space-x-1&quot;
+</span></span><span id="__span-13-67"><a id="__codelineno-13-67" name="__codelineno-13-67"></a><span class="hll">                    aria-live=&quot;polite&quot;
+</span></span><span id="__span-13-68"><a id="__codelineno-13-68" name="__codelineno-13-68"></a><span class="hll">                    aria-atomic=&quot;true&quot;
+</span></span><span id="__span-13-69"><a id="__codelineno-13-69" name="__codelineno-13-69"></a><span class="hll">                &gt;
+</span></span><span id="__span-13-70"><a id="__codelineno-13-70" name="__codelineno-13-70"></a><span class="hll">                    {errorMessage &amp;&amp; (
+</span></span><span id="__span-13-71"><a id="__codelineno-13-71" name="__codelineno-13-71"></a><span class="hll">                        &lt;&gt;
+</span></span><span id="__span-13-72"><a id="__codelineno-13-72" name="__codelineno-13-72"></a><span class="hll">                            &lt;ExclamationCircleIcon className=&quot;h-5 w-5 text-red-500&quot; /&gt;
+</span></span><span id="__span-13-73"><a id="__codelineno-13-73" name="__codelineno-13-73"></a><span class="hll">                            &lt;p className=&quot;text-sm text-red-500&quot;&gt;
+</span></span><span id="__span-13-74"><a id="__codelineno-13-74" name="__codelineno-13-74"></a><span class="hll">                                {errorMessage}
+</span></span><span id="__span-13-75"><a id="__codelineno-13-75" name="__codelineno-13-75"></a><span class="hll">                            &lt;/p&gt;
+</span></span><span id="__span-13-76"><a id="__codelineno-13-76" name="__codelineno-13-76"></a><span class="hll">                        &lt;/&gt;
+</span></span><span id="__span-13-77"><a id="__codelineno-13-77" name="__codelineno-13-77"></a><span class="hll">                    )}
+</span></span><span id="__span-13-78"><a id="__codelineno-13-78" name="__codelineno-13-78"></a><span class="hll">                &lt;/div&gt;
+</span></span><span id="__span-13-79"><a id="__codelineno-13-79" name="__codelineno-13-79"></a>            &lt;/div&gt;
+</span><span id="__span-13-80"><a id="__codelineno-13-80" name="__codelineno-13-80"></a>        &lt;/form&gt;
+</span><span id="__span-13-81"><a id="__codelineno-13-81" name="__codelineno-13-81"></a>    );
+</span><span id="__span-13-82"><a id="__codelineno-13-82" name="__codelineno-13-82"></a>}
+</span><span id="__span-13-83"><a id="__codelineno-13-83" name="__codelineno-13-83"></a>
+</span><span id="__span-13-84"><a id="__codelineno-13-84" name="__codelineno-13-84"></a>function LoginButton() {
+</span><span id="__span-13-85"><a id="__codelineno-13-85" name="__codelineno-13-85"></a><span class="hll">    const { pending } = useFormStatus();
+</span></span><span id="__span-13-86"><a id="__codelineno-13-86" name="__codelineno-13-86"></a>
+</span><span id="__span-13-87"><a id="__codelineno-13-87" name="__codelineno-13-87"></a>    return (
+</span><span id="__span-13-88"><a id="__codelineno-13-88" name="__codelineno-13-88"></a><span class="hll">        &lt;Button className=&quot;mt-4 w-full&quot; aria-disabled={pending}&gt;
+</span></span><span id="__span-13-89"><a id="__codelineno-13-89" name="__codelineno-13-89"></a><span class="hll">            Log in &lt;ArrowRightIcon className=&quot;ml-auto h-5 w-5 text-gray-50&quot; /&gt;
+</span></span><span id="__span-13-90"><a id="__codelineno-13-90" name="__codelineno-13-90"></a><span class="hll">        &lt;/Button&gt;
+</span></span><span id="__span-13-91"><a id="__codelineno-13-91" name="__codelineno-13-91"></a>    );
+</span><span id="__span-13-92"><a id="__codelineno-13-92" name="__codelineno-13-92"></a>}
+</span></code></pre></div></td></tr></table></div>
+<h2 id="_10">ログアウト機能の追加</h2>
+<p><code>&lt;SideNav /&gt;</code>にログアウト機能を追加するには、<code>&lt;form&gt;</code>要素内で<code>auth.ts</code>の<code>signOut</code>関数を呼び出します：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app/ui/dashboard/sidenav.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span>
+<span class="normal"><a href="#__codelineno-14-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>import Link from &quot;next/link&quot;;
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>import NavLinks from &quot;@/app/ui/dashboard/nav-links&quot;;
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>import AcmeLogo from &quot;@/app/ui/acme-logo&quot;;
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>import { PowerIcon } from &quot;@heroicons/react/24/outline&quot;;
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll">import { signOut } from &quot;@/auth&quot;;
+</span></span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>export default function SideNav() {
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>    return (
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>        &lt;div className=&quot;flex h-full flex-col px-3 py-4 md:px-2&quot;&gt;
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a>            // ...
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a>            &lt;div className=&quot;flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2&quot;&gt;
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a>                &lt;NavLinks /&gt;
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a>                &lt;div className=&quot;hidden h-auto w-full grow rounded-md bg-gray-50 md:block&quot;&gt;&lt;/div&gt;
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a>                &lt;form
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="hll">                    action={async () =&gt; {
+</span></span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="hll">                        &quot;use server&quot;;
+</span></span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="hll">                        await signOut();
+</span></span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="hll">                    }}
+</span></span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19"></a>                &gt;
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20"></a>                    &lt;button className=&quot;flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3&quot;&gt;
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21"></a>                        &lt;PowerIcon className=&quot;w-6&quot; /&gt;
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22"></a>                        &lt;div className=&quot;hidden md:block&quot;&gt;Sign Out&lt;/div&gt;
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23"></a>                    &lt;/button&gt;
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24"></a>                &lt;/form&gt;
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25"></a>            &lt;/div&gt;
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26"></a>        &lt;/div&gt;
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27"></a>    );
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28"></a>}
+</span></code></pre></div></td></tr></table></div>
+<h2 id="_11">試してましょう</h2>
+<p>では、試してみてください。以下の認証情報を使ってアプリケーションにログイン、ログアウトできるはずです：</p>
+<p>電子メール: user@nextmail.com
+パスワード: 123456</p>
+<hr />
+<div class="tutorial-end">
+<div class="tutorial-end-logo">
+<div class="tutorial-end-logo-chapter">
+<span class="tutorial-end-logo-chapter-number">15</span>
+</div>
+<div class="tutorial-end-logo-check">✔</div>
+</div>
+<p class="tutorial-end-title">第15章終了です！</p>
+<p>アプリケーションに認証を追加し、ダッシュボードのルートを保護しました。</p>
+<p class="center">
+<a class="md-button md-button--primary" href="../16-adding-metadata/">第16章 メタデータの追加</a>
+</p>
+<p>次は、共有に備えてメタデータを追加する方法を学び、アプリケーションを終了します。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../14-improving-accessibility/" class="md-footer__link md-footer__link--prev" aria-label="前: &lt;span class=&#34;chapter&#34;&gt;&lt;span class=&#34;chapter-number&#34;&gt;14&lt;/span&gt;&lt;/span&gt;アクセシビリティの向上">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                <span class="chapter"><span class="chapter-number">14</span></span>アクセシビリティの向上
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../16-adding-metadata/" class="md-footer__link md-footer__link--next" aria-label="次: &lt;span class=&#34;chapter&#34;&gt;&lt;span class=&#34;chapter-number&#34;&gt;16&lt;/span&gt;&lt;/span&gt;メタデータの追加">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                <span class="chapter"><span class="chapter-number">16</span></span>メタデータの追加
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  <div class="md-copyright__highlight">
+    <span>Copyright © 2022 Ricoh IT Solutions Co.,Ltd.</span>
+    <span>Collaborator: 海老原 賢次(ebi311@gmail.com)</span>
+  </div>
+  <p>
+  <p xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a
+      href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
+      rel="license noopener noreferrer" class="cc-link">CC BY-NC-SA 4.0
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" />
+    </a></p>
+  </p>
+  <p>
+     Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    
+  </p>
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/highlight.min.js"></script>
+      
+        <script src="../../../js/config.js"></script>
+      
+    
+  </body>
+</html>

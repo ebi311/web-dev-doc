@@ -1,0 +1,4304 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/07.%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0/">
+      
+      
+        <link rel="next" href="../2-domain-driven-design-tactics/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>ドメイン駆動設計（戦略的設計） - Webアプリ開発統合学習</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BIZ+UDPGothic:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"BIZ UDPGothic";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/styles/github.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="Webアプリ開発統合学習" class="md-header__button md-logo" aria-label="Webアプリ開発統合学習" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Webアプリ開発統合学習
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ドメイン駆動設計（戦略的設計）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Webアプリ開発統合学習" class="md-nav__button md-logo" aria-label="Webアプリ開発統合学習" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Webアプリ開発統合学習
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリ開発統合学習
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    A.設計編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            A.設計編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    0 保守しやすい設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            0 保守しやすい設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    保守しやすい設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/00.%E8%A8%AD%E8%A8%88%E3%81%AE%E5%88%9D%E6%AD%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設計の初歩
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/01.%E3%82%AF%E3%83%A9%E3%82%B9%E8%A8%AD%E8%A8%88%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クラス設計の基本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/02.%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%90%E3%81%A8%E9%85%8D%E5%88%97%E5%87%A6%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    条件分岐と配列処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/03.%E5%AF%86%E7%B5%90%E5%90%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    密結合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/04.%E5%90%8D%E5%89%8D%E8%A8%AD%E8%A8%88%E3%83%BB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    名前設計・コメント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/05.%E9%96%A2%E6%95%B0%E3%83%BB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    関数・メソッド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/06.%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モデリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/07.%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TDDとリファクタリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 ドメイン駆動設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            1 ドメイン駆動設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ドメイン駆動設計（戦略的設計）
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ドメイン駆動設計（戦略的設計）
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      なぜ今ドメイン駆動設計か
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      原典と書籍と参考情報
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      「ドメイン」の「知識に焦点を当てた」設計手法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddd" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD を採用する動機
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DDD を採用する動機">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスの素早い提供 vs 長期のメンテナンス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ddd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD のメリット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ddd_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD を採用する基準
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドメイン、サブドメイン、コンテキスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドメイン、サブドメイン、コンテキスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドメイン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      サブドメイン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテキストの境界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユビキタス言語
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-domain-driven-design-tactics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ドメイン駆動設計（戦術的設計）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 UI UX
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            2 UI UX
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2%20UI-UX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UI/UX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 SOAとREST API設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            3 SOAとREST API設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3%20SOA%E3%81%A8REST%20API%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SOAとREST API設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Webアプリケーションのアーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            4 Webアプリケーションのアーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリケーションのアーキテクチャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/%E3%83%95%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF%E3%81%AA%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フルスタックな論理・物理アーキテクチャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Webアプリケーションのセキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            5 Webアプリケーションのセキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5%20Web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webアプリケーションのセキュリティ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 設計・実装レビューの観点
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            6 設計・実装レビューの観点
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6%20%E8%A8%AD%E8%A8%88%E3%83%BB%E5%AE%9F%E8%A3%85%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E8%A6%B3%E7%82%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設計・実装レビューの観点
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 テスト設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            7 テスト設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7%20%E3%83%86%E3%82%B9%E3%83%88%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    B.実装編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            B.実装編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 開発環境
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            01 開発環境
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    開発環境の構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/1.VisualStudioCode%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visual Studio Code の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/2.WSL%E7%92%B0%E5%A2%83%E3%81%AE%E6%A7%8B%E7%AF%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WSL 環境の構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/3.Node.js%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node.js の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/4.Git%E3%81%AE%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git の環境構築
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/5.docker%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/01%20%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83/6.%E3%81%9D%E3%81%AE%E4%BB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    その他
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02 git基礎
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            02 git基礎
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/02%20git%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git基礎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 Linuxコマンド基礎
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            03 Linuxコマンド基礎
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux コマンド基礎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 パッケージマネージャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            03 パッケージマネージャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ・マネージャ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3/major-libs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JavaScript でよく使用されるライブラリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 プログラム言語
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 プログラム言語
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プログラム言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/1-html-ls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML Living Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/2-css-sass/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS / Sass
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/3-ES6-puls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6+(JavaScript)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/4-typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/03%20%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E8%A8%80%E8%AA%9E/6-anti-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アンチパターン
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    04 モジュールバンドラ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 モジュールバンドラ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/04%20%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%83%90%E3%83%B3%E3%83%89%E3%83%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モジュールバンドラ: Webpack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    05 React
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/05%20React/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reactとは
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/05%20React/1%20tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React の演習
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/05%20React/2%20object-identity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    関数やオブジェクトの同一性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    06 Next.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 Next.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Next.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/01-getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>1</span></span> はじめましょう
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/02-css-styling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>2</span></span>CSS スタイリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/03-optimizing-font-and-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>3</span></span>フォントと画像の最適化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/04-creating-layouts-and-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class=chapter-number>4</span></span>レイアウトとページの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/05-navigating-between-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">5</span></span>ページ間のナビゲーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/06-setting-up-your-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">6</span></span> データベースのセットアップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/07-feching-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">7</span></span>データのフェッチ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/08-static-and-dynamic-rendering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">8</span></span>静的レンダリングと動的レンダリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/09-streaming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">9</span></span>ストリーミング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/10-partial-pre-rendering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">10</span></span>部分プレレンダリング(オプショナル)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/11-adding-search-and-pagination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">11</span></span>検索とページネーションの追加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/12-mutating-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">12</span></span>データのミューテーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/13-handling-errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">13</span></span>エラーハンドリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/14-improving-accessibility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">14</span></span>アクセシビリティの向上
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/15-adding-authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">15</span></span>認証機能の追加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/16-adding-metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">16</span></span>メタデータの追加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/06%20Next.js/17-next-step/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <span class="chapter"><span class="chapter-number">17</span></span>次のステップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    07 CSSフレームワーク
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 CSSフレームワーク
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/07%20CSS%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンポーネントと CSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    08 Linterとフォーマッター
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Linterとフォーマッター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/08%20Linter%E3%81%A8%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%82%BF%E3%83%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linter と Formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    09 テスト駆動開発
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 テスト駆動開発
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト駆動開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/1%20jest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テストフレームワーク (Jest)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/2%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%E3%81%AE%E5%AE%9F%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テスト駆動開発の実践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/09%20%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA/3%20React%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reactコンポーネントのテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    10 Svelte SvelteKit
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Svelte SvelteKit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../b.%E5%AE%9F%E8%A3%85%E7%B7%A8/10%20Svelte-SvelteKit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Svelte / Svelte Kit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C.実践編
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            C.実践編
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    0.業務要件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            0.業務要件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/0.%E6%A5%AD%E5%8B%99%E8%A6%81%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    業務要件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/0.%E6%A5%AD%E5%8B%99%E8%A6%81%E4%BB%B6/1.%E7%94%BB%E9%9D%A2%E4%BB%95%E6%A7%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画面仕様
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1.プロジェクトの作成
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            1.プロジェクトの作成
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロジェクトの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/1.Next.js%E3%81%AE%E5%88%9D%E6%9C%9F%E5%87%A6%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Next.JS の初期処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/2.ESLint%E3%81%A8Prettier%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linter と コード整形ツール の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/3.Jest%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    テストフレームワークの導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/4.Storybook%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storybook の導入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/5.DaisyUI%E3%81%AE%E5%B0%8E%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI の導入と Tailwind CSSの使い方
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/1.%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/6.%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構成の定義
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2.コンテキスト境界とエンティティの設計
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            2.コンテキスト境界とエンティティの設計
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/2.%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E5%A2%83%E7%95%8C%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト境界とエンティティの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3.介護フタッフ機能の実装
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            3.介護フタッフ機能の実装
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    介護フタッフ用の機能の実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/1.%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. レイアウトの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/2.%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. コンポーネントのためのコードジェネレーターを導入する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/3.%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. トップページを作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_5" id="__nav_4_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4.報告書一覧画面を作る
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            4.報告書一覧画面を作る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書一覧画面を作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/01.%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書一覧のデータ型の実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/02.%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページのコンポーネントの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/03.%E4%BB%8B%E8%AD%B7%E3%82%BF%E3%82%A4%E3%83%97%E3%83%90%E3%83%83%E3%82%B8%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    介護タイプを表すバッジコンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/04.%E4%BD%9C%E6%A5%AD%E6%97%A5%E6%99%82%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業日時のコンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/05.%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E7%8A%B6%E6%85%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レビュー状態アイコンの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/06.%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E8%A1%8C%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    行コンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/07.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一覧コンポーネントの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/4.%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/08.%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_6" id="__nav_4_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5.報告書詳細画面を作る
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            5.報告書詳細画面を作る
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書詳細画面を作る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/01.%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    報告書のデータスキーマを定義する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/02.%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E8%A8%AD%E8%A8%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページのコンポーネントの設計
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/03.%E5%88%A9%E7%94%A8%E8%80%85%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用者コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/04.%E4%BD%9C%E6%A5%AD%E5%86%85%E5%AE%B9%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業内容コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/05.%E7%A7%BB%E5%8B%95%E8%B7%9D%E9%9B%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    移動距離コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/06.%E6%99%82%E5%88%BB%E5%85%A5%E5%8A%9B%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    時刻入力コントロールの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/07.%E4%BD%9C%E6%A5%AD%E6%99%82%E9%96%93%E5%85%A5%E5%8A%9B%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    作業時間入力コントロール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/08.%E5%88%A9%E7%94%A8%E8%80%85%E9%81%B8%E6%8A%9E%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用者選択ダイアログを実装する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/09.%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BD%9C%E6%88%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フォームの作成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../c.%E5%AE%9F%E8%B7%B5%E7%B7%A8/3.%E4%BB%8B%E8%AD%B7%E3%83%95%E3%82%BF%E3%83%83%E3%83%95%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85/5.%E5%A0%B1%E5%91%8A%E6%9B%B8%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E3%82%8B/10.ReactHookForm%E3%81%AE%E5%88%A9%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReactHookForm の利用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      なぜ今ドメイン駆動設計か
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      原典と書籍と参考情報
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      「ドメイン」の「知識に焦点を当てた」設計手法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddd" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD を採用する動機
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DDD を採用する動機">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスの素早い提供 vs 長期のメンテナンス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ddd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD のメリット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ddd_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDD を採用する基準
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドメイン、サブドメイン、コンテキスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドメイン、サブドメイン、コンテキスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドメイン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      サブドメイン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテキストの境界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユビキタス言語
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">ドメイン駆動設計（戦略的設計）</h1>
+<div class="writing">
+<div>
+<p>筆者: 海老原 賢次（ebi311@gmail.com）<br />
+作成日: 2022-05-18<br />
+更新履歴:</p>
+<ul>
+<li>2022-05-18: 新規作成</li>
+</ul>
+</div>
+</div>
+<hr />
+<p>ソフトウェアを開発するときには、要件定義を行いユーザーの行ってい業務についてあれこれヒヤリングや調査を行います。
+それは、いわばユーザーの業務についての知識を学習している、とも言えます。ソフトウェア開発とは、その知識をコードに落とし込む作業、ということになります。</p>
+<p>その方法を誤ってしまうと、メンテナンス性が悪いばかりではなく、ユーザーが心に求めていることを外してしまう可能性があります。</p>
+<p>ドメイン駆動設計(Domain Driven Design -&gt; DDD)は、その知識をコードに落とし込む作業のガイドを示したものです。</p>
+<h2 id="_2">なぜ今ドメイン駆動設計か</h2>
+<blockquote>
+<p>ドメイン駆動設計が提唱されたのは2003年頃です。ITという分野の進化は目覚ましく、最新の技術も十年過ぎれば陳腐化してしまうといったことは往々にして発生します。にもかかわらず昨今のシステム開発の現場において、ドメイン駆動設計という言葉を耳にする機会が増えたのには、いったいどのような背景があるのでしょうか。</p>
+<p>ひと昔前はサービスをいち早く世に出すことこそがもっとも重要なこととされていたように感じます。そのためモデリングに重きを置き、開発の最初期にコストを支払うドメイン駆動設計は重厚で鈍重なものであると誤解され、敬遠されていました。</p>
+<p>とにかく早くサービスを打ち出すことはほとんどミサイルのような片道ロケットに乗ることに似ています。打ち上げた後に帰ってこれないという欠点に目を瞑れば、システム開発の過酷な生存競争に勝つために取れる最良の選択肢でしょう。それに対してモデリングをしっかりと行い、長期的な運用を視野に入れた設計手法は飛行機に運用するようなことです。飛行機は片道ロケットと違って往復することは可能ですが、その速度は圧倒的に見劣りします。それにもかかわらず、なぜ私たちは片道ロケットの打ち上げ競争を辞めて、飛行機を安定運用したいと願うようになったのでしょうか。</p>
+<p>ソフトウェアは変化するものです。ごく最初期の局所的な開発速度を優先したソフトウェアは、柔軟性に乏しく、変化を吸収しきれません。ソフトウェアに求められる変化に対応するために、開発者は継ぎはぎのような修正を重ねます。数年もすればソフトウェアは複雑怪奇な進化を遂げるでしょう。それでも時代の変化についていくために、開発者は辟易しながら継ぎはぎだらけの修正を積み重ねるのです。場当たり的な対応に嫌気の差した開発者たちが片道ロケットの打ち上げ競争ではなく、飛行機の安定運用を願うようになるのも想像に難くありません。救いを求めて手にしたものの中にドメイン駆動設計がありました。</p>
+<p>ドメイン駆動設計はドメインと向き合うことで分析から設計、そして開発までが相互作用的に影響し合うよう努力を重ねることを求めます。ソフトウェアを構築する最初期においても一定の効果はありますが、その真価は変化に対応するときにこそ表れます。ドメイン駆動設計を取り入れてみた当時はさほど効果が見られなかったでしょう。ときが流れ、段々とドメイン駆動設計が認められてきたのは、偉大なる先人たちによって撒かれた種が芽吹いてきたからに他なりません。</p>
+<p>プログラムは動かすだけなら簡単で、しかし動かし続けることは難しい代物です。システムを長期的に運用したいと願うのならば、安定的な飛行機の運用を願うのならば、ドメイン駆動設計をいまこそ学ぶべきでしょう。</p>
+</blockquote>
+<p>成瀬 允宣. ドメイン駆動設計入門 ボトムアップでわかる！ドメイン駆動設計の基本 (pp.42-43). 株式会社翔泳社. Kindle 版.</p>
+<h2 id="_3">原典と書籍と参考情報<a id="books"></a></h2>
+<p>ドメイン駆動設計は、Eric Evans によって2003年（なんとおおよそ20年前！）に発行された「Domain-Driven Design」によって世の中に知られるようになりました。8年たった後2011年（それでもおおよそ10年前!）にようやく日本語版が発行され、日本でも注目をあつめるようになりました。</p>
+<p>しかし、それでも内容は難解であまり採用されることが多くなかったと思います。</p>
+<p>最近では、わかりやすく解説した書籍も出回っており、Webでも多くの情報が出回るようになり、比較的学習しやすくなってきました。</p>
+<p>皆さんには、下記書籍を読んでいただきたいのですが、量が多く理解しながら読むと非常に時間がかかります。</p>
+<p>ここでは、下記書籍からコアなものをピックアップして、著者なりに噛み砕いな内容をご紹介します。後に書籍を読むことで理解が深まると思いますので、ぜひ書籍の方も読んでいただきたいです。</p>
+<ul>
+<li><a href="https://www.amazon.co.jp/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG/ref=sr_1_1?keywords=domain+driven+design&amp;qid=1652248036&amp;s=books&amp;sprefix=domain+d%2Cstripbooks%2C206&amp;sr=1-1" target="_blank">Domain-Driven Design - Eric Evans</a>
+    : DDDの原著にして全て。通称「エヴァンス本」「DDDの原典」</li>
+<li><a href="https://www.amazon.co.jp/%E3%82%A8%E3%83%AA%E3%83%83%E3%82%AF%E3%83%BB%E3%82%A8%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%B9%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88-Eric-Evans-ebook/dp/B00GRKD6XU/ref=sr_1_3?keywords=%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88&amp;qid=1652248149&amp;s=books&amp;sprefix=%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%2Cstripbooks%2C202&amp;sr=1-3" target="_blank">エリック・エヴァンスのドメイン駆動設計</a>
+    : 「エヴァンス本」の日本語訳版</li>
+<li><a href="https://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88-%E3%83%B4%E3%82%A1%E3%83%BC%E3%83%B3%E3%83%BB%E3%83%B4%E3%82%A1%E3%83%BC%E3%83%8E%E3%83%B3-ebook/dp/B00UX9VJGW/ref=pd_sbs_sccl_1_1/357-1400330-1264230?pd_rd_w=OspOQ&amp;pf_rd_p=ca6ccf00-9cde-4773-ae9e-625b2d7cc586&amp;pf_rd_r=9QVVZBK1ZSX6KT6GWE3B&amp;pd_rd_r=192532fe-44a7-4275-9a14-4623c754907a&amp;pd_rd_wg=Z8Olw&amp;pd_rd_i=B00UX9VJGW&amp;psc=1" target="_blank">実践ドメイン駆動設計</a>
+    : エヴァンス本を元に、より実践に近い具体的な例をもとに解説をした書籍</li>
+<li><a href="https://www.amazon.co.jp/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E3%83%9C%E3%83%88%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B-%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88%E3%81%AE%E5%9F%BA%E6%9C%AC-%E6%88%90%E7%80%AC-%E5%85%81%E5%AE%A3/dp/479815072X/ref=asc_df_479815072X/?tag=jpgo-22&amp;linkCode=df0&amp;hvadid=418292279020&amp;hvpos=&amp;hvnetw=g&amp;hvrand=17307575794137338225&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1009783&amp;hvtargid=pla-878099275802&amp;psc=1&amp;th=1&amp;psc=1" target="_blank">ドメイン駆動設計入門 ボトムアップでわかる! ドメイン駆動設計の基本</a>
+    : エヴァンス本の戦術的設計に絞って、且つ上よりもよりさらに実装に近い解説をした書籍 分かり易いが全てではない。タイトル通りの入門書。</li>
+</ul>
+<p>DDDを本気で学習するのであれば、原典であるエヴァンス本から読むのが当たり前なのかもしれませんが、かなり抽象的な言葉で書かれており、理解が難しいです。</p>
+<p>そのため、上のリストの本を下から読むことをおすすめします(もちろんエヴァンス本は日本語のもので良いです)。ただし、一番下のものだけ読んで理解したつもりにならないようにしましょう。色々なエッセンス、特に戦略的設計についてはあまり書かれていないので、「実践ドメイン駆動設計」とできれば「エヴァンス本」も読んでおきましょう。（エヴァンス本は必須という人も多いです・・・）</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エヴァンス本は、紙の本より電子版をおすすめします。紙の本は厚くてやる気が萎えますが、電子版なら精神的にちょっと楽です。</p>
+</div>
+<p>その他の参考にした情報</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=CfEcjnpLo7U" target="_blank">「ドメイン駆動設計」のススメ~100 日でエヴァンス本を完読したしょぼちむとふりかえる ~AWS Developer Live Show - YouTube</a></li>
+<li><a href="https://qiita.com/little_hand_s/items/721afcbc555444663247" target="_blank">ドメイン駆動設計は何を解決しようとしているのか[DDD] - Qiita</a></li>
+<li><a href="https://codezine.jp/article/detail/11968" target="_blank">ドメイン駆動設計とは何なのか？ ユーザーの業務知識をコードで表現する開発手法について：CodeZine（コードジン）</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エヴァンス本は、なかなか難解な記述がされており、頑張って解読しました。解釈が違うのではないか、という方もいらっしゃると思います。  </p>
+</div>
+<p>いろいろな方の意見も聞きたいので、ご意見がある方はお気軽にお問い合わせください。&gt; ebi311@gmail.com</p>
+<h2 id="_4">「ドメイン」の「知識に焦点を当てた」設計手法</h2>
+<p>DDDを一言で表すと、「ドメイン」の「知識に焦点を当てた」設計手法です。</p>
+<p>これだけだと分かりづらいので、補足しましょう。</p>
+<p>まず、「ドメイン」とはなにか、です。これは、「ソフトウェアがプログラムを適用する対象となる領域」となります。重要なのは、そのドメインがなにか、ではなく、そのドメインに「含まれるもの」は何か、というところです。その「含まれるもの」によって領域が決まります。</p>
+<p>例えば、会計システムでは銀行口座や貸借対照表などといったものが対象になるでしょう。物流システムにおいては、倉庫や物品、トラック、輸送経路などが対象になるかもしれません。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>それぞれのドメインでは、そのソフトウェアで取り扱うものだけを含めることになるので、会計関連のシステムだからといって、必ず現金や銀行口座の要素が含まれる、というわけではありません。</p>
+</div>
+<p>このようにドメインに含まれるものは、そのソフトウェアが対象とする領域によって全く異なってきます。</p>
+<p>次に「知識に焦点を当てる」ということについてです。</p>
+<p>ソフトウェアには必ず利用者が存在しますが、利用する目的としてはその利用者が抱えている問題を解消するためです。その問題を正確に理解し、解決方法を導くには、
+そのドメインに向き合う必要があります。これが「知識に焦点を当てる」ことです。</p>
+<p>そして、開発者はそのドメインのことをよく知りません。その対象の業務のことをわかっている人＝ドメインエキスパートに、話をきいて業務を理解するところから始めます。</p>
+<p>当たり前のことを言っているようですが、つい UI に注目してそこから設計が始まってしまったり、AIといった最新技術ありきで話が進んでしまったりすることが多いのではないでしょうか。そうなると、真に解決したい問題から離れてしまうでしょう。</p>
+<p>また、ドメインエキスパートもまた、開発者の話を聞いて自分の業務を整理する必要があります。それが業務の改善につながることにもなります。</p>
+<p>DDDは、そういった当たり前のことを当たり前にできるような設計手法なのです。</p>
+<h2 id="ddd">DDD を採用する動機</h2>
+<p>DDD は、全体を俯瞰すると要件定義から詳細設計まで広範囲に渡るため、ハードルが低いとは言えないかもしれません。ただ、正しく用いることができれば大きな効果が期待できます。</p>
+<p>DDDを採用するためのモチベーションをあなたやチームのメンバーに理解して貰う必要があります。</p>
+<h3 id="vs">サービスの素早い提供 vs 長期のメンテナンス</h3>
+<p>昨今では、サービスを素早く提供することに重きが置かれます。そうすると、このドキュメントに書かれていることは、重厚で無駄に思われる方もいるかも知れません。</p>
+<p>しかし一方で、一旦世に出たサービスが人気となり、長期にわたりメンテナンスする必要が出て来ることもあります。その過程でも、素早いアップデートが求められます。</p>
+<p>初期のリリースで、速さを求めて十分な設計やテストが無い場合、リリース後のアップデートが指数関数的に重くなってきてしまします。</p>
+<p>結果的に、コストが大きくなり、利用者の満足も得られなくなるでしょう。更に重要なのは、セキュリティ上の不具合も出てくると致命的です。</p>
+<p>そうならないためには、十分な設計とそれができる知識が必要になります。</p>
+<p>ファースト・リリースの速度が必要な場合は、まずは速度を重視した実装を行っても良いでしょう。ただし、後に設計を見直したり、アプリケーションを作り直したりする計画を必ず入れてください。
+そのことを、プロダクトオーナーに理解してもらうことが必要です。</p>
+<p>いずれにしても、素早いリリースが求められるから、設計の知識や配慮は必要ない、ということにはなりません。</p>
+<p>設計に対する十分な知識があり、そこから必要に合わせて妥協して崩す、ということが必要です。</p>
+<blockquote>
+<p>引用: 成瀬 允宣. ドメイン駆動設計入門 ボトムアップでわかる！ドメイン駆動設計の基本 (p.42). 株式会社翔泳社. Kindle 版.</p>
+<p>ひと昔前はサービスをいち早く世に出すことこそがもっとも重要なこととされていたように感じます。そのためモデリングに重きを置き、開発の最初期にコストを支払うドメイン駆動設計は重厚で鈍重なものであると誤解され、敬遠されていました。</p>
+<p>(中略)</p>
+<p>ソフトウェアは変化するものです。ごく最初期の局所的な開発速度を優先したソフトウェアは、柔軟性に乏しく、変化を吸収しきれません。ソフトウェアに求められる変化に対応するために、開発者は継ぎはぎのような修正を重ねます。数年もすればソフトウェアは複雑怪奇な進化を遂げるでしょう。</p>
+<p>それでも時代の変化についていくために、開発者は辟易しながら継ぎはぎだらけの修正を積み重ねるのです。場当たり的な対応に嫌気の差した開発者たちが片道ロケットの打ち上げ競争ではなく、飛行機の安定運用を願うようになるのも想像に難くありません。救いを求めて手にしたものの中にドメイン駆動設計がありました。</p>
+</blockquote>
+<h3 id="ddd_1">DDD のメリット</h3>
+<p>DDDを採用するメリットとしては、下記の様なものがあります。多くの場合にそのメリットを享受できるでしょう。</p>
+<ul>
+<li>ドメインエキスパートと開発者がチームとして活動することで、本当に必要なものを効率的に開発することができます。</li>
+<li>ドメインエキスパートは、現在の事業・業務を整理しより深い理解ができます。</li>
+<li>アジャイルでイテレーティブな開発を継続できるシステムを獲得できます。</li>
+<li>サービス指向アーキテクチャやビジネス駆動アーキテクチャを実現しやすい。</li>
+<li>テストしやすい、バグの混入を低く抑えられる、スケーラブルなシステムが構築しやすい。</li>
+</ul>
+<p>DDDはツール的なものではなく、ガイドラインに近いものなので導入したからOK、というものではなく、その意図や意味をしっかり把握して運用することで、上記メリットを得られるようになります。</p>
+<p>逆説的ですが、上のメリットを意識しながら開発を運用していくことにもなります。</p>
+<h3 id="ddd_2">DDD を採用する基準</h3>
+<p>DDD はある程度のシステム規模で効果を発揮します。下記のようなシステムには向かないかもしれません。</p>
+<ul>
+<li>単純なCRUDのみで、データベースのUIツールに近いものである。</li>
+<li>ユースケースがおおよそ20以下のシンプルな要件で、将来複雑になる、または随時更新されることが想定されない。</li>
+<li>市販などのツールを使うだけで解決する要件のものである。</li>
+</ul>
+<p>機能の提供が最も重要で、且つ規模も小さいのであれば、DDDを採用するよりもさっさとコードを書いてしまったほうがいい場合もあります。
+その場合でも、システムの規模が大きくなることが想定されるのであれば、早い段階で DDD を採用しスクラッチビルドを想定した計画としておくようにします。もちろんそれをドメインエキスパートが理解しておく必要があります。</p>
+<h2 id="_5">ドメイン、サブドメイン、コンテキスト</h2>
+<p>山を登るとき、はじめに見るものは目の前の道ではなく、ゴールまでの道のりを地図で確認します。いくら性能の良い靴や道具を持っていても、全体の工程を把握していないと、安全な山登りはできないでしょう。</p>
+<p>DDDでシステム開発をする場合、システム全体を俯瞰した「戦略的設計」と、論理アーキテクチャから設計に関する「戦術的設計」を理解しておく必要があります。</p>
+<p>戦略的設計では、業務を分析して区分をするところから始めます。ここでは、「ドメイン」「サブドメイン」「コンテキスト」の区分を考えます。これらはシステムの構成を意味するのではなく、利用者が置かれている状況を整理し可視化するために行う作業です。</p>
+<h3 id="_6">ドメイン</h3>
+<p>ドメインは、ソフトウェアがプログラムを適用する対象となる領域なのですが、1つの業務が範囲の場合もありますが、ものによっては事業全体を指し示すこともあります。</p>
+<p>例えば、SaaSを提供していたとした場合、その SaaS の事業自体がドメインとなります。</p>
+<p>ドメインが大きくなると、1つの大きなまとまりで把握したり管理するのは困難です。それぞれの業務で区分する必要があります。また、その業務同士で連携することもありますが、その中で使われる言葉はそれぞれ独立したものもあります。</p>
+<p>ドメインには、問題空間と解決空間があります。</p>
+<p>上記の業務上の区分を問題空間としてサブドメイン、それを具体的に解決する区分を解決空間としてコンテキストを定義します。</p>
+<p>わかりにくいと思うので、それぞれ解説します。</p>
+<h3 id="_7">サブドメイン</h3>
+<p>サブドメインは、解決したいビジネス上の問題や関心事を定義します。</p>
+<p>例えば、ECサイト全体をドメインとした場合、注文以外に在庫管理、請求管理等といった業務が必要になるでしょう。そういった大きな業務単位をサブドメインとして定義することで、管理する対象をシンプルに保つことができます。</p>
+<p>そのような業務の単位、として捉えると近いと思います。</p>
+<p>ドメインの最も重要となるドメインをコアドメインとして、そこにリソースを多く投入するなどの目的とします。
+その他のサブドメインを支援ドメイン、汎用ドメインとして定義しますが、コアドメインかどうかが重要ですので、ここでは詳細を省きます。</p>
+<p>これは、要件定義によって必要な業務を洗い出すときに定義するものとなります。</p>
+<h3 id="_8">コンテキストの境界</h3>
+<p>コンテキストは、課題に対する解決する領域です。DDDでは用語(後述するユビキタス言語)の境界にもなります。</p>
+<p>1つのサブドメイン毎に1つのコンテキストがあるのが理想ですが、サブドメイン間の連携のために、コンテキストが複数のサブドメインをまたぐ場合もあります。</p>
+<p>上のECサイトの例で、顧客という用語を考えたときに、ブラウザでカタログを見ているときの「顧客」と注文時の「顧客」では意味が異なります。</p>
+<p>なぜならカタログを見る、という領域では、顧客は事業として顧客を集める対象、または割引の対象であるか、おすすめを表示するための情報での扱いです。つまり特定の人ではない、やや抽象的な存在です。請求時では明確に、その人の名前や住所、支払方法などの情報を持ったものになります。</p>
+<p>このように、ドメイン全体での領域で「顧客」というのは明確な定義が難しいです。</p>
+<p>注文機能1つとっても、それぞれの機能には大きな違いがあります。これらは「カタログ参照」と「注文管理」にコンテキスト（サブドメインも）を分離したほうが良いでしょう。</p>
+<div class="admonition info コンテキスト分割の例">
+<p class="admonition-title">Info</p>
+<p>「実践ドメイン駆動設計」の本の「第2章 ドメイン、サブドメイン、境界づけられたコンテキスト」で紹介されているコンテキストの分割の例をここで紹介しておきます。</p>
+<ul>
+<li>あるプロジェクトでは、開発プロジェクトのタスクを管理するSaaSサービスの開発を行っていた。</li>
+<li>そのサービスにコレボレーションの機能として、フォーラムやディスカッション、カレンダーなどの機能をコンテキストとして実装されていた。</li>
+<li>認可の処理をロールベースに変更しようとしたら、影響範囲が大きすぎて混乱することとなった。</li>
+<li>このコンテキストには、ユーザーの情報やその権限が含まれていた。</li>
+<li>権限について、このコンテキストの中でユーザーが認証を受けているか、アクティベートされているかなどをチェックしていた。この処理自体もこのコンテキストで行うべきではなく、「認証が取れていて有効である」ことと、「ロール」が何かがわかれば良いはずであった。</li>
+<li>そもそも、コレボレーションには「ユーザー」が必要なのではなく、「投稿者」や「モデレーター」というもののはず。「ユーザー」が本質をついたものではなく、ユビキタス言語にもないものであった。</li>
+<li>コンテキストでは、ユーザーを保持するのではなく、外部から投稿者などの情報を渡されるようにした。<ul>
+<li>引数が、「ユーザー」ではなく、明示的に「投稿者」であることが重要。</li>
+</ul>
+</li>
+<li>権限のそのコンテキストの中でユーザーから権限情報を取得しチェックしていたが、ロールを渡されるようにした。<ul>
+<li>ここでも、アクションごとの何をするためのロールかを渡されるようにした。</li>
+</ul>
+</li>
+<li>ユーザーや権限、ロールの管理を「認証・アクセスコンテキスト」として別のコンテキストとして切り出した。</li>
+</ul>
+</div>
+<p><img alt="ddd-context-map" src="../ddd-context-map.drawio.png" /></p>
+<h3 id="_9">ユビキタス言語</h3>
+<p>コンテキストは、それが1つの名前空間となります。その中だけで通用する共通言語を「ユビキタス言語」といいます。</p>
+<p>用語、と置き換えてもいいですが、単語だけでなく、アクションやイベントの名前も含まれます。</p>
+<p>ユビキタス言語は、開発者だけでなく、ドメインエキスパートや関係者全員で共通のもので、その言葉で話をするようにします。</p>
+<p>ですので、ユビキタス言語は全員で作り上げていってください。要件定義で全てを正しく定義しておく必要もありません。それはおそらく無理です。開発中に追加、更新があるものと考１、その辞書を常に最新に保つことが必要です。</p>
+<p>この言語は、設計書、コード中にも出てきます。例えば、文書の作成者を示すプロパティは、「user」ではなく「author」とします。もちろん、「author」と「creator」などと同じ意味で別の単語が出てこないようにします。（目的が違えばもちろんOKです。）</p>
+<p>ユビキタス言語は、ユーザーが普段使っている言葉などを元にするのですが、それも統一されていたり別な意味が存在することも多々あります。要件定義の中で定義する作業が必要になります。</p>
+<p>コンテキストが異なれば、同じものを指していても別の単語が割り当てられたり、同じ単語でも別のものを指すことがあります。コンテキスト内で統一されていることが大事です。</p>
+<p>よくやりがちなのが、名前の頭にコンテキスト名をつけることです。これは冗長なのでやめましょう。（例：カタログ コンテキストで「カタログ商品」など）</p>
+<h2 id="_10">まとめ</h2>
+<p>ここでは、DDDの概要と戦略的設計について学びました。</p>
+<p>戦略的設計を意識せずに開発を進めると、複数の概念を１つの汎用的な概念に混ざってしまい、個々の概念で本来の役割がぼやけてしまい、煩雑な構造となってしまいます。</p>
+<p>しかし、領域を正確に設定するのは難しいものです。メンバーがDDDに理解を持ち、話し合いながら進めて、場合によっては立ち返って修正することも必要です。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../../0%20%E4%BF%9D%E5%AE%88%E3%81%97%E3%82%84%E3%81%99%E3%81%84%E8%A8%AD%E8%A8%88/07.%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0/" class="md-footer__link md-footer__link--prev" aria-label="前: TDDとリファクタリング">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                TDDとリファクタリング
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../2-domain-driven-design-tactics/" class="md-footer__link md-footer__link--next" aria-label="次: ドメイン駆動設計（戦術的設計）">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                ドメイン駆動設計（戦術的設計）
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  <div class="md-copyright__highlight">
+    <span>Copyright © 2022 Ricoh IT Solutions Co.,Ltd.</span>
+    <span>Collaborator: 海老原 賢次(ebi311@gmail.com)</span>
+  </div>
+  <p>
+  <p xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a
+      href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
+      rel="license noopener noreferrer" class="cc-link">CC BY-NC-SA 4.0
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" />
+      <img class="cc-icon"
+        src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" />
+    </a></p>
+  </p>
+  <p>
+     Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    
+  </p>
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/highlight.min.js"></script>
+      
+        <script src="../../../js/config.js"></script>
+      
+    
+  </body>
+</html>

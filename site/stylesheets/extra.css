@@ -1,0 +1,213 @@
+@charset "UTF-8";
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+  font-weight: 900;
+}
+.md-content h2 {
+  border-bottom: 3px double;
+  border-top: 3px double;
+  padding-top: 1rem;
+  margin-top: 3rem;
+}
+.md-content h3 {
+  border-bottom: 1px solid;
+  margin-top: 2rem;
+}
+.md-content h4 {
+  text-decoration: underline;
+  margin-top: 2rem;
+}
+.md-content h4::before {
+  content: "■ ";
+}
+
+p::first-letter {
+  margin-left: 1em;
+}
+p code {
+  margin: 0 0.5rem;
+}
+
+li > p::first-letter {
+  margin-left: 0;
+}
+
+article a {
+  text-decoration: underline;
+  margin: 0 0.5em;
+}
+article a > code {
+  margin: 0;
+}
+
+input {
+  color: black;
+  border: 1px solid black;
+  padding: 2px;
+}
+
+strong {
+  text-decoration: underline;
+}
+
+.grid > ul:not([hidden]) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+  margin: 0;
+}
+.grid > ul:not([hidden]) > li {
+  margin: 0;
+}
+
+.cards > ul > li {
+  list-style-type: none;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+.cards > ul > li > p {
+  padding: 4px;
+  margin: 0;
+  font-size: 0.8rem;
+}
+.cards > ul > li > p:first-child {
+  font-size: 1rem;
+  background-color: var(--md-primary-fg-color--dark);
+  color: var(--md-primary-bg-color);
+}
+.cards > ul > li > p:first-child > a {
+  color: var(--md-primary-bg-color);
+}
+.cards > ul > li > p:first-child::first-letter {
+  margin-left: 0;
+}
+.cards > ul > li > ul {
+  list-style-type: "➤";
+}
+
+.writing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 80%;
+}
+.writing p::first-letter {
+  margin-left: 0;
+}
+
+img {
+  background-color: #eee;
+  padding: 0.5rem;
+}
+
+/* Creative Commons Icon */
+.md-copyright__highlight {
+  display: flex;
+  gap: 1rem;
+}
+
+.cc-link {
+  display: inline-block;
+}
+
+.cc-icon {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.md-ellipsis .chapter {
+  margin-right: 0.5rem;
+}
+
+.md-content .chapter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--md-primary-fg-color);
+  border-radius: 100%;
+  color: white;
+  font-weight: 900;
+  font-size: 2rem;
+  width: 100px;
+  height: 100px;
+  margin-right: 1rem;
+}
+.md-content .chapter-number {
+  display: inline-block;
+}
+.md-content .chapter-number::before {
+  content: "第";
+  font-size: 0.8rem;
+}
+.md-content .chapter-number::after {
+  content: "章";
+  font-size: 0.8rem;
+}
+
+.tutorial-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+.tutorial-end > a {
+  margin: 0.5rem;
+}
+.tutorial-end-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.tutorial-end-logo {
+  position: relative;
+}
+.tutorial-end-logo-chapter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--md-primary-fg-color);
+  border-radius: 100%;
+  color: white;
+  font-weight: 900;
+  font-size: 2rem;
+  width: 100px;
+  height: 100px;
+}
+.tutorial-end-logo-chapter-number {
+  display: inline-block;
+}
+.tutorial-end-logo-chapter-number::before {
+  content: "第";
+  font-size: 0.8rem;
+}
+.tutorial-end-logo-chapter-number::after {
+  content: "章";
+  font-size: 0.8rem;
+}
+.tutorial-end-logo-check {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #0f766e;
+  border: 3px solid #0f766e;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+}
+
+/*# sourceMappingURL=extra.css.map */
