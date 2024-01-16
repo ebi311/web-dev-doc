@@ -1,9 +1,13 @@
 const express = require('express')
 const basicAuth = require('basic-auth-connect')
+const dotenv = require('dotenv')
+
+dotenv.config();
+
 const app = express()
 
-const USERNAME = 'user'
-const PASSWORD = 'abc'
+const USERNAME = process.env.USERNAME || 'user';
+const PASSWORD = process.env.PASSWORD || 'pass';
 
 app.use(basicAuth(USERNAME, PASSWORD))
 
