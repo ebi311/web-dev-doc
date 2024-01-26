@@ -135,7 +135,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
@@ -3811,49 +3811,71 @@
 <span class="normal"><a href="#__codelineno-0-14">14</a></span>
 <span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>[] ... プロジェクトルート
+<span class="normal"><a href="#__codelineno-0-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>[] ... プロジェクトルート
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>|- [src]
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>|   |- [components] ... ページを構成する React のコンポーネントを配置する
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>|   |   |- [commons] ... 汎用的な React コンポーネント
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>|   |   `- [pageParts]
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>|   |       |- [(ページ名)] ... 特定のページ React コンポーネント
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>|   |       ...
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>|   |- [pages] ... Next.js のページを配置する(Next.js の仕様)
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>|   |   |- [api]
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>|   |       |- [(API名)]/route.ts ... 特定の API の処理を行う
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>|   |       ...
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>|   `- [contexts]
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>|        |- [(コンテキスト名)] ... コンテキスト境界ごとにディレクトリを作成する
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>|        |   |- [entities] ... ドメインモデルを配置する
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>|        |   |- [repositories] ... ドメインモデルの永続化を行う処理の実装ファイル
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>|        |   `- [usecases] ... ドメインモデルのユースケースロジックを実装する
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>|        ...
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>|- [public] ... 静的ファイルを配置する(Next.js の仕様)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>|   |- [components] ... 汎用的な React のコンポーネントを配置する
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>|   |       ...
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>|   |- [app] ... Next.js のページを配置する(Next.js の仕様)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>|   |   |- [(ページパス)] ... ページパスごとのディレクトリを作成する(後述)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>|   |   |- [api]　... API の処理行うファイルを配置する(Next.js の仕様)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>|   |       |- [(API名)]/route.ts ... 特定の API の処理を行う
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>|   |       ...
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>|   |- [utils] ... 汎用的なユーティリティ関数を配置する
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>|   \- [contexts]
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>|        |- [(コンテキスト名)] ... コンテキスト境界ごとにディレクトリを作成する
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>|        |   |- [entities] ... ドメインモデルを配置する
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>|        |   |- [repositories] ... ドメインモデルの永続化を行う処理の実装ファイル
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>|        |   \- [usecases] ... ドメインモデルのユースケースロジックを実装する
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>|        ...
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>|- [public] ... 静的ファイルを配置する(Next.js の仕様)
 </span></code></pre></div></td></tr></table></div>
-<p>[components]の[commons]や[pages]の内容は、コンポーネントごとにディレクトリを作成し、その中のファイル構成は下記のようになります。</p>
+<p>[app/(ページパス)] の内容は、Next.js App Router の使用に合わせて、ページパスごとにディレクトリを作成し、その中のファイル構成は下記のようになります。
+また、その中にはページを構成するコンポーネントを配置します。ただし、複数ページで共通で使われるコンポーネントは、[components]に配置します。</p>
 <div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">3</a></span>
 <span class="normal"><a href="#__codelineno-1-4">4</a></span>
-<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>[(コンポーネント名)] ... コンポーネントディレクトリ
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a> |- index.tsx ... import でファイル名を省略できるようにするためのファイル
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a> |- (コンポーネント名).tsx ... コンポーネントの実装ファイル
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a> |- (コンポーネント名).test.tsx ... コンポーネントのテストファイル
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a> `- (コンポーネント名).stories.tsx ... コンポーネントの Storybook ファイル
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>[(ページパス)] ... ページディレクトリ
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a> |- page.tsx ... import でファイル名を省略できるようにするためのファイル
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a> |- [_components] ... ページを構成するコンポーネントを配置する
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a> |   |- index.ts ... import でファイル名を省略できるようにするためのファイル
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a> |   |- (コンポーネント名).tsx ... コンポーネントの実装ファイル
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a> |   |- (コンポーネント名).test.ts ... コンポーネントのテストファイル
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a> |   \- (コンポーネント名).stories.tsx ... コンポーネントの Storybook ファイル
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a> |- (他 Next.js 定義ファイル) ... layout.tsx や error.tsx などのNext.jsの構成ファイル *1
 </span></code></pre></div></td></tr></table></div>
-<p>[contexts]には、次で話がでてくる <a href="../../2.%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E5%A2%83%E7%95%8C%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%AD%E8%A8%88/">2.コンテキスト境界とエンティティの設計</a> で説明する
-コンテキスト境界ごとにディレクトリを作成します。</p>
-<p>各坤滴とディレクトリの[entities]の中は、エンティティ(これも後述する)ごとにディレクトリを作成し<sub>~</sub>~、その中の構成は下記のようにします。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>"_"で始まるディレクトリは、Next.js の仕様で、URLパスとして認識されなくなります。</p>
+<p>https://nextjs.org/docs/app/building-your-application/routing/colocation#private-folders</p>
+</div>
+<p>*1: <a href="https://nextjs.org/docs/app/api-reference/file-conventions">API Reference: File Conventions | Next.js</a></p>
+<p>[component]の内容は、コンポーネントごとにディレクトリを作成し、その中のファイル構成は下記のようになります。</p>
 <div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">3</a></span>
 <span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>[(エンティティ名)] ... エンティティディレクトリ
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a> |- (エンティティ名).ts ... エンティティの実装ファイル
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a> |- (エンティティ名).test.ts ... エンティティのテストファイル
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a> |- (エンティティ名).schema.ts ... エンティティの Zod(*1) スキーマ
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a> `- (エンティティ名).repository.ts ... 永続化を行うクラスのインターフェースの定義ファイル
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>[(コンポーネント名)] ... コンポーネントディレクトリ
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a> |- index.tsx ... import でファイル名を省略できるようにするためのファイル
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a> |- (コンポーネント名).tsx ... コンポーネントの実装ファイル
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a> |- (コンポーネント名).test.tsx ... コンポーネントのテストファイル
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a> \- (コンポーネント名).stories.tsx ... コンポーネントの Storybook ファイル
+</span></code></pre></div></td></tr></table></div>
+<p>[contexts]には、次で話がでてくる <a href="../../2.%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E5%A2%83%E7%95%8C%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%AD%E8%A8%88/">2.コンテキスト境界とエンティティの設計</a> で説明する
+コンテキスト境界ごとにディレクトリを作成します。</p>
+<p>各坤滴とディレクトリの[entities]の中は、エンティティ(これも後述する)ごとにディレクトリを作成し<sub>~</sub>~、その中の構成は下記のようにします。</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>[(エンティティ名)] ... エンティティディレクトリ
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a> |- (エンティティ名).ts ... エンティティの実装ファイル
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a> |- (エンティティ名).test.ts ... エンティティのテストファイル
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a> |- (エンティティ名).schema.ts ... エンティティの Zod(*1) スキーマ
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a> \- (エンティティ名).repository.ts ... 永続化を行うクラスのインターフェースの定義ファイル
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

@@ -135,7 +135,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
@@ -3165,7 +3165,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      プロパティで受け取ったタイトルを表示する
+      ページのコンテンツを表示する
     </span>
   </a>
   
@@ -3174,7 +3174,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      ページのコンテンツを表示する
+      ページヘッダーを表示する
     </span>
   </a>
   
@@ -3872,7 +3872,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      プロパティで受け取ったタイトルを表示する
+      ページのコンテンツを表示する
     </span>
   </a>
   
@@ -3881,7 +3881,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      ページのコンテンツを表示する
+      ページヘッダーを表示する
     </span>
   </a>
   
@@ -3970,99 +3970,143 @@
 <p><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts" target="_blank">Building Your Application: Routing | Next.js</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>ここでは、Next.js ver 13 以降でリリースされた、APP Router を利用します。</p>
 </div>
-<p>Next.js の APP Routing という ver.13 から入った、新しい（2023年現在）機能です。</p>
 <h2 id="layout">Layout コンポーネントの仕様を検討する</h2>
 <p>Layout コンポーネントは、共通のヘッダと、ページのコンテンツを表示する機能を持つ必要があります。</p>
 <p><img alt="layout" src="../c-3-1-layout.drawio.png" /></p>
 <p>※ヘッダーの色は、テーマカラーの Primary になります。</p>
-<p><code>{}</code> の部分が動的になります。これらはコンポーネントのプロパティとして受け取ります。</p>
-<p>タイトルは、<code>title:string</code> として受け取れば良いでしょう。</p>
-<p>ページのコンテンツは、この Layout の子要素として受け取ることとしましょう。</p>
-<p>利用方法の例はこのようになります。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<p>APP Router の仕様で、<code>layout.tsx</code> というファイルを設置するだけで、その配下のページは、この Layout でラップされるようになります。</p>
+<p>ただ、<code>{}</code> の部分が動的になります。これらはコンポーネントのプロパティとして、ページから受け取りたいところですが、ページから Layout に値を渡すことができません。</p>
+<p>そこで、<code>{}</code> の部分は <a href="https://ja.react.dev/reference/react/hooks#context-hooks">Context</a> を使って渡すこととします。Context は、Reactコンポーネントの階層を横断して、データを渡す仕組みです。プロパティでは、子にしか値を渡せませんが、Context では、階層に関係なく値を共同で管理できます。</p>
+<div class="admonition note context の使い道">
+<p class="admonition-title">Note</p>
+<p>Context の使い道としてよく、「親から子、孫へバケツリレーをしなくて済む」というメリットとして説明されることが多いですが、筆者は「プロパティで渡せるものはできるだけ Context は使わない」という方針でいます。</p>
+<p>理由として、Context はグローバル変数な性質を持ち、コンポーネントの独立性、宣言的な記述を崩してしまい、試験性を損なう恐れがあるからです。</p>
+<p>今回のように、親子関係を持たないコンポーネント間で、且つシンプルな値を共有するときに使うこととします。</p>
+<p>ただし、パフォーマンスの問題から Context を使うこともあるので、すべてのケースに当てはまるものでは無いですが、基本的には上の方針とし、例外的に Context を利用する、ということにしましょう。</p>
+</div>
+<p>Next.js では、Server コンポーネントと、Client コンポーネントをサポート(実際には、React の機能です)します。Context は、Clientコンポーネントしかサポートしないので、注意が必要です。</p>
+<p>Layout をクライアントコンポーネントとしてしまうと、使えなくなる機能があるので、ヘッダーの部分を別コンポーネントとしてこれを Client コンポーネントにします。</p>
+<p>いきなり Context を使ったコンポーネントを書くのは少々難しいので後回しにして、まずは静的な Layout コンポーネントを作成してみましょう。</p>
+<h2 id="layout_1">Layout コンポーネントの作成</h2>
+<p>まずは、Layout コンポーネントと関連のファイルを作成します。内容は最低限のものとします。</p>
+<p>作成場所は、このレイアウトは介護スタッフ用の画面のものなので、<code>src/app/careStaff</code> 配下に配置します。</p>
+<p>コンポーネント本体</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
 <span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;ページタイトル&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="p">{</span><span class="cm">/* 内容は任意の要素 */</span><span class="p">}</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">ページコンテンツ</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="o">&lt;</span><span class="err">/Layout&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-<h2 id="layout_1">Layout コンポーネントの作成</h2>
-<p>まずは、Layout コンポーネントと関連のファイルを作成します。内容は最低限のものとします。</p>
-<p>コンポーネント本体</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span>
-<span class="normal"><a href="#__codelineno-1-3">3</a></span>
-<span class="normal"><a href="#__codelineno-1-4">4</a></span>
-<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>import React from &#39;react&#39;;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>const Layout: React.FC = () =&gt; {
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>  return &lt;div&gt;&lt;/div&gt;;
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>};
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>export default Layout;
 </span></code></pre></div></td></tr></table></div>
 <p>テストファイル</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span>
-<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Layout</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./Layout&quot;</span><span class="p">;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;layout&#39;</span><span class="p">);</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">layout</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">});</span>
+<p>ここでは、</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>import { render, screen } from &#39;@testing-library/react&#39;;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>import Layout from &quot;./Layout&quot;;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>test(&#39;render&#39;, () =&gt; {
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  render(
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>    &lt;Layout&gt;&lt;/Layout&gt;,
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>  );
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>  // メインコンテンツが表示されていること
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>  const main = screen.getByRole(&#39;main&#39;);
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>  expect(main).toBeInTheDocument();
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>});
 </span></code></pre></div></td></tr></table></div>
 <p>Storybook ファイル</p>
-<p><code>&lt;Layout&gt;</code> でエラーが表示されますがそのままで良いです。後で解決します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-3-10">10</a></span>
-<span class="normal"><a href="#__codelineno-3-11">11</a></span>
-<span class="normal"><a href="#__codelineno-3-12">12</a></span>
-<span class="normal"><a href="#__codelineno-3-13">13</a></span>
-<span class="normal"><a href="#__codelineno-3-14">14</a></span>
-<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Meta</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@storybook/react&#39;</span><span class="p">;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Layout</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./Layout&#39;</span><span class="p">;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">meta</span><span class="o">:</span><span class="w"> </span><span class="kt">Meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;commons/Layout&#39;</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">Layout</span><span class="p">,</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">};</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">meta</span><span class="p">;</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;ページタイトル&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">ページコンテンツ</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/Layout&gt;</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="p">);</span>
+<p>エディタ上でエラーが出ると思いますが、ここでは無視してください。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/acreStaff/layout.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Meta</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@storybook/react&#39;</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Layout</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./Layout&#39;</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">meta</span><span class="o">:</span><span class="w"> </span><span class="kt">Meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;commons/Layout&#39;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">Layout</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">};</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">meta</span><span class="p">;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">ページコンテンツ</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/Layout&gt;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
-<p>index</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/index.ts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">export</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./Layout&quot;</span><span class="p">;</span>
-</span></code></pre></div></td></tr></table></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>この構成は、筆者の経験からの今(2023年6月)のところのベスト・プラクティスで、より良い構成や組み合わせがあるかもしれません。</p>
-<p>なにかのフレームワークの制約ではないので、プロジェクトごとや個人でより良い構成を探索してみてください。</p>
-</div>
 <h2 id="_1">まずテストを実行</h2>
 <p>テストを実行してみます。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="gp">$ </span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span><span class="w"> </span>Layout
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="go"> FAIL  src/app/careStaff/layout.test.tsx</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="go">  ✕ render (20 ms)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="go">  ● render</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="go">   TestingLibraryElementError: Unable to find an accessible element with the role &quot;main&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="go">（以下略）</span>
+</span></code></pre></div></td></tr></table></div>
+<p>テストの内容は、<code>role="main"</code> の要素が存在するかどうかを確認しています。</p>
+<p>そのような実装はしていないので、エラーになると思います。エラーを解消するように修正します。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/caresStaff/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;&lt;</span><span class="err">/main&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>再度テストを実行すると、テストが成功するでしょう。</p>
+<h2 id="_2">ページのコンテンツを表示する</h2>
+<p>Next.js の layout の仕様では、ページのコンテンツは、<code>{children}</code> プロパティで受け取ることになっています。これは、React の <a href="https://ja.react.dev/learn/passing-props-to-a-component#passing-jsx-as-children">子コンポーネント</a>の仕様です。</p>
+<p>テストを実装します。ここでは、テストの方で子要素を指定しています。実際のページでは、<code>&lt;Layout&gt;</code> を参照することは無いのですが、テストではNext.jsの Routing の仕様は効かないので、通常のコンポーネントと同じように書きます。</p>
+<p>テストでは、子要素のテキストが取得できるかどうかで判断しています。</p>
+<p>```ts title="src/app/careStaff/Layout.test.tsx" hl_lines=""
+test('render', () =&gt; {
+  render(
+    <Layout>
+      <div data-testid="contents">test</div>
+    </Layout>,
+  );
+  // メインコンテンツが表示されていること
+  const main = screen.getByRole('main');
+  expect(main).toBeInTheDocument();
+  // メインコンテンツの中にページコンテンツが表示されていること
+  const contents = screen.getByTestId('contents');
+  expect(contents).toBeInTheDocument();
+});
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
@@ -4071,146 +4115,155 @@
 <span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="gp">$ </span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span><span class="w"> </span>Layout
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="go"> FAIL  src/components/commons/Layout/Layout.test.tsx</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="go">  ✕ render (20 ms)</span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>テストが失敗することを確認し、実装します。
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>TypeScript の場合、プロパティに明示的に子オブジェクト(`children`)を受け取るように、コンポーネントのプロパティとして、`PropsWithChildren`型を定義する必要があります。
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="go">  ● render</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="go">    TestingLibraryElementError: Unable to find an element by: [data-testid=&quot;layout&quot;]</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="go">    Ignored nodes: comments, script, style</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="go">…（略）</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>```ts title=&quot;src/app/careStaff/layout.tsx&quot;
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>import React, { PropsWithChildren } from &#39;react&#39;;
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>const Layout: React.FC&lt;PropsWithChildren&gt; = ({ children }) =&gt; {
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>  return &lt;main&gt;{children}&lt;/main&gt;;
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>};
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>export default Layout;
+</span></code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>children</code>と独自のプロパティを組み合わせる場合はジェネリクスを使い、<code>PropsWithChildren&lt;独自の型&gt;</code>とすることができます。</p>
+</div>
+<h2 id="_3">ページヘッダーを表示する</h2>
+<p>次に、ページヘッダーを表示するようにします。ページヘッダーには、ページタイトルと、会社名を表示します。</p>
+<p>それぞれ、<code>&lt;div&gt;</code>要素を使うこともできますが、目的に会ったタグや<a href="https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/ARIA_Techniques">ロール</a>を使うと、アクセシビリティが向上し、より良いサイトになります。</p>
+<p>ページヘッダーには、<code>&lt;header&gt;</code>要素を使いますが、テストではロールを指定して要素を確認します。</p>
+<div class="admonition note">
+<p class="admonition-title">なぜロールを使用するのか</p>
+<p><a href="https://testing-library.com/docs/queries/about/#priority">About Queries | Testing Library</a></p>
+<blockquote>
+<p>Based on the Guiding Principles, your test should resemble how users interact with your code (component, page, etc.) as much as possible. With this in mind, we recommend this order of priority:</p>
+<ol>
+<li>
+<p>Queries Accessible to Everyone Queries that reflect the experience of visual/mouse users as well as those that use assistive technology.</p>
+<p>i. getByRole: This can be used to query every element that is exposed in the accessibility tree. With the name option you can filter the returned elements by their accessible name. This should be your top preference for just about everything. There's not much you can't get with this (if you can't, it's possible your UI is inaccessible). Most often, this will be used with the name option like so: getByRole('button', {name: /submit/i}). Check the list of roles.</p>
+</li>
+</ol>
+</blockquote>
+<p>和訳：</p>
+<blockquote>
+<p>指導原則に基づき、あなたのテストは、ユーザーがあなたのコード（コンポーネント、ページなど）とどのようにインタラクトするかにできるだけ似せてください。このことを念頭に置いて、優先順位を次のようにすることをお勧めします：</p>
+<ol>
+<li>誰にでもアクセスしやすいクエリ 視覚／マウスユーザーや支援技術を使用するユーザーの経験を反映したクエリ。</li>
+</ol>
+<p>i. getByRole：これは、アクセシビリティツリーで公開されているすべての要素を問い合わせるために使用できます。nameオプションを使用すると、アクセス可能な名前によって返される要素をフィルタリングすることができます。ほとんどの場合、これを最優先すべきです。これで得られないものはあまりありません（得られない場合は、UIがアクセシブルでない可能性があります）。ほとんどの場合、これは次のようにnameオプションと一緒に使用されます: getByRole('button', {name: /submit/i})。ロールのリストを確認してください。</p>
+</blockquote>
+</div>
+<p>ページタイトルは、<code>context</code>から取得することとしましたが、これはあとから実装するので、今はその内容は表示しないこととし、タグがあることだけを確認しましょう。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="nx">render</span><span class="p">(</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">Layout</span><span class="o">&gt;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;contents&quot;</span><span class="o">&gt;</span><span class="nx">test</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/Layout&gt;,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">  </span><span class="c1">// ヘッダが表示されていること</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;banner&#39;</span><span class="p">);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">header</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">  </span><span class="c1">// ヘッダの中にページタイトル&lt;h1&gt;&lt;/h1&gt;が表示されていること</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pageTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">within</span><span class="p">(</span><span class="nx">header</span><span class="p">).</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;heading&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">  </span><span class="c1">// TODO: contextで動的に変わることを想定。後ほど実装する。</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">pageTitle</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">  </span><span class="c1">// サブタイトル（会社名）が表示されていること</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">subTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">within</span><span class="p">(</span><span class="nx">header</span><span class="p">).</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;generic&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">    </span><span class="c1">// aria-label でラベルを指定する</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;company-name&#39;</span><span class="p">,</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">subTitle</span><span class="p">).</span><span class="nx">toHaveTextContent</span><span class="p">(</span><span class="s1">&#39;ぽかぽかヘルパーサービス&#39;</span><span class="p">);</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">  </span><span class="c1">// メインコンテンツが表示されていること</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">);</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">main</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">  </span><span class="c1">// メインコンテンツの中にページコンテンツが表示されていること</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">contents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;contents&#39;</span><span class="p">);</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">contents</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
-<p>テストの内容は、<code>data-testid="layout"</code> の要素が存在するかどうかを確認しています。</p>
-<p>そのような実装はしていないので、エラーになると思います。エラーを解消するように修正します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-<p>再度テストを実行すると、テストが通るようになります。</p>
-<h2 id="_2">プロパティで受け取ったタイトルを表示する</h2>
-<p>仕様にある、<code>title</code> プロパティを受け取って、それを表示してみましょう。見た目は後で調整します。</p>
-<p>TypeScript では、プロパティを型として定義します。その型を <code>React.FC</code> のジェネリック型で指定します。</p>
-<p>そうすることで、コンポーネントの関数の引数 <code>props</code> がその型のオブジェクトとして受け取れるようになります。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="p">}</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="p">...</span>
-</span></code></pre></div></td></tr></table></div>
-<p>実装前に、テストを追加します。ここでは、「”タイトル”という文字がある要素があるか」をチェックすることとします。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span>
-<span class="normal"><a href="#__codelineno-8-5">5</a></span>
-<span class="normal"><a href="#__codelineno-8-6">6</a></span>
-<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;タイトル&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;layout&#39;</span><span class="p">);</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">layout</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;タイトル&#39;</span><span class="p">);</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">title</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="p">});</span>
-</span></code></pre></div></td></tr></table></div>
-<p>実装していないので、当然エラーになります。解決するように実装を行います。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span>
-<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span>
-</span></code></pre></div></td></tr></table></div>
-<p>見た目は後で実装しますので、ここでは、これでOKです。</p>
-<h2 id="_3">ページのコンテンツを表示する</h2>
-<p><code>Layout</code> の子要素に指定したコンテンツを表示するようにしましょう。</p>
-<p>React の仕様として、子要素は <code>props.children</code> というプロパティで受け取れます。</p>
-<p>ただし、TypeScript の場合、プロパティに明示的に子オブジェクトを受け取るように、
-プロパティに型を定義する必要があります。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span>
-<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="p">}</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nx">React</span><span class="p">.</span><span class="nx">PropsWithChildren</span><span class="p">;</span>
-</span></code></pre></div></td></tr></table></div>
-<p>テストを実装します。ここでは、テストの方で子要素を指定しています。</p>
-<p>その子要素のテキストが取得できるかどうかで判断しています。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="hll"><span class="w">  </span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;タイトル&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">ページコンテンツ</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="hll"><span class="w">  </span><span class="o">&lt;</span><span class="err">/Layout&gt;);</span>
-</span></span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;layout&#39;</span><span class="p">);</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">layout</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;タイトル&#39;</span><span class="p">);</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">title</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pageContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;ページコンテンツ&#39;</span><span class="p">);</span>
-</span></span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="hll"><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">pageContent</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span></span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="p">});</span>
-</span></code></pre></div></td></tr></table></div>
-<p>エラーになることを確認し、実装します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span>
-<span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span>
-<span class="normal"><a href="#__codelineno-12-6">6</a></span>
-<span class="normal"><a href="#__codelineno-12-7">7</a></span>
-<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">      </span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="p">}</span>
+<p>実装は次のようになります。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">PropsWithChildren</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">children</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;company-name&quot;</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">ページタイトル</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/header&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/main&gt;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="_4">見た目を整える</h2>
 <p>渡されたプロパティを表示することができたので、今度は見た目を作っていきましょう。</p>
 <p>これは、Jest で確認するのは非常に難しいので、<code>Storybook</code> を使って確認していきます。</p>
 <p>まず、Storybook を実行しましょう。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="gp">$ </span>npm<span class="w"> </span>run<span class="w"> </span>storybook
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="gp">$ </span>npm<span class="w"> </span>run<span class="w"> </span>storybook
 </span></code></pre></div></td></tr></table></div>
 <p>スタイルを当てていないので、シンプルな画面がみえます。これを整えていきましょう。</p>
 <p><img alt="layout-1" src="../c-3-2-layout-1.png" /></p>
 <h3 id="_5">レイアウトを画面いっぱいに広げる</h3>
-<p>まず、画面全体に枠を広げる必要があります。これには css の <code>width: 100vw; height: 100vh;</code> を使うのが良いでしょう。</p>
+<p>レイアウトは、画面全体を範囲とするので、画面全体に枠を広げる必要があります。これには css の <code>width: 100vw; height: 100vh;</code> を使うのが良いでしょう。</p>
 <p>Tailwind CSS では、<code>w-screen</code> と <code>h-screen</code> というクラスが用意されています。これを、外側の <code>&lt;div&gt;</code> に与えましょう。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>vw</code> と <code>vh</code> は、それぞれ、画面の幅と高さを表します。<br />
 <a href="https://coliss.com/articles/build-websites/operation/css/css-viewport-units.html" target="_blank">ビューポート単位「vw, vh, vmin, vmax」を使ったCSSのテクニックのまとめ | コリス</a></p>
 </div>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
-<span class="normal"><a href="#__codelineno-14-2">2</a></span>
-<span class="normal"><a href="#__codelineno-14-3">3</a></span>
-<span class="normal"><a href="#__codelineno-14-4">4</a></span>
-<span class="normal"><a href="#__codelineno-14-5">5</a></span>
-<span class="normal"><a href="#__codelineno-14-6">6</a></span>
-<span class="normal"><a href="#__codelineno-14-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-screen h-screen&quot;</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s1">&#39;w-screen h-screen&#39;</span><span class="o">&gt;</span>
+</span></span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;company-name&quot;</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">ページタイトル</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/header&gt;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/main&gt;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p><img alt="layout-2" src="../c-3-2-layout-2.png" /></p>
 <p>画面いっぱいに広がりました。スクロールバーが出ていますが、これは Storybook がその外側に <code>&lt;div&gt;</code> を挟んでいる影響なので、
@@ -4219,19 +4272,19 @@
 <p>次にヘッダを整えましょう。</p>
 <p>ヘッダの部分の高さを固定し、背景色をつけます。また、ページタイトルも大きい文字で表示します。</p>
 <p>ついでに、アプリ名も追加しています。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
-<span class="normal"><a href="#__codelineno-15-2">2</a></span>
-<span class="normal"><a href="#__codelineno-15-3">3</a></span>
-<span class="normal"><a href="#__codelineno-15-4">4</a></span>
-<span class="normal"><a href="#__codelineno-15-5">5</a></span>
-<span class="normal"><a href="#__codelineno-15-6">6</a></span>
-<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-screen h-screen&quot;</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
-</span></span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span></span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-screen h-screen&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">header</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
+</span></span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;company-name&quot;</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span></span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="nx">ページタイトル</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span></span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="err">/header&gt;</span>
+</span></span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/main&gt;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>bg-*</code> は背景色を、<code>p-*</code> は四方の、<code>pl-*</code> は左側の余白(padding)を表します。</p>
 <p>ここでのポイントは、<code>text-primary-content</code> というクラスです。これは、文字色を Primary カラーのコンテンツ色
@@ -4248,19 +4301,19 @@
 <p><a href="https://coliss.com/articles/build-websites/operation/css/learn-css-grid-in-5-minutes.html" target="_blank">5分で完璧に分かる！CSS Gridの基本的な使い方を解説 | コリス</a></p>
 <p>また、これも分かりづらいですが、背景色もテーマカラーの背景色にしておきます。</p>
 <p>コンテンツの余白も設定しておくと良いでしょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
-<span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span>
-<span class="normal"><a href="#__codelineno-16-4">4</a></span>
-<span class="normal"><a href="#__codelineno-16-5">5</a></span>
-<span class="normal"><a href="#__codelineno-16-6">6</a></span>
-<span class="normal"><a href="#__codelineno-16-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-screen h-screen bg-base-100 grid grid-cols-1 grid-rows-[auto,1fr]&quot;</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-screen h-screen bg-base-100 grid grid-cols-1 grid-rows-[auto,1fr]&quot;</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
+</span></span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Grid では、列1つ、行2つのレイアウトを定義しています。</p>
 <p>また行の配置として、<a href="https://developer.mozilla.org/ja/docs/Web/CSS/grid-template-columns" target="_blank">grid template column</a> を使って、
@@ -4271,82 +4324,82 @@
 文字列が長大になってしまいます。</p>
 <p>そこで、クラスを1つの文字列ではなく、配列のように作成できる
 <a href="https://www.npmjs.com/package/classnames" target="_blank"><code>classnames</code></a> というパッケージを利用します。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="go">npm install classnames</span>
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="go">npm install classnames</span>
 </span></code></pre></div></td></tr></table></div>
 <p>これを使って、次のように変更します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Layout/Layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-18-10">10</a></span>
-<span class="normal"><a href="#__codelineno-18-11">11</a></span>
-<span class="normal"><a href="#__codelineno-18-12">12</a></span>
-<span class="normal"><a href="#__codelineno-18-13">13</a></span>
-<span class="normal"><a href="#__codelineno-18-14">14</a></span>
-<span class="normal"><a href="#__codelineno-18-15">15</a></span>
-<span class="normal"><a href="#__codelineno-18-16">16</a></span>
-<span class="normal"><a href="#__codelineno-18-17">17</a></span>
-<span class="normal"><a href="#__codelineno-18-18">18</a></span>
-<span class="normal"><a href="#__codelineno-18-19">19</a></span>
-<span class="normal"><a href="#__codelineno-18-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">containerClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span>
-</span></span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;w-screen&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;h-screen&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;bg-base-100&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid-cols-1&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid-rows-[auto,1fr]&#39;</span><span class="p">,</span>
-</span></span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="hll"><span class="p">);</span>
-</span></span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a>
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">containerClassName</span><span class="p">}</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19"></a><span class="w">  </span><span class="p">);</span>
-</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20"></a><span class="p">};</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">containerClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span>
+</span></span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;w-screen&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;h-screen&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;bg-base-100&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid-cols-1&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;grid-rows-[auto,1fr]&#39;</span><span class="p">,</span>
+</span></span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="hll"><span class="p">);</span>
+</span></span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Layout</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">containerClassName</span><span class="p">}</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">testid</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="o">&gt;</span>
+</span></span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2 bg-primary text-primary-content&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl pl-4&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;p-2&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="_8">ページに適用してみる</h2>
 <p>コンポーネントができたので、Next.js のレイアウトとして適用させます。</p>
 <p>Next.js の新しい(2023年) App router では、<code>pages/layout.tsx</code> というファイルを作成することで、
 その配下のページに対して、レイアウトを適用することができます。</p>
 <p><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts" target="_blank">Routing: Pages and Layouts | Next.js</a></p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/pages/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
-<span class="normal"><a href="#__codelineno-19-2">2</a></span>
-<span class="normal"><a href="#__codelineno-19-3">3</a></span>
-<span class="normal"><a href="#__codelineno-19-4">4</a></span>
-<span class="normal"><a href="#__codelineno-19-5">5</a></span>
-<span class="normal"><a href="#__codelineno-19-6">6</a></span>
-<span class="normal"><a href="#__codelineno-19-7">7</a></span>
-<span class="normal"><a href="#__codelineno-19-8">8</a></span>
-<span class="normal"><a href="#__codelineno-19-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Layout</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/components/commons/Layout/&#39;</span><span class="p">;</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="c1">// 略</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">html</span><span class="w"> </span><span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">body</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">inter</span><span class="p">.</span><span class="nx">className</span><span class="p">}</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">theme</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;トップページ&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Layout&gt;</span>
-</span></span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="err">/body&gt;</span>
-</span></span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/html&gt;</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">  </span><span class="p">);</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/pages/layout.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span>
+<span class="normal"><a href="#__codelineno-14-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Layout</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/components/commons/Layout/&#39;</span><span class="p">;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="c1">// 略</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">html</span><span class="w"> </span><span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">body</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">inter</span><span class="p">.</span><span class="nx">className</span><span class="p">}</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">theme</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="o">&gt;</span>
+</span></span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">Layout</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;トップページ&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Layout&gt;</span>
+</span></span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="err">/body&gt;</span>
+</span></span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/html&gt;</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">  </span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
 <p>ページの方に、<code>w-screen h-screen</code> を指定していたので、<code>w-full h-full</code> に変更しておきます。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/pages/index.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
-<span class="normal"><a href="#__codelineno-20-2">2</a></span>
-<span class="normal"><a href="#__codelineno-20-3">3</a></span>
-<span class="normal"><a href="#__codelineno-20-4">4</a></span>
-<span class="normal"><a href="#__codelineno-20-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-full h-full flex items-center justify-center&quot;</span><span class="o">&gt;</span>
-</span></span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;btn btn-primary&quot;</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="w">  </span><span class="p">);</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/pages/index.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;w-full h-full flex items-center justify-center&quot;</span><span class="o">&gt;</span>
+</span></span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;btn btn-primary&quot;</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">  </span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
 <p><img alt="layout" src="../c-3-1-layout.png" /></p>
 <p>ページにレイアウトを適用できました。</p>
