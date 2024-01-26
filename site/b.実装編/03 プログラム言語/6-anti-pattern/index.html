@@ -1980,9 +1980,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#usestateusecallback" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      useStateや、useCallbackで作成していない変数、関数をコンポーネントのプロパティに割り当てている
+      コンポーネントの再レンダリングを意識していない
     </span>
   </a>
   
@@ -4282,9 +4282,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#usestateusecallback" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      useStateや、useCallbackで作成していない変数、関数をコンポーネントのプロパティに割り当てている
+      コンポーネントの再レンダリングを意識していない
     </span>
   </a>
   
@@ -4603,8 +4603,9 @@
 </div>
 <h3 id="_13">自身のプロパティの値を変更している</h3>
 <p>コンポーネントのプロパティを変更しないようにします。Reactでは、片方向のデータフローを採用しているので、意図しないタイミングでプロパティの値がもとに戻ります。</p>
-<h3 id="usestateusecallback">useStateや、useCallbackで作成していない変数、関数をコンポーネントのプロパティに割り当てている</h3>
-<p>コンポーネントのプロパティで、関数を渡すときに、<code>useState</code>, <code>useCallback</code> を使用して変数・関数を定義しないと、毎回それらが作成されるので、内容は同じでも新しい値としてコンポーネントに渡されるため、毎回レンダリングが発生します。</p>
+<h3 id="_14">コンポーネントの再レンダリングを意識していない</h3>
+<p>コンポーネントが多数ある場合、再レンダリングが発生すると、パフォーマンスが低下します。そのため、再レンダリングを抑えるために、<code>React.memo</code>や<code>useCallback</code>などを利用します。</p>
+<p><a href="../../05%20React/1%20tutorial/">React</a>のページでも紹介していますので、こちらを参照してください。</p>
 
 
 
