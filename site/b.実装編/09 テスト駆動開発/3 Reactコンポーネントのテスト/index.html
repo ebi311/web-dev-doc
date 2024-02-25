@@ -4414,19 +4414,21 @@ jest の expect に、DOMテスト用の matcher を追加します。<br />
 <span class="normal"><a href="#__codelineno-10-10">10</a></span>
 <span class="normal"><a href="#__codelineno-10-11">11</a></span>
 <span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>import { IncrementalButton } from &quot;./&quot;;
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>import { IncrementalButton } from &quot;./&quot;;
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>import { StoryObj, Meta } from &quot;@storybook/react&quot;;
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>export default {
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>    title: &quot;IncrementalButton&quot;,
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>    component: IncrementalButton,
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>} as Meta;
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>type Story = StoryObj&lt;typeof IncrementalButton&gt;;
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>export const Default: Story = {
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>    args: {},
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a>};
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>    tags: [&#39;autodocs&#39;],
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>} as Meta;
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>type Story = StoryObj&lt;typeof IncrementalButton&gt;;
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>export const Default: Story = {
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a>    args: {},
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a>};
 </span></code></pre></div></td></tr></table></div>
 <h4 id="_5">ボタンをレンダリングする</h4>
 <p>まずは、<code>button</code> 要素がレンダリングされていることを書くにするテストを書きます。</p>
@@ -4592,21 +4594,23 @@ jest の expect に、DOMテスト用の matcher を追加します。<br />
 <span class="normal"><a href="#__codelineno-19-12">12</a></span>
 <span class="normal"><a href="#__codelineno-19-13">13</a></span>
 <span class="normal"><a href="#__codelineno-19-14">14</a></span>
-<span class="normal"><a href="#__codelineno-19-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>export default {
+<span class="normal"><a href="#__codelineno-19-15">15</a></span>
+<span class="normal"><a href="#__codelineno-19-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>export default {
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>    title: &quot;IncrementalButton&quot;,
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a>    component: IncrementalButton,
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="hll">    argTypes: {
-</span></span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="hll">        onClick: { action: &quot;clicked&quot; },
-</span></span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="hll">    },
-</span></span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a>} as Meta;
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a>type Story = StoryObj&lt;typeof IncrementalButton&gt;;
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a>export const Default: Story = {
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12"></a>    args: {
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="hll">        caption: &quot;+&quot;,
-</span></span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14"></a>    },
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15"></a>};
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="hll">    tags: [&#39;autodocs&#39;],
+</span></span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="hll">    argTypes: {
+</span></span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="hll">        onClick: { action: &quot;clicked&quot; },
+</span></span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a>    },
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a>} as Meta;
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a>type Story = StoryObj&lt;typeof IncrementalButton&gt;;
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12"></a>export const Default: Story = {
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="hll">    args: {
+</span></span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14"></a>        caption: &quot;+&quot;,
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15"></a>    },
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16"></a>};
 </span></code></pre></div></td></tr></table></div>
 <p>Storybook で確認してみましょう。</p>
 <p><code>Controls</code> で、プロパティを変更すると、プレビューが変更されることが確認できます。</p>
@@ -4717,19 +4721,21 @@ jest の expect に、DOMテスト用の matcher を追加します。<br />
 <span class="normal"><a href="#__codelineno-25-10">10</a></span>
 <span class="normal"><a href="#__codelineno-25-11">11</a></span>
 <span class="normal"><a href="#__codelineno-25-12">12</a></span>
-<span class="normal"><a href="#__codelineno-25-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>import { Counter } from &quot;./&quot;;
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>import { Counter } from &quot;./&quot;;
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>import { StoryObj, Meta } from &quot;@storybook/react&quot;;
 </span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a>
 </span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a>export default {
 </span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a>    title: &quot;Counter&quot;,
 </span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a>    component: Counter,
-</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a>} as Meta;
-</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a>
-</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a>type Story = StoryObj&lt;typeof Counter&gt;;
-</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10"></a>
-</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11"></a>export const Default: Story = {
-</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a>    args: {},
-</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13"></a>};
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a>    tags: [&#39;autodocs&#39;],
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a>} as Meta;
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10"></a>type Story = StoryObj&lt;typeof Counter&gt;;
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11"></a>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a>export const Default: Story = {
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13"></a>    args: {},
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14"></a>};
 </span></code></pre></div></td></tr></table></div>
 <h4 id="_7">マイナスのインクリメントボタンがある</h4>
 <p>まずは、マイナスのインクリメントボタンがあることを確認するテストを書きます。</p>
