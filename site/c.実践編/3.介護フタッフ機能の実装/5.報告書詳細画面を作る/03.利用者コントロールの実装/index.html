@@ -3839,29 +3839,27 @@
 <p>まずは、ラベルから作成しましょう。</p>
 <h2 id="_2">ラベルコンポーネントの作成<span id="label"></span></h2>
 <p>ラベルは他のコントロールでも利用しますので、共通のコンポーネントとして作成するのが良いでしょう。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gp">$ </span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="go">✔ コンポーネント名を入力してください。 · Label</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="go">✔ どこに作りますか？&#39;src/components/&#39;以下のパスを指定してください。 · commons</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="go">Loaded templates: _templates</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="go">       added: src/components/commons/Label/Label.tsx</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="go">       added: src/components/commons/Label/Label.stories.tsx</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="go">       added: src/components/commons/Label/Label.test.tsx</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="go">       added: src/components/commons/Label/index.ts</span>
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gp">$ </span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="go">✔ コンポーネント名を入力してください。 · Label</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="go">✔ どこに作りますか？&#39;src/&#39;以下のパスを指定してください。 · components</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="go">Loaded templates: _templates</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="go">       added: src/components/Label/Label.tsx</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="go">       added: src/components/Label/Label.stories.tsx</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="go">       added: src/components/Label/Label.test.tsx</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="go">       added: src/components/Label/index.ts</span>
 </span></code></pre></div></td></tr></table></div>
 <p>ラベルの表示だけでなく、ラベルとコントロールの位置関係もここで定義することにします。</p>
 <p>ラベルの文字列はプロパティで、コントロールは、<code>children</code>として渡されることにします。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
@@ -3877,32 +3875,26 @@
 <span class="normal"><a href="#__codelineno-1-14">14</a></span>
 <span class="normal"><a href="#__codelineno-1-15">15</a></span>
 <span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">/**</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cm"> * @jest-environment jsdom</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cm"> */</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom&#39;</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ComponentProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Label</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./Label&#39;</span><span class="p">;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">ComponentProps</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">Label</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">_render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="p">};</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">  </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ラベル&#39;</span><span class="p">,</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="nx">children</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="kr">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">,</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">  </span><span class="p">});</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)).</span><span class="nx">toHaveTextContent</span><span class="p">(</span><span class="s1">&#39;ラベル&#39;</span><span class="p">);</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">)).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="p">});</span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom&#39;</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ComponentProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Label</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./Label&#39;</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">ComponentProps</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">Label</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">_render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="p">};</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ラベル&#39;</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="nx">children</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="kr">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)).</span><span class="nx">toHaveTextContent</span><span class="p">(</span><span class="s1">&#39;ラベル&#39;</span><span class="p">);</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">)).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
 <p>テストが失敗することを確認して、実装します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
@@ -3934,32 +3926,29 @@
 対象のコントロールのIDを含めることで、ラベルをクリックするとそのコントロールがフォーカスされるようになります。</p>
 <p>忘れやすいことなのですが、ユーザビリティに配慮した丁寧なWebアプリを作る上で必要なことなので、対応しておきましょう。</p>
 <p>ただ、コントロールの id は、利用側が指定することになるので、プロパティでもらうことにします。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-3-10">10</a></span>
-<span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nx">render</span><span class="p">({</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ラベル&#39;</span><span class="p">,</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="nx">children</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;id001&quot;</span><span class="w"> </span><span class="kr">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">,</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="hll"><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;id001&#39;</span><span class="p">,</span>
 </span></span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="p">});</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByTestId</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span>
-</span></span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll"><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toHaveTextContent</span><span class="p">(</span><span class="s1">&#39;ラベル&#39;</span><span class="p">);</span>
-</span></span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toHaveAttribute</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;id001&#39;</span><span class="p">);</span>
-</span></span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">)).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="p">});</span>
-</span></code></pre></div></td></tr></table></div>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByLabelText</span><span class="p">(</span><span class="s1">&#39;ラベル&#39;</span><span class="p">);</span>
+</span></span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll"><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span></span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="p">});</span>
+</span></span></code></pre></div></td></tr></table></div>
+<p>ここでは、表示されているラベルの名前を指定して、それに対応するテキストボックスを取得できることを確認しています。</p>
+<p>前に何度か書いたように、UIのテストではなるべくユーザーの認識する見た目や動作を再現するテストを書くことが重要なため、このようなテストとしています。</p>
 <p>テストが失敗することを確認して実装します。</p>
-<p><code>label</code>の<code>for</code>属性ですが、<code>for</code>が JavaScript の予約語となっている関係で、
-React (実際には JSX の仕様)では<code>htmlFor</code>という名前で定義します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<p><code>label</code>の<code>for</code>属性ですが、<code>for</code>が JavaScript の予約語となっている関係で、React (実際には JSX の仕様)では<code>htmlFor</code>という名前で定義します。</p>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
@@ -3993,7 +3982,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 </span></code></pre></div></td></tr></table></div>
 <h2 id="_3">見た目の調整</h2>
 <p>Storybook で見た目の調整を行います。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
@@ -4035,7 +4024,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <p><a href="https://daisyui.com/components/input/#with-form-control-and-labels" target="_blank">Text Input テキスト入力 — Tailwind CSSコンポーネント</a></p>
 <p>これによると、<code>&lt;label&gt;</code> 要素に<code>label</code>クラスを、その中のテキストを<code>span</code>要素でラップして、
 <code>label-text</code>クラスを指定するようです。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/commons/Label/Label.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/Label/Label.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
@@ -4061,6 +4050,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <p>ラベルの見た目はこれで良いでしょう。</p>
 <h2 id="_4">利用者コントロール・コンポーネントの作成</h2>
 <p>このラベルコンポーネントを使って、利用者のコントロールを作成します。</p>
+<p>報告書の詳細ページのURLパスは、<code>/careStaff/reports/[id]</code> ですので、このページを構成するコンポーネントのファイルは、<code>src/app/careStaff/reports/[id]/_parts</code> に配置します。</p>
 <div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
 <span class="normal"><a href="#__codelineno-7-2">2</a></span>
 <span class="normal"><a href="#__codelineno-7-3">3</a></span>
@@ -4069,19 +4059,19 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <span class="normal"><a href="#__codelineno-7-6">6</a></span>
 <span class="normal"><a href="#__codelineno-7-7">7</a></span>
 <span class="normal"><a href="#__codelineno-7-8">8</a></span>
-<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="gp">$ </span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
+<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="gp">$</span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="go">✔ コンポーネント名を入力してください。 · UserNameControl</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="go">✔ どこに作りますか？&#39;src/components/&#39;以下のパスを指定してください。 · pageParts/careStaff/ReportDetail</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="go">✔ どこに作りますか？&#39;src/&#39;以下のパスを指定してください。 · app/careStaff/reports/[id]/_parts</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="go">Loaded templates: _templates</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.tsx</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.stories.tsx</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.test.tsx</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/UserNameControl/index.ts</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.tsx</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.stories.tsx</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.test.tsx</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/UserNameControl/index.ts </span>
 </span></code></pre></div></td></tr></table></div>
 <p>テストを書きます。ここでは、プロパティとして<code>Report</code>のオブジェクトを受け取り、
 介護タイプのバッジと名前が表示されることを確認しましょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
@@ -4102,7 +4092,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
 <p>テストが失敗することを確認して実装します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
@@ -4119,9 +4109,9 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <span class="normal"><a href="#__codelineno-9-15">15</a></span>
 <span class="normal"><a href="#__codelineno-9-16">16</a></span>
 <span class="normal"><a href="#__codelineno-9-17">17</a></span>
-<span class="normal"><a href="#__codelineno-9-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CareTypeBadge</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../../Reports/CareTypeBadge&#39;</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CareTypeBadge</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/app/careStaff/reports/_parts/CareTypeBadge&#39;</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CareType</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">  </span><span class="nx">userName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
@@ -4140,7 +4130,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 </span></code></pre></div></td></tr></table></div>
 <p>テストが成功することを確認しましょう。</p>
 <p><code>&lt;CareTypeBadge&gt;</code> は汎用的なコンポーネントになりましたので、場所を移動しておきましょう。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="go">mv src/components/pageParts/careStaff/Reports/CareTypeBadge src/components/commons</span>
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="go">mv src/app/careStaff/reports/_parts/CareTypeBadge src/components</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4154,7 +4144,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <p><code>--noEmit</code>は、コンパイルの結果をファイルに出力しないオプションです。今回のように構文や型のチェックだけを行いたい場合に利用します。</p>
 <h2 id="_5">利用者コントロールの見た目を調整</h2>
 <p>Storybook で見た目を調整します。<code>Report</code>のデータはテストと同じもので良いでしょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
@@ -4188,7 +4178,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <p>テストでは書かなかったボタンがないので、まずはそれを追加しましょう。</p>
 <p>アイコンは、<code>&lt;MdEdit&gt;</code>を利用します。ボタンのスタイルは、DaisyUI のボタンコントロールを利用します。</p>
 <p><a href="https://daisyui.com/components/button/" target="_blank">Button ボタン — Tailwind CSSコンポーネント</a></p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
 <span class="normal"><a href="#__codelineno-13-2">2</a></span>
 <span class="normal"><a href="#__codelineno-13-3">3</a></span>
 <span class="normal"><a href="#__codelineno-13-4">4</a></span>
@@ -4209,7 +4199,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <p><img alt="user name control preview 02" src="../c-3-5-06-user-control-preview02.png" /></p>
 <p>バッジと名前の間隔を開けて、文字のフォントも大きくしましょう。</p>
 <p>間隔を開けるのは、<code>flex</code> と <code>gap</code> を利用するのが良いでしょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
@@ -4229,22 +4219,22 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 <span class="normal"><a href="#__codelineno-14-18">18</a></span>
 <span class="normal"><a href="#__codelineno-14-19">19</a></span>
 <span class="normal"><a href="#__codelineno-14-20">20</a></span>
-<span class="normal"><a href="#__codelineno-14-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">  </span><span class="s1">&#39;gap-2&#39;</span><span class="p">,</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">  </span><span class="s1">&#39;justify-between&#39;</span><span class="p">,</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">  </span><span class="s1">&#39;items-center&#39;</span><span class="p">,</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="p">);</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">userNameClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span><span class="s1">&#39;grow&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-xl&#39;</span><span class="p">);</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span>
+</span></span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
+</span></span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;gap-2&#39;</span><span class="p">,</span>
+</span></span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;justify-between&#39;</span><span class="p">,</span>
+</span></span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll"><span class="w">  </span><span class="s1">&#39;items-center&#39;</span><span class="p">,</span>
+</span></span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="hll"><span class="p">);</span>
+</span></span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">userNameClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">classNames</span><span class="p">(</span><span class="s1">&#39;grow&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-xl&#39;</span><span class="p">);</span>
+</span></span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">UserNameControl</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">careType</span><span class="p">,</span><span class="w"> </span><span class="nx">userName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="p">;</span>
 </span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">className</span><span class="p">}</span><span class="o">&gt;</span>
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">CareTypeBadge</span><span class="w"> </span><span class="nx">careType</span><span class="o">=</span><span class="p">{</span><span class="nx">careType</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">userNameClassName</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">userName</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;btn btn-ghost btn-sm&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">className</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">CareTypeBadge</span><span class="w"> </span><span class="nx">careType</span><span class="o">=</span><span class="p">{</span><span class="nx">careType</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="hll"><span class="w">      </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">userNameClassName</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">userName</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</span></span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;btn btn-ghost btn-sm&quot;</span><span class="o">&gt;</span>
 </span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">MdEdit</span><span class="w"> </span><span class="nx">size</span><span class="o">=</span><span class="s2">&quot;1.25rem&quot;</span><span class="w"> </span><span class="o">/&gt;</span>
 </span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
 </span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
@@ -4253,7 +4243,7 @@ React (実際には JSX の仕様)では<code>htmlFor</code>という名前で�
 </span></code></pre></div></td></tr></table></div>
 <p><img alt="user name control preview 03" src="../c-3-5-06-user-control-preview03.png" /></p>
 <p>最後に、先ほど作成したラベルコンポーネントでラップします。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/UserNameControl/UserNameControl.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
