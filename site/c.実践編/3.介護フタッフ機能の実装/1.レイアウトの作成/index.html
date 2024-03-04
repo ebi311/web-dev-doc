@@ -4248,8 +4248,8 @@ test('render', () =&gt; {
 <p>スタイルを当てていないので、シンプルな画面がみえます。これを整えていきましょう。</p>
 <p><img alt="layout-1" src="../c-3-2-layout-1.png" /></p>
 <h3 id="_5">レイアウトを画面いっぱいに広げる</h3>
-<p>レイアウトは、画面全体を範囲とするので、画面全体に枠を広げる必要があります。これには css の <code>width: 100%; height: 100%;</code> を使うのが良いでしょう。</p>
-<p>Tailwind CSS では、<code>w-full</code> と <code>h-full</code> というクラスが用意されています。これを、外側の <code>&lt;div&gt;</code> に与えましょう。</p>
+<p>レイアウトは、画面全体を範囲とするので、画面全体に枠を広げる必要があります。これには css の <code>width: 100vw; height: 100vh;</code> を使うのが良いでしょう。</p>
+<p>Tailwind CSS では、<code>w-screen</code> と <code>h-screen</code> というクラスが用意されています。これを、外側の <code>&lt;div&gt;</code> に与えましょう。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>vw</code> と <code>vh</code> は、それぞれ、画面の幅と高さを表します。<br />
@@ -4261,7 +4261,7 @@ test('render', () =&gt; {
 <span class="normal"><a href="#__codelineno-9-4">4</a></span>
 <span class="normal"><a href="#__codelineno-9-5">5</a></span>
 <span class="normal"><a href="#__codelineno-9-6">6</a></span>
-<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s1">&#39;w-full h-full&#39;</span><span class="o">&gt;</span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s1">&#39;w-screen h-screen&#39;</span><span class="o">&gt;</span>
 </span></span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">span</span><span class="w"> </span><span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;company-name&quot;</span><span class="o">&gt;</span><span class="nx">ぽかぽかヘルパーサービス</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">ページタイトル</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>

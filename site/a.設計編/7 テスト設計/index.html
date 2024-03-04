@@ -1070,7 +1070,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      テスティング・トロフィー
+      テストの種類と理想の形
     </span>
   </a>
   
@@ -1110,12 +1110,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="EtoEテスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト・ピラミッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスティング・トロフィー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      テストの自動化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト計画
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       まとめ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      資料
     </span>
   </a>
   
@@ -3794,7 +3845,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      テスティング・トロフィー
+      テストの種類と理想の形
     </span>
   </a>
   
@@ -3834,12 +3885,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="EtoEテスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト・ピラミッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスティング・トロフィー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      テストの自動化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト計画
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       まとめ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      資料
     </span>
   </a>
   
@@ -3869,21 +3971,18 @@
 多くのフレームワークでは、開発でのテストにも配慮した設計になっており、ドキュメントでもテストの項目があったりするので、
 メジャーなフレームワークを使用している場合は問題にはならないでしょう。</p>
 <p>逆にそういった観点でフレームワークを選択する必要があるとも言えます。</p>
-<h2 id="_2">テスティング・トロフィー</h2>
-<p>Webアプリケーションのテストを全体的に俯瞰して意識付けるものとして、<a href="https://testingjavascript.com/" target="_blank">Testing Trophy</a>というものがあります。</p>
-<p><img alt="testing-trophy" src="a-7-testing-trophy.png" width="600" /></p>
-<p>これは、EtoE, Integration, Unit, Static の各テストレイヤーを表しています。</p>
-<p>そして上のレイヤーに行くほど、次のような性質があるとしています。</p>
+<h2 id="_2">テストの種類と理想の形</h2>
+<p>一口にテストと言っても、その目的や範囲によっていくつかの種類があります。</p>
+<p>多くの場合、下記のようなテストが行われます。</p>
 <ul>
-<li>テストの速度は遅くなる</li>
-<li>テストの実装コストは高くなる</li>
-<li>テストの信頼性が高くなる</li>
+<li>静的テスト</li>
+<li>単体テスト</li>
+<li>結合テスト</li>
+<li>EtoEテスト</li>
 </ul>
-<p>そして、それぞれの大きさが <code>コスト/速度</code> と <code>信頼性</code> のトレードオフのバランスを表しており、大きいほど効果が高い、ということになります。</p>
-<p>それぞれのレイヤーは重要なもので、省くことはできないのですが、特にどこに最も集中して行うべきか、ということがわかります。</p>
-<p>それぞれのレイヤーでのテストの方法を確認しています。</p>
+<p>まずは、それぞれのテストの割合について見ていきます。</p>
 <h2 id="static">Static（静的テスト）</h2>
-<p>名の通り静的なテストです。ここでの静的とは、アプリケーションを動かさない、ということを意味しています。</p>
+<p>ここでの静的とは、アプリケーションを動かさない、ということを意味しています。</p>
 <p>つまりは、コードの静的解析によってチェックする、ということになります。</p>
 <p>ここで使用するツールとしては、下記があります。</p>
 <ul>
@@ -3892,14 +3991,15 @@
 <li><a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>: 静的で厳密な型チェック機能を持った Alt JavaScript 言語</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-codemetrics" target="_blank">CodeMetrics</a>: VSCode 拡張。クラス、関数の循環的複雑度の計算を行う。ESLintでも計算とルールの定義が可能</li>
 </ul>
-<p>これらによって、ソースコードレベルで読みやすさ、バグ混入の可能性を低減します。</p>
+<p>これらによって、ソースコードレベルでの読みやすさの向上、複雑性のチェック、型違反などのバグ、バッドパターンの混入の可能性を低減します。</p>
 <p>アプリケーションの仕様については、型くらいしか確認できません。</p>
-<p>しかし、ツールによって自動化されることで、低コストで最低限のコード品質を比較的簡単に保つことができます。</p>
+<p>しかし、ツールによって自動化されることでコードが変更されるたびに実行されるので、最低限のコード品質を低コストで簡単に保つことができます。</p>
 <p>多くの場合、プロジェクトにおいて静的テストのフェーズを設けることはなく、コーディング中リアルタイムにチェックされます。</p>
 <p>また、CI/CDのパイプラインにおいてもテストが常に実施されることで、このレベルの品質を保つこともできます。</p>
 <h2 id="unit-test">Unit Test (単体テスト)</h2>
-<p>ここての単体テストとは、Reactのコンポーネント単位のテストを指します。ページではありません。</p>
-<p>ここでのツールは、下記を使用します。</p>
+<p>多くの場合、単体テストとは、関数単位、クラス単位でのテストを指し、それぞれのインプットに対するアウトプットが仕様のとおりであるかを確認します。</p>
+<p>Reactでは、コンポーネント単位のテストを指します。Webのページ単位ではありません。</p>
+<p>Reactでのテストツールは、下記を使用します。</p>
 <ul>
 <li><a href="https://jestjs.io/ja/" target="_blank">jest</a>: JavaScript テストフレームワーク</li>
 <li><a href="https://testing-library.com/" target="_blank">Testing Library</a>: ブラウザを使わずメモリ上にDOMを展開することで、仮想的にレンダリングのテストとチェックを行うことができるフレームワーク jestと合わせて使用する。</li>
@@ -3909,17 +4009,18 @@
 その責務をテストで確認します。</p>
 <p>とくにReactは、宣言的プログラミングを行うことで、データの流れが一方向でコンポーネントを作られるので、単体テストが非常に書きやすいものになります。</p>
 <p><a href="https://qiita.com/erukiti/items/fb7bcbd9d79696579d06" target="_blank">宣言的UIはReact Hooksで完成に至り、現代的設計論が必須の時代になる - Qiita</a></p>
-<p>ツールとしては、JestとTesting Library</p>
-<p>また、テスト駆動開発(TDD)を採用することで、このテストコードも自動的に作られるので、通常単体テストというフェーズも無いです。</p>
-<p>静的テストと合わせてツールによって自動実行されます。パフォーマンスに問題ない場合、コーディング中に自動で実行されるでしょう。</p>
+<p>また、テスト駆動開発(TDD)を採用することで、このテストコードも合わせて作られるので、単体テストのフェーズを設けることはありません。</p>
+<p>これもツールによって自動実行されます。パフォーマンスに問題ない場合、コーディング中に変更の度に自動で実行されることが望ましいです。</p>
 <p>CI/CDのパイプラインでの実行も静的テストと合わせて行われます。</p>
 <p>Storybookは、作ったコンポーネントをカタログとして、ブラウザ上で閲覧、試行できるツールです。</p>
 <p>画面設計を行ったあと、コンポーネントとして分解し、小さいコンポーネントからボトムアップで作っていくことが多いです。</p>
-<p>しかしそうすると、それをブラウザ上で確認するには、ページに配置するしかなく、コンポーネント単体でレンダリングを確認することが難しいです。</p>
+<p>しかしそうすると、それをブラウザ上で確認するには、ページに仮に配置するしかなく、コンポーネント単体でレンダリングを確認することが難しいです。</p>
 <p>Storybookは、コンポーネント単体でブラウザ上でレンダリングや操作を確認できるので、これを見ながら開発を行うことができます。</p>
-<p>また、そうして作られたコンポーネントを、ビジュアルで管理できるようになります。</p>
+<p>また、そうして作られたコンポーネントをカタログとして、ビジュアルと仕様を実際に動くもので管理できるようになります。</p>
 <h2 id="integration-test">Integration Test (結合テスト)</h2>
-<p>ここでの結合テストは、Reactなどのコンポーネントを組み合わせたテストです。コンポーネントを組み合わせたときに、各コンポーネントが正しく連携し、動作するかを確認します。</p>
+<p>単体テストで作成した、各関数やクラスが正しく連携し、動作するかを確認します。モジュール単位での連携されたテストを指すこともあります。</p>
+<p>サーバー側（バックエンド）では、APIごとのテストになることが多いかと思います。</p>
+<p>WebUIのテストは、Reactなどのコンポーネントを組み合わせたテストです。コンポーネントを組み合わせたときに、各コンポーネントが正しく連携し、動作するかを確認します。</p>
 <p>ページの各機能を網羅することが必要です。
 サーバーサイドのAPIをコールすることがありますが、これにはモックAPIサーバーを使うことが良いでしょう。</p>
 <p>そしてここでのテストがコスト/信頼性のバランスにおいて、最も重要という位置づけです。</p>
@@ -3938,10 +4039,59 @@
 <p>ツールを使う場合、DOMの構造が変わっても要素を特定できるように、DOMのパスで指定するのではなく、HTMLのタグに<code>role</code>,<code>aria-label</code>,<code>data-testid</code>といった属性を割り当てておくなど、EtoEテストを意識したコーディングを行う必要があります。</p>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/ARIA_Techniques" target="_blank">ARIA の使用: ロール、ステート、プロパティ - アクセシビリティ | MDN</a></p>
 <p><a href="https://developer.mozilla.org/ja/docs/Learn/Accessibility/WAI-ARIA_basics" target="_blank">WAI-ARIAの基本 - ウェブ開発を学ぶ | MDN</a></p>
-<h2 id="_3">まとめ</h2>
+<h3 id="_3">テスト・ピラミッド</h3>
+<p>理想のテストの割合を表したものとして、テストピラミッドというものがあります。</p>
+<ul>
+<li><a href="https://martinfowler.com/bliki/TestPyramid.html">Test Pyramid</a></li>
+<li><a href="https://gihyo.jp/dev/serial/01/savanna-letter/0005">第5回　テストピラミッド ～自動テストの信頼性を中長期的に保つ最適なバランス～ | gihyo.jp</a></li>
+</ul>
+<p>これは、各テストの数を表しており、上のほどテストの数が少なく、下のほどテストの数が多くなる形が、バランスの取れた良い状態であることを示しています。</p>
+<p>ユーザーの視点に近い、EtoEテストを網羅的に行うことで、アプリケーションの品質が保てると誤解してしまいがちですが、実際には、EtoEテストで網羅しようとするとパターンが多く、手動で行うことも多いため、コストがかかります。また、不具合があった場合の対応も、原因の特定や修正が難しいことも多いです。</p>
+<p>このような、EtoEテストの比重が多いテスト・品質計画を、アイスクリームコーン型と呼ばれ、アンチパターンとして認識されています。</p>
+<p><img alt="アイスクリームコーン型" src="https://gihyo.jp/assets/images/dev/serial/01/savanna-letter/0005/02.jpg" /></p>
+<h3 id="_4">テスティング・トロフィー</h3>
+<p>Webアプリケーションのテストを全体的に俯瞰して意識付けるものとして、<a href="https://testingjavascript.com/" target="_blank">Testing Trophy</a>というものがあります。</p>
+<p><img alt="testing-trophy" src="a-7-testing-trophy.png" width="600" /></p>
+<p>これは、EtoE, Integration, Unit, Static の各テストレイヤーを表しています。</p>
+<p>そして上のレイヤーに行くほど、次のような性質があるとしています。</p>
+<ul>
+<li>テストの速度は遅くなる</li>
+<li>テストの実装コストは高くなる</li>
+<li>テストの信頼性が高くなる</li>
+</ul>
+<p>そして、それぞれの大きさが <code>コスト/速度</code> と <code>信頼性</code> のトレードオフのバランスを表しており、大きいほど効果が高い、ということになります。</p>
+<p>これはUIテストは、実装の詳細よりもユーザーの認識・操作に近いテストに注目する事が必要であり、コンポーネントを組み合わせたページ単位でのテストを重視しているためです。</p>
+<p>UIの結合テストでは、コンポーネントの結合が目的なので、WebAPIを使ったサーバーとの通信など、外部との連携テストは対象外です。</p>
+<p>テストピラミッドと形は異なるのですが、UIのページ単位のテストは、アプリケーション全体から見ると1つのモジュールでしかなく、ピラミッドでの下方に位置するもと考えることができます。</p>
+<h2 id="_5">テストの自動化</h2>
+<p>テスティング・トロフィーにしろ、テストピラミッドにしろ、多くのテストをこなそうとすると、手動でのテストは非常にコストがかかります。</p>
+<p>テストレイヤーの低レイヤーのコストについても、自動化しやすいからコストが低い、ということになります。</p>
+<p>アプリケーションを中長期にわたって改善、改修していくには、テストを自動化していくことが必要です。</p>
+<p>これがどの程度できているかで、「より品質の高いものをより早く、より安く」ユーザーに提供できるかが決まります。つまり、プロダクトの競争力、ビジネスの競争力に直結します。</p>
+<h2 id="_6">テスト計画</h2>
+<p>テストの各レイヤーと、それぞれの重要度、量について説明してきました。</p>
+<p>ここまで話でお気づきかもしれませんが、テストはアプリケーションを実装する前にどこで何を、どのように行うかを計画する必要があります。</p>
+<p>通常は、プロジェクトの立ち上げ時に、<a href="https://ssaits.jp/promapedia/concepts/manage-quality.html">品質計画</a>の一環として、テスト計画を立てることになります。</p>
+<p>組織である程度のテンプレートやルールを決めておくのもよいでしょう。</p>
+<p>アプリケーションの品質は、後から改善することは難しく、最初から品質を高く保つことが重要です。</p>
+<p>既存のプリケーションを改善する場合でも、まず計画で目的・目標を立て、必要なテストを網羅したうえで少しずつリファクタリングしていくことが必要になります。</p>
+<p><a href="https://www.amazon.co.jp/%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0-%E7%AC%AC2%E7%89%88-%E6%97%A2%E5%AD%98%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%AE%89%E5%85%A8%E3%81%AB%E6%94%B9%E5%96%84%E3%81%99%E3%82%8B-OBJECT-TECHNOLOGY/dp/4274224546/ref=sr_1_1?adgrpid=147845249018&amp;dib=eyJ2IjoiMSJ9.TzGDG-Wxv8NO0J6wPxRHawRo6TWrK7x7jjdzh3R8hrLc6dgAaAGTBQtjvKZF6964C8p3PsII9_pc7HOpWoAwYT1eweVLzN1rGGi3haPG_7N2zuWc35mHKwrJC2T1cG3R8Lnz3Zxm4dc_1NnX4JZ4jm-ct1I3liof0yCFH4KIYEIcD6ZjCBD0B_KZpPHVcgbmnqijlLFOZhaLYb-OOHsABSZUkRDS8ef4YVjCxT9IIkSbLg7JfKQiVA9TjN16MHi6hyNk5hYIHzY8WDPR-b-aOjhnciC40sQJLCV3tQrQzu8.UnaJHudt2t_Ik2m8IhPAKlwHgo5FfdfbT18qMhuB8tU&amp;dib_tag=se&amp;hvadid=666100816299&amp;hvdev=c&amp;hvqmt=e&amp;hvtargid=kwd-2072789889839&amp;hydadcr=2350_13629004&amp;jp-ad-ap=0&amp;keywords=%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0+%E6%9C%AC&amp;qid=1709509085&amp;sr=8-1">Amazon.co.jp: リファクタリング(第2版): 既存のコードを安全に改善する (OBJECT TECHNOLOGY SERIES) : Martin Fowler 著, 児玉 公信, 友野 晶夫, 平澤 章, 梅澤 真史: 本</a></p>
+<h2 id="_7">まとめ</h2>
 <p>テストの種類と、それぞれの観点、実施方法やツールについて説明しました。</p>
 <p>いくつものツールを使いこなさないといけないのは大変ですが、様々なプロジェクトで使い回せますし、このスキルは汎用的でどこに行っても役立つものでしょう。</p>
-<p>テストとそのツールのスキルを上げることで、品質が高く、バグに強いアプリケーションを作ることができるようになり、開発者の心理的安全性を確保するためにも、テストは重要です。</p>
+<p>テストとそのツールのスキルを上げることで、品質が高く、バグに強いアプリケーションを作ることができるようになり、開発者の心理的安全性を確保するためにも、プロダクトの価値を高めるにも、そして他社に対して競争力をつけるにも、テストは重要です。</p>
+<h2 id="_8">資料</h2>
+<p>Webサイト</p>
+<ul>
+<li><a href="https://speakerdeck.com/twada/building-automated-test-culture-2022-autumn-edition">組織に自動テストを書く文化を根付かせる戦略（2022秋版） / Building Automated Test Culture 2022 Autumn Edition - Speaker Deck</a></li>
+<li><a href="https://speakerdeck.com/twada/automated-test-knowledge-from-savanna-202305-edition">サバンナ便り〜自動テストに関する連載で得られた知見のまとめ（2023年5月版）〜 / Automated Test Knowledge from Savanna 202305 edition - Speaker Deck</a></li>
+<li><a href="https://xtech.nikkei.com/it/article/COLUMN/20070404/267404/">第3回　品質管理計画－－プロジェクト全体を通じた品質基準や方針を策定する | 日経クロステック（xTECH）</a></li>
+</ul>
+<p>書籍</p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E3%80%90%E3%81%93%E3%81%AE1%E5%86%8A%E3%81%A7%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%8B%E3%80%91-%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%95%99%E7%A7%91%E6%9B%B8-%E5%A2%97%E8%A3%9C%E6%94%B9%E8%A8%82-%E7%AC%AC2%E7%89%88-%E5%B8%83%E6%96%BD/dp/481560875X/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;creative=6339&amp;dib=eyJ2IjoiMSJ9.8jd-NsBn0sS6ZULDI6T0kqkgijxTYsNrnYgALW4l9yyscJ2mnN1VBhCAegkKbMkNjZQ8H4ypj058_AQLITJ9GA_tPBP3UcmR2_1B4fkPCtGhverxxwNHv09cKYxnZsGlv5XVnpyvbQaU3IeoQyo4-5bIWIqRKJ7xkrotyCz7SehCFBJsVlcajmaThggpl0bz-FOXyn56TNPwXVF41u0WeW52dvSt83kKzJewGvqzlpcxFeLgpyr18GAU5pgzxA0wXi2mFz6XE2FODLVBlfziGnfWVnjcSS5fTuRGgYP16AE.mE5VaOxAXoCs2615b_ihABRbnYJztOamHE4ufNMKJVQ&amp;dib_tag=se&amp;keywords=%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%95%99%E7%A7%91%E6%9B%B8&amp;linkCode=ure&amp;qid=1709508009&amp;sr=8-1">【この1冊でよくわかる】 ソフトウェアテストの教科書 [増補改訂 第2版] | 布施 昌弘, 江添 智之, 永井 努, 三堀 雅也, 石原 一宏, 堀 明広 |本 | 通販 | Amazon</a></li>
+<li><a href="https://www.amazon.co.jp/%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA-Kent-Beck/dp/4274217884/ref=sr_1_11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;creative=6339&amp;dib=eyJ2IjoiMSJ9.8jd-NsBn0sS6ZULDI6T0kqkgijxTYsNrnYgALW4l9yyscJ2mnN1VBhCAegkKbMkNjZQ8H4ypj058_AQLITJ9GA_tPBP3UcmR2_1B4fkPCtGhverxxwNHv09cKYxnZsGlv5XVnpyvbQaU3IeoQyo4-5bIWIqRKJ7xkrotyCz7SehCFBJsVlcajmaThggpl0bz-FOXyn56TNPwXVF41u0WeW52dvSt83kKzJewGvqzlpcxFeLgpyr18GAU5pgzxA0wXi2mFz6XE2FODLVBlfziGnfWVnjcSS5fTuRGgYP16AE.mE5VaOxAXoCs2615b_ihABRbnYJztOamHE4ufNMKJVQ&amp;dib_tag=se&amp;keywords=%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%95%99%E7%A7%91%E6%9B%B8&amp;linkCode=ure&amp;qid=1709508009&amp;sr=8-11">テスト駆動開発 | Kent Beck, 和田 卓人 |本 | 通販 | Amazon</a></li>
+</ul>
 
 
 

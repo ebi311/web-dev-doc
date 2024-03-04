@@ -4053,20 +4053,14 @@
 <span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">reportElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useMemo</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">reports</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">report</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="nx">Fragment</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span>
-</span></span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">ReportRow</span><span class="w"> </span><span class="nx">report</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll"><span class="w">        </span><span class="o">&lt;&gt;</span>
+</span></span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">ReportRow</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">report</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="hll"><span class="w">          </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;divider&quot;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span></span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="err">/Fragment&gt;</span>
+</span></span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll"><span class="w">        </span><span class="o">&lt;</span><span class="err">/&gt;</span>
 </span></span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">      </span><span class="p">);</span>
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="p">});</span>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">reports</span><span class="p">]);</span>
 </span></code></pre></div></td></tr></table></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>Fragment</code> は、React のコンポーネントで、<code>&lt;div&gt;</code> などの要素を使わずに、複数の要素を返すことができます。</p>
-<p>レンダリング時には、<code>&lt;Fragment&gt;</code> は無視され、その中の要素だけが返されます。</p>
-<p><code>&lt;&gt;~</code> と書くこともできますが、<code>&lt;Fragment&gt;</code> は、<code>key</code> や <code>props</code> を渡すことができるため、ここでは <code>key</code> を渡すために <code>Fragment</code> を使っています。</p>
-</div>
 <p><img alt="report-list-2" src="../c-3-4-sb-17.png" /></p>
 <p>DaisyUI のコンポーネントを利用することで、簡単に見た目を整えることができました。</p>
 
