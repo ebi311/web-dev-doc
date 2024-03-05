@@ -4089,7 +4089,11 @@
 <span class="normal"><a href="#__codelineno-8-10">10</a></span>
 <span class="normal"><a href="#__codelineno-8-11">11</a></span>
 <span class="normal"><a href="#__codelineno-8-12">12</a></span>
-<span class="normal"><a href="#__codelineno-8-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0001&quot;</span><span class="p">,</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;attend-hospital&quot;</span><span class="p">,</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項のテキスト&quot;</span><span class="p">,</span>
@@ -4100,8 +4104,12 @@
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">        </span><span class="nx">startTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2023-06-30T09:00:00&quot;</span><span class="p">),</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">        </span><span class="nx">endTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2023-06-30T09:00:00&quot;</span><span class="p">),</span>
 </span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="p">},</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="hll"><span class="w">    </span><span class="nx">moveDistanceKM</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="p">,</span>
-</span></span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="p">};</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="hll"><span class="w">    </span><span class="nx">moveDistanceKM</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+</span></span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="hll"><span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="hll"><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="sb">`user-</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+</span></span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="hll"><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`利用者 </span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+</span></span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <p>問題がなくなれば、ターミナルに何も出力されなくなります。</p>
 

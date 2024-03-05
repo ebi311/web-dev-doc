@@ -3867,30 +3867,28 @@
 <p>ここでは、<code>&lt;textarea&gt;</code>コントロールを使用する単純な物となっています。</p>
 <h2 id="_2">コンポーネントの作成</h2>
 <p>Hygen で作成します。</p>
-<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gp">$ </span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="go">✔ コンポーネント名を入力してください。 · WorkContentControl</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="go">✔ どこに作りますか？&#39;src/components/&#39;以下のパスを指定してください。 · pageParts/careStaff/ReportDetail</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="go">Loaded templates: _templates</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/WorkContentControl/WorkContentControl.tsx</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/WorkContentControl/WorkContentControl.stories.tsx</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/WorkContentControl/WorkContentControl.test.tsx</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="go">       added: src/components/pageParts/careStaff/ReportDetail/WorkContentControl/index.ts</span>
+<div class="language-console highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gp">$ </span>npx<span class="w"> </span>hygen<span class="w"> </span>component<span class="w"> </span>new
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="go">✔ コンポーネント名を入力してください。 · WorkContentControl</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="go">✔ どこに作りますか？&#39;src/&#39;以下のパスを指定してください。 · app/careStaff/reports/[id]/_parts</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="go">Loaded templates: _templates</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControl.tsx</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControl.stories.tsx</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControl.test.tsx</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="go">       added: src/app/careStaff/reports/[id]/_parts/WorkContentControl/index.ts</span>
 </span></code></pre></div></td></tr></table></div>
 <p>テストとしては、ラベルが表示されていることと、
 引数として、<code>Report</code> のオブジェクトを受け取り、その中の <code>workContent</code> をテキストエリアに表示する必要があるので、
 そのテストを書きます。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
@@ -3926,46 +3924,48 @@
 <span class="normal"><a href="#__codelineno-1-34">34</a></span>
 <span class="normal"><a href="#__codelineno-1-35">35</a></span>
 <span class="normal"><a href="#__codelineno-1-36">36</a></span>
-<span class="normal"><a href="#__codelineno-1-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">/**</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cm"> * @jest-environment jsdom</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cm"> */</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom&#39;</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ComponentProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./WorkContentControl&#39;</span><span class="p">;</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">ComponentProps</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">_render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">};</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;attend-hospital&#39;</span><span class="p">,</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">  </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項のテキスト&#39;</span><span class="p">,</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">  </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">,</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="nx">reviewStatus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;editing&#39;</span><span class="p">,</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">  </span><span class="nx">userName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;利用者 001&#39;</span><span class="p">,</span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom&#39;</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ComponentProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./WorkContentControl&#39;</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">ComponentProps</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">_render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">};</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">  </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;attend-hospital&#39;</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">  </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="nx">reviewStatus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;editing&#39;</span><span class="p">,</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">  </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;テストユーザ&#39;</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">  </span><span class="p">},</span>
 </span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">  </span><span class="nx">workTime</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="nx">startTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
 </span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="nx">endTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
 </span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="p">};</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">  </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">    </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">  </span><span class="p">});</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">  </span><span class="c1">// ラベルの確認</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;作業内容&#39;</span><span class="p">);</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">  </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">);</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="p">});</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">  </span><span class="nx">moveDistanceKM</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="p">};</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">  </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">    </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">  </span><span class="c1">// ラベルの確認</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;作業内容&#39;</span><span class="p">);</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">  </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">);</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
 <p>実装は次のようになります。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
@@ -4004,7 +4004,7 @@
 <code>id</code> が固定だと重複してしまします。</p>
 <p>このコンポーネントは共通で使われるものでないので、問題にはなりにくいのですが、
 ここでは、<code>id</code>を固定しないように修正します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
@@ -4033,7 +4033,7 @@
 <p>コンポーネントが再レンダリングされても、同一コンポーネント内であれば、IDが変わることは有りません。</p>
 <h2 id="_3">見た目と動きを確認する</h2>
 <p>Storybook で見た目を動きを確認します。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
@@ -4062,41 +4062,49 @@
 <span class="normal"><a href="#__codelineno-4-27">27</a></span>
 <span class="normal"><a href="#__codelineno-4-28">28</a></span>
 <span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/contexts/work-reports/entities/reports/reportSchema&quot;</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Meta</span><span class="p">,</span><span class="w"> </span><span class="nx">StoryObj</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@storybook/react&quot;</span><span class="p">;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./WorkContentControl&quot;</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Meta</span><span class="p">,</span><span class="w"> </span><span class="nx">StoryObj</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@storybook/react&#39;</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./WorkContentControl&#39;</span><span class="p">;</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pageParts/careStaff/ReportDetail/WorkContentControl&quot;</span><span class="p">,</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">WorkContentControl</span><span class="p">,</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;autodocs&#39;</span><span class="p">],</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="p">}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Meta</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Story</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">StoryObj</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0001&quot;</span><span class="p">,</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;attend-hospital&quot;</span><span class="p">,</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項のテキスト&quot;</span><span class="p">,</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容のテキスト&quot;</span><span class="p">,</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="nx">reviewStatus</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;editing&quot;</span><span class="p">,</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="nx">userName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;利用者 001&quot;</span><span class="p">,</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">    </span><span class="nx">workTime</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">        </span><span class="nx">startTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2023-06-30T09:00:00&quot;</span><span class="p">),</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">        </span><span class="nx">endTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2023-06-30T09:00:00&quot;</span><span class="p">),</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">    </span><span class="p">},</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="p">};</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Default</span><span class="o">:</span><span class="w"> </span><span class="kt">Story</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">    </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">        </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">    </span><span class="p">},</span>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="p">};</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;attend-hospital&#39;</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">  </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">  </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">  </span><span class="nx">reviewStatus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;editing&#39;</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;テストユーザ&#39;</span><span class="p">,</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">  </span><span class="nx">workTime</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="nx">startTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="nx">endTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">  </span><span class="nx">moveDistanceKM</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="p">};</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app/careStaff/reports/[id]/_parts/WorkContentControl&#39;</span><span class="p">,</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">  </span><span class="nx">component</span><span class="o">:</span><span class="w"> </span><span class="kt">WorkContentControl</span><span class="p">,</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">  </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;autodocs&#39;</span><span class="p">],</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="p">}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Meta</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Story</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">StoryObj</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">Default</span><span class="o">:</span><span class="w"> </span><span class="kt">Story</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">  </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <p><img alt="work content control preview01" src="../c-3-5-07-work-content-control01.png" /></p>
 <p><code>textarea</code> のスタイルが無いので、DaisyUI のスタイルを当てましょう。</p>
 <p><a href="https://daisyui.com/components/textarea/" target="_blank">Textarea テキストエリア — Tailwind CSSコンポーネント</a></p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">3</a></span>
 <span class="normal"><a href="#__codelineno-5-4">4</a></span>
@@ -4128,7 +4136,7 @@
 コントロールのコンポーネントは、その値を受け取りそれを表示するだけになるので、非常にシンプルになります。</p>
 <p>このコンポーネントに、変更イベント<code>onChang</code>を実装します。そのためのテストを書きます。</p>
 <p>テストでは、テキストボックスを書き換えることのシミュ‐レートを行います。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
@@ -4144,23 +4152,31 @@
 <span class="normal"><a href="#__codelineno-6-14">14</a></span>
 <span class="normal"><a href="#__codelineno-6-15">15</a></span>
 <span class="normal"><a href="#__codelineno-6-16">16</a></span>
-<span class="normal"><a href="#__codelineno-6-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;on change&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">        </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">        </span><span class="nx">onChange</span><span class="p">,</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="c1">// テキストエリアの内容を変更する</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">        </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">            </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">,</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">        </span><span class="p">},</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">    </span><span class="c1">// onChange が呼び出されていることを確認する</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toBeCalledWith</span><span class="p">(</span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">);</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="p">});</span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">fireEvent</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1">// 略</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;on change&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">        </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">        </span><span class="nx">onChange</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">    </span><span class="c1">// テキストエリアの内容を変更する</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">        </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">            </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">,</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="w">    </span><span class="c1">// onChange が呼び出されていることを確認する</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toBeCalledWith</span><span class="p">(</span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">);</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>fireEvent.change</code>はテキストボックスなどの<code>onChange</code>イベントの発火をシミュレートする関数で、
 第1引数に対象の要素、第2引数にHTML DOMの<code>onChange</code>イベントの引数に渡されるオブジェクトを指定します。</p>
@@ -4168,17 +4184,17 @@
 その時の引数が、変更後のテキストエリアの文字列が<code>workContent</code>プロパティにはいった、オブジェクトであることを確認します。</p>
 <p>関数のコールや引数を調べるために、コンポーネントに渡す関数は Jest のモック関数としています。</p>
 <p>実装ですが、まずコンポーネントの<code>onChange</code>プロパティの定義から行います。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
 <span class="normal"><a href="#__codelineno-7-2">2</a></span>
 <span class="normal"><a href="#__codelineno-7-3">3</a></span>
 <span class="normal"><a href="#__codelineno-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="p">;</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
 </span></span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <p>ここでは、引数が文字列の<code>workContent</code>プロパティのみのオブジェクトで、戻り値が<code>void</code>である関数を指定しています。</p>
 <p>このようなTypeScriptでの関数型定義は、多く使いますので覚えておきましょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
@@ -4199,28 +4215,36 @@
 <span class="normal"><a href="#__codelineno-8-19">19</a></span>
 <span class="normal"><a href="#__codelineno-8-20">20</a></span>
 <span class="normal"><a href="#__codelineno-8-21">21</a></span>
-<span class="normal"><a href="#__codelineno-8-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">report</span><span class="p">,</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="p">;</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useId</span><span class="p">();</span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ChangeEvent</span><span class="p">,</span><span class="w"> </span><span class="nx">useCallback</span><span class="p">,</span><span class="w"> </span><span class="nx">useId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1">// 略</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">textareaOnChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useCallback</span><span class="p">(</span>
-</span></span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll"><span class="w">    </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLTextAreaElement</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span></span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="w">      </span><span class="nx">onChange</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-</span></span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
-</span></span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="hll"><span class="w">    </span><span class="p">[</span><span class="nx">onChange</span><span class="p">],</span>
-</span></span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="hll"><span class="w">  </span><span class="p">);</span>
-</span></span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="hll">
-</span></span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="hll"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
-</span></span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;作業内容&quot;</span><span class="o">&gt;</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">textarea</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">        </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">        </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">.</span><span class="nx">workContent</span><span class="p">}</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">        </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;textarea textarea-bordered&quot;</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">        </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">textareaOnChange</span><span class="p">}</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="w">      </span><span class="o">/&gt;</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="hll"><span class="w">    </span><span class="o">&lt;</span><span class="err">/Label&gt;</span>
-</span></span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">  </span><span class="p">);</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="p">};</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">report</span><span class="p">,</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useId</span><span class="p">();</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">textareaOnChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useCallback</span><span class="p">(</span>
+</span></span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="hll"><span class="w">    </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLTextAreaElement</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="hll"><span class="w">      </span><span class="nx">onChange</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="hll"><span class="w">    </span><span class="p">[</span><span class="nx">onChange</span><span class="p">],</span>
+</span></span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="hll"><span class="w">  </span><span class="p">);</span>
+</span></span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">label</span><span class="o">=</span><span class="s2">&quot;作業内容&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">textarea</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="w">        </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="w">        </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">.</span><span class="nx">workContent</span><span class="p">}</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">        </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;textarea textarea-bordered&quot;</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="hll"><span class="w">        </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">textareaOnChange</span><span class="p">}</span>
+</span></span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="w">      </span><span class="o">/&gt;</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/Label&gt;</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>textarea</code>の<code>onChange</code>に渡す関数を<code>useCallback</code>で定義しています。
 <code>useCallback</code>ではなく直接関数を書いても動きますが、そのばあい内容が同じでも関数が毎回生成されるため、
@@ -4240,7 +4264,7 @@ React でのパフォーマンスに影響が出る可能性があります。</
 その時の引数が表示されていると思います。</p>
 <p>このように、Storybook ではコンポーネントの独自イベント処理（コールバック関数）を検知し、ログに出力機能もあります。</p>
 <p>Storybook 上で実際に変更処理を行いたい場合、このコンポーネントの利用側の想定の処理を<code>decorators</code>で書きます。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.stories.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
@@ -4259,10 +4283,10 @@ React でのパフォーマンスに影響が出る可能性があります。</
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">  </span><span class="nx">decorators</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="p">(</span><span class="nx">Story</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">reportState</span><span class="p">,</span><span class="w"> </span><span class="nx">setReportState</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="nx">Report</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">report</span><span class="p">);</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useCallback</span><span class="p">((</span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useCallback</span><span class="p">((</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">        </span><span class="nx">setReportState</span><span class="p">((</span><span class="nx">report</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">          </span><span class="p">...</span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">          </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="kt">args</span><span class="p">,</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">          </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="kt">value</span><span class="p">,</span>
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">        </span><span class="p">}));</span>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">      </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">Story</span><span class="w"> </span><span class="nx">args</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">reportState</span><span class="p">,</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">;</span>
@@ -4285,176 +4309,230 @@ React でのパフォーマンスに影響が出る可能性があります。</
 <p>変動する項目として、ラベルと<code>report</code>のプロパティ名があります。</p>
 <p>まずテストでこれらを<code>label</code>,<code>propName</code>プロパティとして与えて、想定される結果を書いていきましょう。</p>
 <p>テストが２つ有り、それぞれ"作業内容"と"申し送り事項"のテストに分けます。こういったときには、<code>describe</code>を使います。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/ReportDetail.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span>
-<span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span>
-<span class="normal"><a href="#__codelineno-10-14">14</a></span>
-<span class="normal"><a href="#__codelineno-10-15">15</a></span>
-<span class="normal"><a href="#__codelineno-10-16">16</a></span>
-<span class="normal"><a href="#__codelineno-10-17">17</a></span>
-<span class="normal"><a href="#__codelineno-10-18">18</a></span>
-<span class="normal"><a href="#__codelineno-10-19">19</a></span>
-<span class="normal"><a href="#__codelineno-10-20">20</a></span>
-<span class="normal"><a href="#__codelineno-10-21">21</a></span>
-<span class="normal"><a href="#__codelineno-10-22">22</a></span>
-<span class="normal"><a href="#__codelineno-10-23">23</a></span>
-<span class="normal"><a href="#__codelineno-10-24">24</a></span>
-<span class="normal"><a href="#__codelineno-10-25">25</a></span>
-<span class="normal"><a href="#__codelineno-10-26">26</a></span>
-<span class="normal"><a href="#__codelineno-10-27">27</a></span>
-<span class="normal"><a href="#__codelineno-10-28">28</a></span>
-<span class="normal"><a href="#__codelineno-10-29">29</a></span>
-<span class="normal"><a href="#__codelineno-10-30">30</a></span>
-<span class="normal"><a href="#__codelineno-10-31">31</a></span>
-<span class="normal"><a href="#__codelineno-10-32">32</a></span>
-<span class="normal"><a href="#__codelineno-10-33">33</a></span>
-<span class="normal"><a href="#__codelineno-10-34">34</a></span>
-<span class="normal"><a href="#__codelineno-10-35">35</a></span>
-<span class="normal"><a href="#__codelineno-10-36">36</a></span>
-<span class="normal"><a href="#__codelineno-10-37">37</a></span>
-<span class="normal"><a href="#__codelineno-10-38">38</a></span>
-<span class="normal"><a href="#__codelineno-10-39">39</a></span>
-<span class="normal"><a href="#__codelineno-10-40">40</a></span>
-<span class="normal"><a href="#__codelineno-10-41">41</a></span>
-<span class="normal"><a href="#__codelineno-10-42">42</a></span>
-<span class="normal"><a href="#__codelineno-10-43">43</a></span>
-<span class="normal"><a href="#__codelineno-10-44">44</a></span>
-<span class="normal"><a href="#__codelineno-10-45">45</a></span>
-<span class="normal"><a href="#__codelineno-10-46">46</a></span>
-<span class="normal"><a href="#__codelineno-10-47">47</a></span>
-<span class="normal"><a href="#__codelineno-10-48">48</a></span>
-<span class="normal"><a href="#__codelineno-10-49">49</a></span>
-<span class="normal"><a href="#__codelineno-10-50">50</a></span>
-<span class="normal"><a href="#__codelineno-10-51">51</a></span>
-<span class="normal"><a href="#__codelineno-10-52">52</a></span>
-<span class="normal"><a href="#__codelineno-10-53">53</a></span>
-<span class="normal"><a href="#__codelineno-10-54">54</a></span>
-<span class="normal"><a href="#__codelineno-10-55">55</a></span>
-<span class="normal"><a href="#__codelineno-10-56">56</a></span>
-<span class="normal"><a href="#__codelineno-10-57">57</a></span>
-<span class="normal"><a href="#__codelineno-10-58">58</a></span>
-<span class="normal"><a href="#__codelineno-10-59">59</a></span>
-<span class="normal"><a href="#__codelineno-10-60">60</a></span>
-<span class="normal"><a href="#__codelineno-10-61">61</a></span>
-<span class="normal"><a href="#__codelineno-10-62">62</a></span>
-<span class="normal"><a href="#__codelineno-10-63">63</a></span>
-<span class="normal"><a href="#__codelineno-10-64">64</a></span>
-<span class="normal"><a href="#__codelineno-10-65">65</a></span>
-<span class="normal"><a href="#__codelineno-10-66">66</a></span>
-<span class="normal"><a href="#__codelineno-10-67">67</a></span>
-<span class="normal"><a href="#__codelineno-10-68">68</a></span>
-<span class="normal"><a href="#__codelineno-10-69">69</a></span>
-<span class="normal"><a href="#__codelineno-10-70">70</a></span>
-<span class="normal"><a href="#__codelineno-10-71">71</a></span>
-<span class="normal"><a href="#__codelineno-10-72">72</a></span>
-<span class="normal"><a href="#__codelineno-10-73">73</a></span>
-<span class="normal"><a href="#__codelineno-10-74">74</a></span>
-<span class="normal"><a href="#__codelineno-10-75">75</a></span>
-<span class="normal"><a href="#__codelineno-10-76">76</a></span>
-<span class="normal"><a href="#__codelineno-10-77">77</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;work content&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;renders&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">        </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">            </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">            </span><span class="nx">onChange</span><span class="p">,</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">        </span><span class="c1">// ラベルの確認</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s2">&quot;作業内容&quot;</span><span class="p">);</span>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">        </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s2">&quot;作業内容のテキスト&quot;</span><span class="p">);</span>
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a>
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;on change&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="w">        </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="w">            </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="w">            </span><span class="nx">onChange</span><span class="p">,</span>
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">            </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;workContent&quot;</span><span class="p">,</span>
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="w">            </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容&quot;</span><span class="p">,</span>
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="w">        </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
-</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">        </span><span class="c1">// テキストエリアの内容を変更する</span>
-</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="w">        </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="w">            </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">                </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">,</span>
-</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="w">            </span><span class="p">},</span>
-</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="w">        </span><span class="c1">// onChange が呼び出されていることを確認する</span>
-</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toBeCalledWith</span><span class="p">({</span>
-</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="w">            </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;作業内容のテキストを変更しました&quot;</span><span class="p">,</span>
-</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="w">        </span><span class="p">});</span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.test.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-10-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-10-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-10-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-10-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-10-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-10-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-10-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-10-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-10-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-10-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-10-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-10-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-10-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-10-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-10-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-10-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-10-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-10-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-10-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-10-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-10-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-10-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-10-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-10-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-10-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-10-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-10-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-10-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-10-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-10-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-10-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-10-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-10-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-10-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-10-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-10-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-10-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-10-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-10-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-10-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-10-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-10-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-10-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-10-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-10-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-10-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-10-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-10-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-10-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-10-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-10-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-10-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-10-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-10-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-10-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-10-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-10-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-10-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-10-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-10-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-10-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-10-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-10-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-10-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-10-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-10-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-10-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-10-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-10-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-10-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-10-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-10-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-10-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-10-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-10-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-10-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-10-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-10-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-10-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-10-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-10-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-10-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-10-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-10-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-10-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-10-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-10-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-10-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-10-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-10-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-10-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-10-100">100</a></span>
+<span class="normal"><a href="#__codelineno-10-101">101</a></span>
+<span class="normal"><a href="#__codelineno-10-102">102</a></span>
+<span class="normal"><a href="#__codelineno-10-103">103</a></span>
+<span class="normal"><a href="#__codelineno-10-104">104</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Report</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/contexts/work-reports/entities/reports/reportSchema&#39;</span><span class="p">;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom&#39;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">_render</span><span class="p">,</span><span class="w"> </span><span class="nx">fireEvent</span><span class="p">,</span><span class="w"> </span><span class="nx">screen</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ComponentProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./WorkContentControl&#39;</span><span class="p">;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">ComponentProps</span><span class="o">&lt;</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">_render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">WorkContentControl</span><span class="w"> </span><span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">);</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="p">};</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">  </span><span class="nx">careType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;attend-hospital&#39;</span><span class="p">,</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">  </span><span class="nx">notice</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">  </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">,</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">  </span><span class="nx">reviewStatus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;editing&#39;</span><span class="p">,</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">  </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="p">,</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;テストユーザ&#39;</span><span class="p">,</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">  </span><span class="nx">workTime</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="w">    </span><span class="nx">startTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="w">    </span><span class="nx">endTimestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2023-06-30T09:00:00&#39;</span><span class="p">),</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">  </span><span class="nx">moveDistanceKM</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="p">};</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27"></a>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;work content&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">  </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="w">      </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33"></a><span class="w">      </span><span class="nx">onChange</span><span class="p">,</span>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="w">      </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;workContent&#39;</span><span class="p">,</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="w">      </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容&#39;</span><span class="p">,</span>
 </span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="p">});</span>
-</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38"></a>
-</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;note&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;renders&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="w">        </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43"></a><span class="w">            </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44"></a><span class="w">            </span><span class="nx">onChange</span><span class="p">,</span>
-</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45"></a><span class="w">            </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;notice&quot;</span><span class="p">,</span>
-</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="w">            </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項&quot;</span><span class="p">,</span>
-</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48"></a><span class="w">        </span><span class="c1">// ラベルの確認</span>
-</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s2">&quot;申し送り事項&quot;</span><span class="p">);</span>
-</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
-</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="w">        </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
-</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s2">&quot;申し送り事項のテキスト&quot;</span><span class="p">);</span>
-</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55"></a>
-</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56"></a><span class="w">    </span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;on change&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58"></a><span class="w">        </span><span class="nx">render</span><span class="p">({</span>
-</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59"></a><span class="w">            </span><span class="nx">report</span><span class="p">,</span>
-</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60"></a><span class="w">            </span><span class="nx">onChange</span><span class="p">,</span>
-</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61"></a><span class="w">            </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;notice&quot;</span><span class="p">,</span>
-</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62"></a><span class="w">            </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項&quot;</span><span class="p">,</span>
-</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-64"><a id="__codelineno-10-64" name="__codelineno-10-64"></a><span class="w">        </span><span class="c1">// テキストエリアの確認</span>
-</span><span id="__span-10-65"><a id="__codelineno-10-65" name="__codelineno-10-65"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s2">&quot;textbox&quot;</span><span class="p">);</span>
-</span><span id="__span-10-66"><a id="__codelineno-10-66" name="__codelineno-10-66"></a><span class="w">        </span><span class="c1">// テキストエリアの内容を変更する</span>
-</span><span id="__span-10-67"><a id="__codelineno-10-67" name="__codelineno-10-67"></a><span class="w">        </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-68"><a id="__codelineno-10-68" name="__codelineno-10-68"></a><span class="w">            </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-69"><a id="__codelineno-10-69" name="__codelineno-10-69"></a><span class="w">                </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項のテキストを変更しました&quot;</span><span class="p">,</span>
-</span><span id="__span-10-70"><a id="__codelineno-10-70" name="__codelineno-10-70"></a><span class="w">            </span><span class="p">},</span>
-</span><span id="__span-10-71"><a id="__codelineno-10-71" name="__codelineno-10-71"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-72"><a id="__codelineno-10-72" name="__codelineno-10-72"></a><span class="w">        </span><span class="c1">// onChange が呼び出されていることを確認する</span>
-</span><span id="__span-10-73"><a id="__codelineno-10-73" name="__codelineno-10-73"></a><span class="w">        </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toBeCalledWith</span><span class="p">({</span>
-</span><span id="__span-10-74"><a id="__codelineno-10-74" name="__codelineno-10-74"></a><span class="w">            </span><span class="nx">note</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;申し送り事項のテキストを変更しました&quot;</span><span class="p">,</span>
-</span><span id="__span-10-75"><a id="__codelineno-10-75" name="__codelineno-10-75"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-10-76"><a id="__codelineno-10-76" name="__codelineno-10-76"></a><span class="w">    </span><span class="p">});</span>
-</span><span id="__span-10-77"><a id="__codelineno-10-77" name="__codelineno-10-77"></a><span class="p">});</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="w">    </span><span class="c1">// ラベルの確認</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;作業内容&#39;</span><span class="p">);</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s1">&#39;作業内容のテキスト&#39;</span><span class="p">);</span>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44"></a>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45"></a><span class="w">  </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;on change&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48"></a><span class="w">      </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49"></a><span class="w">      </span><span class="nx">onChange</span><span class="p">,</span>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50"></a><span class="w">      </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;workContent&#39;</span><span class="p">,</span>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="w">      </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容&#39;</span><span class="p">,</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55"></a><span class="w">    </span><span class="c1">// テキストエリアの内容を変更する</span>
+</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56"></a><span class="w">    </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57"></a><span class="w">      </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58"></a><span class="w">        </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;作業内容のテキストを変更しました&#39;</span><span class="p">,</span>
+</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61"></a><span class="w">    </span><span class="c1">// onChange が呼び出されていることを確認する</span>
+</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="s1">&#39;作業内容のテキストを変更しました&#39;</span><span class="p">);</span>
+</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-10-64"><a id="__codelineno-10-64" name="__codelineno-10-64"></a><span class="p">});</span>
+</span><span id="__span-10-65"><a id="__codelineno-10-65" name="__codelineno-10-65"></a>
+</span><span id="__span-10-66"><a id="__codelineno-10-66" name="__codelineno-10-66"></a><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;note&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-67"><a id="__codelineno-10-67" name="__codelineno-10-67"></a><span class="w">  </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;renders&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-68"><a id="__codelineno-10-68" name="__codelineno-10-68"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span><span id="__span-10-69"><a id="__codelineno-10-69" name="__codelineno-10-69"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-10-70"><a id="__codelineno-10-70" name="__codelineno-10-70"></a><span class="w">      </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-10-71"><a id="__codelineno-10-71" name="__codelineno-10-71"></a><span class="w">      </span><span class="nx">onChange</span><span class="p">,</span>
+</span><span id="__span-10-72"><a id="__codelineno-10-72" name="__codelineno-10-72"></a><span class="w">      </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;notice&#39;</span><span class="p">,</span>
+</span><span id="__span-10-73"><a id="__codelineno-10-73" name="__codelineno-10-73"></a><span class="w">      </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項&#39;</span><span class="p">,</span>
+</span><span id="__span-10-74"><a id="__codelineno-10-74" name="__codelineno-10-74"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-75"><a id="__codelineno-10-75" name="__codelineno-10-75"></a><span class="w">    </span><span class="c1">// ラベルの確認</span>
+</span><span id="__span-10-76"><a id="__codelineno-10-76" name="__codelineno-10-76"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="s1">&#39;申し送り事項&#39;</span><span class="p">);</span>
+</span><span id="__span-10-77"><a id="__codelineno-10-77" name="__codelineno-10-77"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">toBeInTheDocument</span><span class="p">();</span>
+</span><span id="__span-10-78"><a id="__codelineno-10-78" name="__codelineno-10-78"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-10-79"><a id="__codelineno-10-79" name="__codelineno-10-79"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+</span><span id="__span-10-80"><a id="__codelineno-10-80" name="__codelineno-10-80"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">textbox</span><span class="p">).</span><span class="nx">toHaveValue</span><span class="p">(</span><span class="s1">&#39;申し送り事項のテキスト&#39;</span><span class="p">);</span>
+</span><span id="__span-10-81"><a id="__codelineno-10-81" name="__codelineno-10-81"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-10-82"><a id="__codelineno-10-82" name="__codelineno-10-82"></a>
+</span><span id="__span-10-83"><a id="__codelineno-10-83" name="__codelineno-10-83"></a><span class="w">  </span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;on change&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-84"><a id="__codelineno-10-84" name="__codelineno-10-84"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">onChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span><span id="__span-10-85"><a id="__codelineno-10-85" name="__codelineno-10-85"></a><span class="w">    </span><span class="nx">render</span><span class="p">({</span>
+</span><span id="__span-10-86"><a id="__codelineno-10-86" name="__codelineno-10-86"></a><span class="w">      </span><span class="nx">report</span><span class="p">,</span>
+</span><span id="__span-10-87"><a id="__codelineno-10-87" name="__codelineno-10-87"></a><span class="w">      </span><span class="nx">onChange</span><span class="p">,</span>
+</span><span id="__span-10-88"><a id="__codelineno-10-88" name="__codelineno-10-88"></a><span class="w">      </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;notice&#39;</span><span class="p">,</span>
+</span><span id="__span-10-89"><a id="__codelineno-10-89" name="__codelineno-10-89"></a><span class="w">      </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項&#39;</span><span class="p">,</span>
+</span><span id="__span-10-90"><a id="__codelineno-10-90" name="__codelineno-10-90"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-91"><a id="__codelineno-10-91" name="__codelineno-10-91"></a><span class="w">    </span><span class="c1">// テキストエリアの確認</span>
+</span><span id="__span-10-92"><a id="__codelineno-10-92" name="__codelineno-10-92"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+</span><span id="__span-10-93"><a id="__codelineno-10-93" name="__codelineno-10-93"></a><span class="w">    </span><span class="c1">// テキストエリアの内容を変更する</span>
+</span><span id="__span-10-94"><a id="__codelineno-10-94" name="__codelineno-10-94"></a><span class="w">    </span><span class="nx">fireEvent</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">textbox</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-95"><a id="__codelineno-10-95" name="__codelineno-10-95"></a><span class="w">      </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-96"><a id="__codelineno-10-96" name="__codelineno-10-96"></a><span class="w">        </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;申し送り事項のテキストを変更しました&#39;</span><span class="p">,</span>
+</span><span id="__span-10-97"><a id="__codelineno-10-97" name="__codelineno-10-97"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-10-98"><a id="__codelineno-10-98" name="__codelineno-10-98"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-99"><a id="__codelineno-10-99" name="__codelineno-10-99"></a><span class="w">    </span><span class="c1">// onChange が呼び出されていることを確認する</span>
+</span><span id="__span-10-100"><a id="__codelineno-10-100" name="__codelineno-10-100"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">onChange</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span>
+</span><span id="__span-10-101"><a id="__codelineno-10-101" name="__codelineno-10-101"></a><span class="w">      </span><span class="s1">&#39;申し送り事項のテキストを変更しました&#39;</span><span class="p">,</span>
+</span><span id="__span-10-102"><a id="__codelineno-10-102" name="__codelineno-10-102"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-10-103"><a id="__codelineno-10-103" name="__codelineno-10-103"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-10-104"><a id="__codelineno-10-104" name="__codelineno-10-104"></a><span class="p">});</span>
 </span></code></pre></div></td></tr></table></div>
 <p>テストを実行して、<code>work contents</code> 側が成功し、<code>note</code>側が失敗することを確認してください。</p>
 <p>まず、プロパティの定義から実装します。</p>
 <p>ポイントとなるのは、<code>propsName</code>プロパティの型です。<code>string</code>でも実装できますが、
 ここで指定できるのは、<code>Report</code>のプロパティにあるもの、としたいです。</p>
 <p>TypeScript では<code>keyof</code>を使うことで、指定した型のプロパティ名の文字列リテラルUnion型を定義できます。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
 <span class="normal"><a href="#__codelineno-11-2">2</a></span>
 <span class="normal"><a href="#__codelineno-11-3">3</a></span>
 <span class="normal"><a href="#__codelineno-11-4">4</a></span>
 <span class="normal"><a href="#__codelineno-11-5">5</a></span>
 <span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">    </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="p">;</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">    </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="kt">keyof</span><span class="w"> </span><span class="nx">Report</span><span class="p">;</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="p">};</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="hll"><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span></span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="hll"><span class="w">    </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="kt">keyof</span><span class="w"> </span><span class="nx">Report</span><span class="p">;</span>
+</span></span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <p>VSCode で、<code>propName</code>二カーソルを合わせると、下記のように見えると思います。</p>
 <div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>(property) propsName: &quot;id&quot; | &quot;careType&quot; | &quot;userName&quot; | &quot;reviewStatus&quot; | &quot;workTime&quot; | &quot;workContent&quot; | &quot;notice&quot;
@@ -4462,18 +4540,18 @@ React でのパフォーマンスに影響が出る可能性があります。</
 <p>これで、<code>propName</code>には、<code>Report</code>のプロパティ名以外の文字列が入らないようになり、
 スペルミスなどでそれ以外の文字列を入れようとすると、ビルドエラーになります。</p>
 <p>まず、ラベルをプロパティの値から取得するようにします。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
 <span class="normal"><a href="#__codelineno-13-2">2</a></span>
 <span class="normal"><a href="#__codelineno-13-3">3</a></span>
 <span class="normal"><a href="#__codelineno-13-4">4</a></span>
 <span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">WorkContentControl</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">report</span><span class="p">,</span><span class="w"> </span><span class="nx">onChange</span><span class="p">,</span><span class="w"> </span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">propName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="p">;</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">  </span><span class="c1">// ...略</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">label</span><span class="o">=</span><span class="p">{</span><span class="nx">label</span><span class="p">}</span><span class="o">&gt;</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">  </span><span class="c1">// ...略</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">report</span><span class="p">,</span><span class="w"> </span><span class="nx">onChange</span><span class="p">,</span><span class="w"> </span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">propName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">props</span><span class="p">;</span>
+</span></span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">  </span><span class="c1">// ...略</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll"><span class="w">  </span><span class="o">&lt;</span><span class="nx">Label</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">label</span><span class="o">=</span><span class="p">{</span><span class="nx">label</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">  </span><span class="c1">// ...略</span>
 </span></code></pre></div></td></tr></table></div>
 <p>ラベルの表示についてはテストをクリアしたと思います。次は<code>&lt;textaria&gt;</code>の<code>value</code>に割り当てる値を修正しましょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
 <span class="normal"><a href="#__codelineno-14-2">2</a></span>
 <span class="normal"><a href="#__codelineno-14-3">3</a></span>
 <span class="normal"><a href="#__codelineno-14-4">4</a></span>
@@ -4482,8 +4560,8 @@ React でのパフォーマンスに影響が出る可能性があります。</
 <span class="normal"><a href="#__codelineno-14-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">textarea</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">        </span><span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">        </span><span class="c1">// 型エラーになるがテストは通る</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">        </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">[</span><span class="nx">propName</span><span class="p">]}</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">        </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;textarea textarea-bordered&quot;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="hll"><span class="w">        </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">report</span><span class="p">[</span><span class="nx">propName</span><span class="p">]}</span>
+</span></span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">        </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;textarea textarea-bordered&quot;</span>
 </span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">textareaOnChange</span><span class="p">}</span>
 </span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">      </span><span class="o">/&gt;</span>
 </span></code></pre></div></td></tr></table></div>
@@ -4507,14 +4585,14 @@ React でのパフォーマンスに影響が出る可能性があります。</
 そのように定義し直す必要があります。</p>
 <p>その場合、<code>'workContent' | 'notice'</code>としてもいいのですが、やはり<code>Report</code>のプロパティ名から取得したいので、
 そのようなときには、<code>Extract</code>を使うのがよいでしょう。</p>
-<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/components/pageParts/careStaff/ReportDetail/WorkContentControle/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<div class="language-ts highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/app/careStaff/reports/[id]/_parts/WorkContentControl/WorkContentControle.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
 <span class="normal"><a href="#__codelineno-16-3">3</a></span>
 <span class="normal"><a href="#__codelineno-16-4">4</a></span>
 <span class="normal"><a href="#__codelineno-16-5">5</a></span>
 <span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">    </span><span class="nx">report</span><span class="o">:</span><span class="w"> </span><span class="kt">Report</span><span class="p">;</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">workContent</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
 </span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="hll"><span class="w">    </span><span class="nx">propName</span><span class="o">:</span><span class="w"> </span><span class="kt">Extract</span><span class="o">&lt;</span><span class="nx">keyof</span><span class="w"> </span><span class="nx">Report</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;notice&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;workContent&quot;</span><span class="o">&gt;</span><span class="p">;</span>
 </span></span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="p">};</span>
