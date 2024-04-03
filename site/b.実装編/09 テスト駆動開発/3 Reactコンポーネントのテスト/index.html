@@ -5234,7 +5234,77 @@ jest の expect に、DOMテスト用の matcher を追加します。<br />
 <p>これは、マイナスと同じように進められますので、自身で実装してみてください。</p>
 <h4 id="storybook_3">Storybook で確認してみる</h4>
 <p><code>Counter</code> は、プロパティが無いので、スケルトンコードのまま動くと思います。</p>
-<p>実際に操作して試してみましょう！</p>
+<p>スタイルは、下記のものを当てましょう。</p>
+<div class="language-css highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/Counter/Counter.module.css</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span>
+<span class="normal"><a href="#__codelineno-45-3">3</a></span>
+<span class="normal"><a href="#__codelineno-45-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="p">.</span><span class="nc">counter</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">inline-flex</span><span class="p">;</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3"></a><span class="w">  </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/Counter/Counter.tsx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-46-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-46-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-46-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-46-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-46-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-46-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-46-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-46-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-46-10">10</a></span>
+<span class="normal"><a href="#__codelineno-46-11">11</a></span>
+<span class="normal"><a href="#__codelineno-46-12">12</a></span>
+<span class="normal"><a href="#__codelineno-46-13">13</a></span>
+<span class="normal"><a href="#__codelineno-46-14">14</a></span>
+<span class="normal"><a href="#__codelineno-46-15">15</a></span>
+<span class="normal"><a href="#__codelineno-46-16">16</a></span>
+<span class="normal"><a href="#__codelineno-46-17">17</a></span>
+<span class="normal"><a href="#__codelineno-46-18">18</a></span>
+<span class="normal"><a href="#__codelineno-46-19">19</a></span>
+<span class="normal"><a href="#__codelineno-46-20">20</a></span>
+<span class="normal"><a href="#__codelineno-46-21">21</a></span>
+<span class="normal"><a href="#__codelineno-46-22">22</a></span>
+<span class="normal"><a href="#__codelineno-46-23">23</a></span>
+<span class="normal"><a href="#__codelineno-46-24">24</a></span>
+<span class="normal"><a href="#__codelineno-46-25">25</a></span>
+<span class="normal"><a href="#__codelineno-46-26">26</a></span>
+<span class="normal"><a href="#__codelineno-46-27">27</a></span>
+<span class="normal"><a href="#__codelineno-46-28">28</a></span>
+<span class="normal"><a href="#__codelineno-46-29">29</a></span>
+<span class="normal"><a href="#__codelineno-46-30">30</a></span>
+<span class="normal"><a href="#__codelineno-46-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a>import React, { useCallback, useState } from &#39;react&#39;;
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2"></a>import { DisplayNumber } from &#39;../DisplayNumber&#39;;
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3"></a>import { IncrementalButton } from &#39;../IncrementalButton&#39;;
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4"></a>import style from &#39;./Counter.module.css&#39;;
+</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5"></a>
+</span><span id="__span-46-6"><a id="__codelineno-46-6" name="__codelineno-46-6"></a>export const Counter: React.FC = () =&gt; {
+</span><span id="__span-46-7"><a id="__codelineno-46-7" name="__codelineno-46-7"></a>  const [count, setCount] = useState(0);
+</span><span id="__span-46-8"><a id="__codelineno-46-8" name="__codelineno-46-8"></a>  const handleClickDecrementButton = useCallback(
+</span><span id="__span-46-9"><a id="__codelineno-46-9" name="__codelineno-46-9"></a>    () =&gt; setCount((prev) =&gt; prev - 1),
+</span><span id="__span-46-10"><a id="__codelineno-46-10" name="__codelineno-46-10"></a>    [],
+</span><span id="__span-46-11"><a id="__codelineno-46-11" name="__codelineno-46-11"></a>  );
+</span><span id="__span-46-12"><a id="__codelineno-46-12" name="__codelineno-46-12"></a>  const handleClickIncrementButton = useCallback(
+</span><span id="__span-46-13"><a id="__codelineno-46-13" name="__codelineno-46-13"></a>    () =&gt; setCount((prev) =&gt; prev + 1),
+</span><span id="__span-46-14"><a id="__codelineno-46-14" name="__codelineno-46-14"></a>    [],
+</span><span id="__span-46-15"><a id="__codelineno-46-15" name="__codelineno-46-15"></a>  );
+</span><span id="__span-46-16"><a id="__codelineno-46-16" name="__codelineno-46-16"></a>  return (
+</span><span id="__span-46-17"><a id="__codelineno-46-17" name="__codelineno-46-17"></a>    &lt;div className={style.counter}&gt;
+</span><span id="__span-46-18"><a id="__codelineno-46-18" name="__codelineno-46-18"></a>      &lt;IncrementalButton
+</span><span id="__span-46-19"><a id="__codelineno-46-19" name="__codelineno-46-19"></a>        caption=&quot;-&quot;
+</span><span id="__span-46-20"><a id="__codelineno-46-20" name="__codelineno-46-20"></a>        onClick={handleClickDecrementButton}
+</span><span id="__span-46-21"><a id="__codelineno-46-21" name="__codelineno-46-21"></a>        aria-label=&quot;decrement&quot;
+</span><span id="__span-46-22"><a id="__codelineno-46-22" name="__codelineno-46-22"></a>      /&gt;
+</span><span id="__span-46-23"><a id="__codelineno-46-23" name="__codelineno-46-23"></a>      &lt;DisplayNumber value={count} /&gt;
+</span><span id="__span-46-24"><a id="__codelineno-46-24" name="__codelineno-46-24"></a>      &lt;IncrementalButton
+</span><span id="__span-46-25"><a id="__codelineno-46-25" name="__codelineno-46-25"></a>        caption=&quot;+&quot;
+</span><span id="__span-46-26"><a id="__codelineno-46-26" name="__codelineno-46-26"></a>        onClick={handleClickIncrementButton}
+</span><span id="__span-46-27"><a id="__codelineno-46-27" name="__codelineno-46-27"></a>        aria-label=&quot;increment&quot;
+</span><span id="__span-46-28"><a id="__codelineno-46-28" name="__codelineno-46-28"></a>      /&gt;
+</span><span id="__span-46-29"><a id="__codelineno-46-29" name="__codelineno-46-29"></a>    &lt;/div&gt;
+</span><span id="__span-46-30"><a id="__codelineno-46-30" name="__codelineno-46-30"></a>  );
+</span><span id="__span-46-31"><a id="__codelineno-46-31" name="__codelineno-46-31"></a>};
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_9">まとめ</h2>
 <p>React の TDD を実践してみましたが、いかがだったでしょうか？</p>
 <p>ここまで細かくしなくても・・・と思われるかと思います。実際ここまで小さくステップを踏んでやることはあまりないと思います。</p>
